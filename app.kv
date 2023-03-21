@@ -8,18 +8,18 @@
             Image:
                 source: "Hub1.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7}  
-                size_hint_max: 1000, 1000
+                size_hint_max: 330, 330
             MDLabel:
                 pos_hint: {"center_y": .087}
                 halign: "center"
-#                font_name: "Poppins-Light"
+#                font_name: "Poppins-Light"s
                 font_size: "150sp"
                 color: rgba(135, 143, 158, 200)    
         MDFloatLayout:
             Image:
                 source: "Hub2.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7}  
-                size_hint_max: 1000, 1000
+                size_hint_max: 330, 330
             MDLabel:
                 pos_hint: {"center_y": .087}
                 halign: "center"
@@ -30,7 +30,7 @@
             Image:
                 source: "Hub3.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7} 
-                size_hint_max: 1000, 1000
+                size_hint_max: 330, 330
             MDLabel:
                 pos_hint: {"center_y": .087}
                 halign: "center"
@@ -41,7 +41,7 @@
             Image:
                 source: "Hub5.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7}  
-                size_hint_max: 1000, 1000
+                size_hint_max: 330, 330
             MDLabel:
                 pos_hint: {"center_y": .47}
                 halign: "center"
@@ -51,22 +51,24 @@
     
     MDBoxLayout:  
         MDFloatLayout:
-        
+            Image:
+                source: "Vector.jpg"
+                pos_hint: {"center_x": .5, "center_y": .4}  
             MDFillRoundFlatButton:
                 md_bg_color: "#49C388"
                 text: "Login"
                 font_size:18
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .5, 'center_y': .3}
-                size_hint_x: .8
+                size_hint_x: .7
             
             MDFillRoundFlatButton:
                 md_bg_color: "#49C388"
-                text: "Cadastrar"
+                text: "Cadastra-se"
                 font_size:18
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .5, 'center_y': .2}
-                size_hint_x: .8
+                size_hint_x: .7
             Image:  
                 source: 'logosemnome.png'
                 pos_hint: {'center_x': .5, 'center_y': .1}

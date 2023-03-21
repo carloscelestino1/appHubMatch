@@ -29,7 +29,9 @@ JanelaGerenciadora:
             
             MDLabel:
                 text: "Quem é você?"
+                halign:'center'
                 pos_hint: {'center_x': .5, 'center_y': .5}
+                theme_text_color: "Custom"
                 text_color: "white"
             MDFillRoundFlatButton:
                 md_bg_color: "000000"
