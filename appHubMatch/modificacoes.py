@@ -22,13 +22,9 @@ Builder.load_string('''
                 on_release: app.root.current = 'welcomeScreen'
                
             Image:  
-                source: 'LogoPrincipal.png'
+                source: 'img/LogoPrincipal.png'
                 pos_hint: {'center_x': .5, 'center_y': .5}
                 size_hint_max: 325, 325
-
-
-            
-
 
 <WelcomeScreen>:
     name: 'welcomeScreen'
@@ -44,7 +40,7 @@ Builder.load_string('''
                 pos_hint: {"center_y": .95}
                 on_release: app.root.current = 'load'
             Image:
-                source: "Hub1.jpg"
+                source: "img/Hub1.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7}  
                 size_hint_max: 330, 330
             MDLabel:
@@ -55,7 +51,7 @@ Builder.load_string('''
                 color: rgba(135, 143, 158, 200)    
         MDFloatLayout:
             Image:
-                source: "Hub2.jpg"
+                source: "img/Hub2.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7}  
                 size_hint_max: 330, 330
             MDLabel:
@@ -66,7 +62,7 @@ Builder.load_string('''
                 color: rgba(135, 143, 158, 200)    
         MDFloatLayout:
             Image:
-                source: "Hub3.jpg"
+                source: "img/Hub3.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7} 
                 size_hint_max: 330, 330
             MDLabel:
@@ -77,7 +73,7 @@ Builder.load_string('''
                 color: rgba(135, 143, 158, 200)
         MDFloatLayout:
             Image:
-                source: "Hub5.jpg"
+                source: "img/Hub5.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7}  
                 size_hint_max: 330, 330
             MDLabel:
@@ -90,7 +86,7 @@ Builder.load_string('''
     MDBoxLayout:  
         MDFloatLayout:
             Image:
-                source: "Vector.jpg"
+                source: "img/Vector.jpg"
                 pos_hint: {"center_x": .5, "center_y": .4}  
             MDFillRoundFlatButton:
                 md_bg_color: "#49C388"
@@ -113,12 +109,9 @@ Builder.load_string('''
                 on_release: app.root.current = 'whoAreyou'
 
             Image:  
-                source: 'logosemnome.png'
+                source: 'img/logosemnome.png'
                 pos_hint: {'center_x': .5, 'center_y': .1}
                 size_hint: .2, .2          
-
-
-
 
 <Login>:
     name: 'login'
@@ -132,7 +125,7 @@ Builder.load_string('''
                 pos_hint: {"center_x": .1, 'center_y': .9}
                 on_release: app.root.current = 'welcomeScreen'
             Image:  
-                source: 'HubMat.png'
+                source: 'img/HubMat.png'
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 size_hint_max: 250, 250
             MDTextField:
@@ -175,9 +168,6 @@ Builder.load_string('''
                 on_release: app.root.current
                     
 
-                
-
-
 <WhoAreyouHome>:
     name: 'whoAreyou'
     MDBoxLayout:
@@ -190,7 +180,7 @@ Builder.load_string('''
                 pos_hint: {"center_y": .95}
                 on_release: app.root.current = 'welcomeScreen'
             Image:  
-                source: 'MatchMilhoes.png'
+                source: 'img/MatchMilhoes.png'
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 size_hint_max: 250, 250
             MDBoxLayout:  
@@ -210,7 +200,7 @@ Builder.load_string('''
                 pos_hint: {'center_x': .5, 'center_y': .4}
                 size_hint_x: .7
 
-                on_release: app.root.current = 'register'
+                on_release: app.root.current = 'register_startup'
 
             MDFillRoundFlatButton:
                 md_bg_color: "000000"
@@ -219,7 +209,9 @@ Builder.load_string('''
                 font_size:18
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .5, 'center_y': .3}
-                size_hint_x: .7    
+                size_hint_x: .7   
+                
+                on_release: app.root.current = 'register_investidor' 
             MDFillRoundFlatButton:
                 md_bg_color: "000000"
                 opacity: 0.73
@@ -228,6 +220,8 @@ Builder.load_string('''
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .5, 'center_y': .2}
                 size_hint_x: .7 
+                
+                on_release: app.root.current = 'register_mentor'
             MDFillRoundFlatButton:
                 md_bg_color: "000000"
                 opacity: 0.73
@@ -236,10 +230,12 @@ Builder.load_string('''
                 font_size:18
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .5, 'center_y': .1}
-                size_hint_x: .7      
+                size_hint_x: .7     
                 
-<Register>:
-    name: 'register'
+                on_release: app.root.current = 'register_cientista' 
+                
+<Register_Startup>:
+    name: 'register_startup'
     MDBoxLayout:
         orientation: 'vertical'        
         MDFloatLayout:
@@ -304,7 +300,203 @@ Builder.load_string('''
                 
                 on_release: app.root.current = 'editprofile'
 
+<Register_Investidor>:
+    name: 'register_investidor'
+    MDBoxLayout:
+        orientation: 'vertical'        
+        MDFloatLayout:
+            MDIconButton:
+                icon: "chevron-left"
+                user_font_size: "35sp"
+                pos_hint: {"center_y": .95}
+                on_release: app.root.current = 'whoAreyou'
+            Image:  
+                source: 'img/LogoPrincipal.png'
+                pos_hint: {'center_x': .5, 'center_y': .9}
+                size_hint: .4, .4
+            MDLabel:
+                text: "Investidor"
+                halign:'center'
+                pos_hint: {'center_x': .5, 'center_y': .77}
+                text_color: "white"
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'CNPJ'
+                pos_hint: {'center_x': .5, 'center_y': .7}
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'Razão Social'
+                pos_hint: {'center_x': .5, 'center_y': .6}
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'E-mail'
+                pos_hint: {'center_x': .5, 'center_y': .5}    
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'Senha'
+                pos_hint: {'center_x': .5, 'center_y': .4}
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'Telefone'
+                pos_hint: {'center_x': .5, 'center_y': .3}
+            MDCheckbox:
+                size_hint: None, None
+                size: "48dp", "48dp"
+                pos_hint: {'center_x': .1, 'center_y': .2}
+            MDLabel:
+                font_style: "Caption"
+                text: "Li e concordo com os termos"
+                halign:'center'
+                pos_hint: {'center_x': .4, 'center_y': .2}
+                text_color: "white"
+                user_font_size: "10sp"
+            MDFillRoundFlatButton:
+                md_bg_color: "1F4935"
+                opacity: 1
+                text: "Cadastrar"
+                text_color: "black"
+                font_size:14
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .8, 'center_y': .1}
+                
+                on_release: app.root.current = 'editprofile'
 
+<Register_Mentor>:
+    name: 'register_mentor'
+    MDBoxLayout:
+        orientation: 'vertical'        
+        MDFloatLayout:
+            MDIconButton:
+                icon: "chevron-left"
+                user_font_size: "35sp"
+                pos_hint: {"center_y": .95}
+                on_release: app.root.current = 'whoAreyou'
+            Image:  
+                source: 'img/LogoPrincipal.png'
+                pos_hint: {'center_x': .5, 'center_y': .9}
+                size_hint: .4, .4
+            MDLabel:
+                text: "MENTOR"
+                halign:'center'
+                pos_hint: {'center_x': .5, 'center_y': .77}
+                text_color: "white"
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'CNPJ'
+                pos_hint: {'center_x': .5, 'center_y': .7}
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'Razão Social'
+                pos_hint: {'center_x': .5, 'center_y': .6}
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'E-mail'
+                pos_hint: {'center_x': .5, 'center_y': .5}    
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'Senha'
+                pos_hint: {'center_x': .5, 'center_y': .4}
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'Telefone'
+                pos_hint: {'center_x': .5, 'center_y': .3}
+            MDCheckbox:
+                size_hint: None, None
+                size: "48dp", "48dp"
+                pos_hint: {'center_x': .1, 'center_y': .2}
+            MDLabel:
+                font_style: "Caption"
+                text: "Li e concordo com os termos"
+                halign:'center'
+                pos_hint: {'center_x': .4, 'center_y': .2}
+                text_color: "white"
+                user_font_size: "10sp"
+            MDFillRoundFlatButton:
+                md_bg_color: "1F4935"
+                opacity: 1
+                text: "Cadastrar"
+                text_color: "black"
+                font_size:14
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .8, 'center_y': .1}
+                
+                on_release: app.root.current = 'editprofile'
+
+<Register_Cientista>:
+    name: 'register_cientista'
+    MDBoxLayout:
+        orientation: 'vertical'        
+        MDFloatLayout:
+            MDIconButton:
+                icon: "chevron-left"
+                user_font_size: "35sp"
+                pos_hint: {"center_y": .95}
+                on_release: app.root.current = 'whoAreyou'
+            Image:  
+                source: 'img/LogoPrincipal.png'
+                pos_hint: {'center_x': .5, 'center_y': .9}
+                size_hint: .4, .4
+            MDLabel:
+                text: "CIENTISTA"
+                halign:'center'
+                pos_hint: {'center_x': .5, 'center_y': .77}
+                text_color: "white"
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'CNPJ'
+                pos_hint: {'center_x': .5, 'center_y': .7}
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'Razão Social'
+                pos_hint: {'center_x': .5, 'center_y': .6}
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'E-mail'
+                pos_hint: {'center_x': .5, 'center_y': .5}    
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'Senha'
+                pos_hint: {'center_x': .5, 'center_y': .4}
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'Telefone'
+                pos_hint: {'center_x': .5, 'center_y': .3}
+            MDCheckbox:
+                size_hint: None, None
+                size: "48dp", "48dp"
+                pos_hint: {'center_x': .1, 'center_y': .2}
+            MDLabel:
+                font_style: "Caption"
+                text: "Li e concordo com os termos"
+                halign:'center'
+                pos_hint: {'center_x': .4, 'center_y': .2}
+                text_color: "white"
+                user_font_size: "10sp"
+            MDFillRoundFlatButton:
+                md_bg_color: "1F4935"
+                opacity: 1
+                text: "Cadastrar"
+                text_color: "black"
+                font_size:14
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .8, 'center_y': .1}
+                
+                on_release: app.root.current = 'editprofile'
 
 <EditProfile>:
     name: 'editprofile'
@@ -315,9 +507,9 @@ Builder.load_string('''
                 icon: "chevron-left"
                 user_font_size: "35sp"
                 pos_hint: {"center_y": .95}
-                on_release: app.root.current = 'register'
+                on_release: app.root.current = 'register_startup'
             Image:  
-                source: 'LogoPrincipal.png'
+                source: 'img/LogoPrincipal.png'
                 pos_hint: {'center_x': .5, 'center_y': .9}
                 size_hint: .4, .4
             MDTextField:
@@ -383,9 +575,8 @@ Builder.load_string('''
                 font_size:14
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .1}
-
-
-
+                
+                on_release: app.root.current = 'login'
 
 ''')
 
@@ -403,7 +594,16 @@ class Login(Screen):
 class WhoAreyouHome(Screen):
     pass
 
-class Register(Screen):
+class Register_Startup(Screen):
+    pass
+
+class Register_Investidor(Screen):
+    pass
+
+class Register_Mentor(Screen):
+    pass
+
+class Register_Cientista(Screen):
     pass
 
 class EditProfile(Screen):
@@ -412,11 +612,24 @@ class EditProfile(Screen):
 
 class WelcomeScreen(Screen):
 
-    pass
+    def on_enter(self):
+        Clock.schedule_interval(self.start_autorotation, 3)
+
+    def start_autorotation(self, dt):
+        carousel = self.ids.caraousel
+        if carousel.index == len(carousel.slides) - 1:
+            carousel.load_slide(carousel.slides[0])
+        else:
+            carousel.load_next()
+
+    def stop_autorotation(self):
+        Clock.unschedule(self.start_autorotation)
+
+
 
 class MyApp(MDApp):
-
-
+    
+        
     def current_slide(self, index):
         pass
     
@@ -431,13 +644,24 @@ class MyApp(MDApp):
         self.janela_gerenciadora.current = 'whoAreyou'
 
     def register_press(self):
-        self.janela_gerenciadora.current = 'register'
+        self.janela_gerenciadora.current = 'register_startup'
+    
+    def register_press(self):
+        self.janela_gerenciadora.current = 'register_investidor'
+    
+    def register_press(self):
+        self.janela_gerenciadora.current = 'register_mentor'
+    
+    def register_press(self):
+        self.janela_gerenciadora.current = 'register_cientista'
     
     def welcome_screen(self):
         self.janela_gerenciadora.current = 'welcomeScreen'
+        
 
     def editprofile(self):
         self.janela_gerenciadora.current = 'editprofile'
+        
 
     def build(self):
         self.theme_cls.primary_palette = 'Blue'
@@ -445,15 +669,22 @@ class MyApp(MDApp):
         self.load = Load()
         self.login = Login()
         self.whoAreyouHome = WhoAreyouHome()
-        self.register = Register()
-        self.editprofile= EditProfile()
+        self.registers = Register_Startup()
+        self.registeri = Register_Investidor()
+        self.registerm = Register_Mentor()
+        self.registerc = Register_Cientista()
+        self.editprofilee= EditProfile()
         self.welcome_screenn = WelcomeScreen()
         self.janela_gerenciadora.add_widget(self.load)
         self.janela_gerenciadora.add_widget(self.login)
         self.janela_gerenciadora.add_widget(self.whoAreyouHome)
-        self.janela_gerenciadora.add_widget(self.register)
+        self.janela_gerenciadora.add_widget(self.registers)
+        self.janela_gerenciadora.add_widget(self.registeri)
+        self.janela_gerenciadora.add_widget(self.registerm)
+        self.janela_gerenciadora.add_widget(self.registerc)
         self.janela_gerenciadora.add_widget(self.welcome_screenn)
-        self.janela_gerenciadora.add_widget(self.editprofile)
+        self.janela_gerenciadora.add_widget(self.editprofilee)
+
 
         return self.janela_gerenciadora
     
