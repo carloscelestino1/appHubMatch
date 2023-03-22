@@ -2,275 +2,334 @@ from kivymd.uix.card import MDCard
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.clock import Clock
 
 
 Builder.load_string('''
 
 
-<JanelaPrincipal>:
-    name: 'janelaprincipal'
+<Load>:
+    name: 'load'
     MDBoxLayout:
         orientation: 'vertical'
-        MDTopAppBar:
-            md_bg_color: 'green'
-            shadow_color: 'green'
-            title: 'Ergo'
-            elevation: 2
-            anchor_title: 'left'
-            right_action_items: [['theme-light-dark', lambda x: app.change_color()]]            
-                
+        md_bg_color: "white"     
         MDFloatLayout:
+            MDIconButton:
+                icon: "chevron-right"
+                user_font_size: "35sp"
+                pos_hint: {"center_x": .90, 'center_y': .9}
+                on_release: app.root.current = 'welcomeScreen'
+               
             Image:  
-                source: 'newphoto.png'
-                pos_hint: {'center_x': .5, 'center_y': .8}
-                size_hint: .4, .4
-            MDTextField:
-                icon_right: 'email'
-                size_hint_x: .9
-                hint_text: 'Email'
-                pos_hint: {'center_x': .5, 'center_y': .6}
-            MDTextField:
-                icon_right: 'lock'
-                password: True
-                size_hint_x: .9
-                hint_text: 'Senha'
+                source: 'LogoPrincipal.png'
                 pos_hint: {'center_x': .5, 'center_y': .5}
-            MDRaisedButton:
-                size_hint_x: .9
+                size_hint_max: 325, 325
+
+
+            
+
+
+<WelcomeScreen>:
+    name: 'welcomeScreen'
+    MDFloatLayout:
+        md_bg_color : 1, 1, 1, 1
+    Carousel:
+        id: caraousel
+        on_current_slide: app.current_slide(self.index)
+        MDFloatLayout:
+            MDIconButton:
+                icon: "chevron-left"
+                user_font_size: "35sp"
+                pos_hint: {"center_y": .95}
+                on_release: app.root.current = 'load'
+            Image:
+                source: "Hub1.jpg"
+                pos_hint: {"center_x": .5, "center_y": .7}  
+                size_hint_max: 330, 330
+            MDLabel:
+                pos_hint: {"center_y": .087}
+                halign: "center"
+                font_name: "Poppins-Light"
+                font_size: "150sp"
+                color: rgba(135, 143, 158, 200)    
+        MDFloatLayout:
+            Image:
+                source: "Hub2.jpg"
+                pos_hint: {"center_x": .5, "center_y": .7}  
+                size_hint_max: 330, 330
+            MDLabel:
+                pos_hint: {"center_y": .087}
+                halign: "center"
+                font_name: "Poppins-Light"
+                font_size: "14sp"
+                color: rgba(135, 143, 158, 200)    
+        MDFloatLayout:
+            Image:
+                source: "Hub3.jpg"
+                pos_hint: {"center_x": .5, "center_y": .7} 
+                size_hint_max: 330, 330
+            MDLabel:
+                pos_hint: {"center_y": .087}
+                halign: "center"
+                font_name: "Poppins-Light"
+                font_size: "14sp"
+                color: rgba(135, 143, 158, 200)
+        MDFloatLayout:
+            Image:
+                source: "Hub5.jpg"
+                pos_hint: {"center_x": .5, "center_y": .7}  
+                size_hint_max: 330, 330
+            MDLabel:
+                pos_hint: {"center_y": .47}
+                halign: "center"
+                font_name: "Poppins-Regular"
+                font_size: "25px"
+                color: rgba(1, 3, 23, 225)
+    
+    MDBoxLayout:  
+        MDFloatLayout:
+            Image:
+                source: "Vector.jpg"
+                pos_hint: {"center_x": .5, "center_y": .4}  
+            MDFillRoundFlatButton:
+                md_bg_color: "#49C388"
+                text: "Login"
+                font_size:18
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .5, 'center_y': .3}
+                size_hint_x: .7
+
+                on_release: app.root.current = 'login'
+            
+            MDFillRoundFlatButton:
+                md_bg_color: "#49C388"
+                text: "Cadastra-se"
+                font_size:18
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .5, 'center_y': .2}
+                size_hint_x: .7
+
+                on_release: app.root.current = 'whoAreyou'
+
+            Image:  
+                source: 'logosemnome.png'
+                pos_hint: {'center_x': .5, 'center_y': .1}
+                size_hint: .2, .2          
+
+
+
+
+<Login>:
+    name: 'login'
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color:  "#49C388"  
+        MDFloatLayout:
+            MDIconButton:
+                icon: "chevron-left"
+                user_font_size: "35sp"
+                pos_hint: {"center_x": .1, 'center_y': .9}
+                on_release: app.root.current = 'welcomeScreen'
+            Image:  
+                source: 'HubMat.png'
+                pos_hint: {'center_x': .5, 'center_y': .7}
+                size_hint_max: 250, 250
+            MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                mode: "round"
+                line_color_focus: "black"
+                icon_right: 'email'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                size_hint_x: .8
+                hint_text: 'Email'
                 pos_hint: {'center_x': .5, 'center_y': .4}
-                text: 'Login'
-                on_release:
-                    app.root.current = 'janela1'
+            MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                mode: "round"
+                line_color_focus: "black"
+                icon_right_color_focus: "49C388"
+                icon_right: 'lock'
+                icon_right_color_normal: "black"
+                password: True
+                size_hint_x: .8
+                hint_text: 'Senha'
+                pos_hint: {'center_x': .5, 'center_y': .3}
             MDTextButton:
                 pos_hint: {'center_x': .5, 'center_y': .25}
-                text: 'Esqueceu sua senha?'
+                text: 'Esqueceu sua senha?'  
+                text_color: "white"
+                theme_text_color: "Custom"
+            MDFillRoundFlatButton:
+                md_bg_color: "000000"
+                opacity: 0.73
+                text: "Entrar"
+                text_color: "white"
+                font_size:14
+                pos_hint: {'center_x': .7, 'center_y': .19}
+                size_hint_x: .1 
 
-<Janela1>:
-    name: 'janela1'
-    MDBoxLayout:
-        md_bg_color: 'blue'
-        orientation:'vertical'
-            
-        MDBoxLayout:
-            orientation: 'vertical'
-            size_hint_y:.75
-            cols:2
-            padding:[dp(15),dp(15),dp(15),dp(35)]
-            spacing:dp(15)
-            MDCard:
-                on_release: app.guia_postural_press()
-                padding:dp(10)
-                spacing:dp(10)
-                radius:dp(25)
-                ripple_behavior: True
-                MDFloatLayout:
-                    Image:
-                        source: 'fotomenu.png'
-                        pos_hint: {'center_x': .13, 'center_y': .4}
-                MDFloatLayout:    
-                    MDLabel:
-                        adaptive_size: True
-                        text: 'GUIA POSTURAL'
-                        
-                        pos_hint: {'center_x': .01, 'center_y': .6}
-
-                
-                                    
-                
-            MDCard:
-               
-                padding:dp(10)
-                spacing:dp(10)
-                radius:dp(25)
-                ripple_behavior: True
-                MDFloatLayout:
-                    Image:
-                        source: 'segundaFoto.png'
-                        pos_hint: {'center_x': .13, 'center_y': .6}
-                MDFloatLayout:    
-                    MDLabel:
-                        adaptive_size: True
-                        text: 'EXERCÍCIO LABORAL'
-                        
-                        pos_hint: {'center_x': .01, 'center_y': .6}
-            MDCard:
-               
-                padding:dp(10)
-                spacing:dp(10)
-                radius:dp(25)
-                ripple_behavior: True
-                MDFloatLayout:
-                    Image:
-                        source: 'terceiraFoto.png'
-                        pos_hint: {'center_x': .13, 'center_y': .6}
-                MDFloatLayout:    
-                    MDLabel:
-                        adaptive_size: True
-                        text: 'INSATISFAÇÕES'
-                        
-                        pos_hint: {'center_x': .01, 'center_y': .6}
-            MDCard:
-               
-                padding:dp(10)
-                spacing:dp(10)
-                radius:dp(25)
-                ripple_behavior: True
-                MDFloatLayout:
-                    Image:
-                        source: 'quartaFoto.png'
-                        pos_hint: {'center_x': .13, 'center_y': .5}
-                MDFloatLayout:    
-                    MDLabel:
-                        adaptive_size: True
-                        text: 'FALE CONOSCO'
-                        
-                        pos_hint: {'center_x': .01, 'center_y': .6}
-
-            MDCard:
-               
-                padding:dp(10)
-                spacing:dp(10)
-                radius:dp(25)
-                ripple_behavior: True
-                MDFloatLayout:
-                    Image:
-                        source: 'quintaFoto.png'
-                        pos_hint: {'center_x': .13, 'center_y': .5}
-                MDFloatLayout:    
-                    MDLabel:
-                        adaptive_size: True
-                        text: 'ANÁLISE DE POSTURA'
-                        
-                        pos_hint: {'center_x': .01, 'center_y': .6}
-            MDCard:
-               
-                padding:dp(10)
-                spacing:dp(10)
-                radius:dp(25)
-                ripple_behavior: True
-                MDFloatLayout:
-                    Image:
-                        source: 'sextaFoto.png'
-                        pos_hint: {'center_x': .13, 'center_y': .5}
-                MDFloatLayout:    
-                    MDLabel:
-                        adaptive_size: True
-                        text: 'QUESTIONÁRIO'
-                        
-                        pos_hint: {'center_x': .01, 'center_y': .6}
-            
-            MDCard:
-               
-                padding:dp(10)
-                spacing:dp(10)
-                radius:dp(25)
-                ripple_behavior: True
-                MDFloatLayout:
-                    Image:
-                        source: 'sextaFoto.png'
-                        pos_hint: {'center_x': .13, 'center_y': .5}
-                MDFloatLayout:    
-                    MDLabel:
-                        adaptive_height: True
-                        mode: 'fill'
-                        text: 'FERRAMENTAS DE ACESSIBILIDADE'
-                        
-                        pos_hint: {'center_x': .18, 'center_y': .6}
+                on_release: app.root.current
                     
 
-<GuiaPostural>:
-    name: 'guia_postural'
+                
+
+
+<WhoAreyouHome>:
+    name: 'whoAreyou'
     MDBoxLayout:
-        md_bg_color: 'blue'
         orientation: 'vertical'
+        md_bg_color: "#49C388"     
+        MDFloatLayout:
+            MDIconButton:
+                icon: "chevron-left"
+                user_font_size: "35sp"
+                pos_hint: {"center_y": .95}
+                on_release: app.root.current = 'welcomeScreen'
+            Image:  
+                source: 'MatchMilhoes.png'
+                pos_hint: {'center_x': .5, 'center_y': .7}
+                size_hint_max: 250, 250
+            MDBoxLayout:  
             
-        MDBoxLayout:
-            
-            size_hint_y:.4
-            cols:2
-            padding:[dp(15),dp(15),dp(15),dp(35)]
-            spacing:dp(15)
-            MDCard:
-                    
-                padding:dp(10)
-                spacing:dp(10)
-                radius:dp(25)
-                ripple_behavior: True
-                
-                Image:
-                    source: 'guia_post1.png'
-                    pos_hint: {'center_x': .13, 'center_y': .5}
+            MDLabel:
+                text: "Quem é você?"
+                halign:'center'
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                theme_text_color: "Custom"
+                text_color: "white"
+            MDFillRoundFlatButton:
+                md_bg_color: "000000"
+                opacity: 0.73
+                text: "Startup"
+                font_size:18
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .5, 'center_y': .4}
+                size_hint_x: .7
 
-        MDBoxLayout:
-            
-            size_hint_y:.4
-            cols:2
-            padding:[dp(15),dp(15),dp(15),dp(35)]
-            spacing:dp(15)
-            MDCard:
-                    
-                padding:dp(10)
-                spacing:dp(10)
-                radius:dp(25)
-                ripple_behavior: True
-                
-                Image:
-                    source: 'guia_post2.jpg'
-                    pos_hint: {'center_x': .13, 'center_y': .5}
+                on_release: app.root.current = 'register'
 
-        MDBoxLayout:
-            
-            size_hint_y:.4
-            cols:2
-            padding:[dp(15),dp(15),dp(15),dp(35)]
-            spacing:dp(15)
-            MDCard:
-                    
-                padding:dp(10)
-                spacing:dp(10)
-                radius:dp(25)
-                ripple_behavior: True
+            MDFillRoundFlatButton:
+                md_bg_color: "000000"
+                opacity: 0.73
+                text: "Investidor"
+                font_size:18
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .5, 'center_y': .3}
+                size_hint_x: .7    
+            MDFillRoundFlatButton:
+                md_bg_color: "000000"
+                opacity: 0.73
+                text: "Mentor"
+                font_size:18
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .5, 'center_y': .2}
+                size_hint_x: .7 
+            MDFillRoundFlatButton:
+                md_bg_color: "000000"
+                opacity: 0.73
+                text: "Cientista"
+                text_color: "black"
+                font_size:18
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .5, 'center_y': .1}
+                size_hint_x: .7      
                 
-                Image:
-                    source: 'guia_post3.jpg'
-                    pos_hint: {'center_x': .13, 'center_y': .5}
+<Register>:
+    name: 'register'
+    MDBoxLayout:
+        orientation: 'vertical'        
+        MDFloatLayout:
+            MDIconButton:
+                icon: "chevron-left"
+                user_font_size: "35sp"
+                pos_hint: {"center_y": .95}
+                on_release: app.root.current = 'whoAreyou'
+            Image:  
+                source: 'LogoPrincipal.png'
+                pos_hint: {'center_x': .5, 'center_y': .9}
+                size_hint: .4, .4
+            MDLabel:
+                text: "STARTUP"
+                halign:'center'
+                pos_hint: {'center_x': .5, 'center_y': .77}
+                text_color: "white"
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'CNPJ'
+                pos_hint: {'center_x': .5, 'center_y': .7}
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'Razão Social'
+                pos_hint: {'center_x': .5, 'center_y': .6}
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'E-mail'
+                pos_hint: {'center_x': .5, 'center_y': .5}    
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'Senha'
+                pos_hint: {'center_x': .5, 'center_y': .4}
+            MDTextField:
+                mode: "fill"
+                size_hint_x: .9
+                hint_text: 'Telefone'
+                pos_hint: {'center_x': .5, 'center_y': .3}
+            MDCheckbox:
+                size_hint: None, None
+                size: "48dp", "48dp"
+                pos_hint: {'center_x': .1, 'center_y': .2}
+            MDLabel:
+                font_style: "Caption"
+                text: "Li e concordo com os termos"
+                halign:'center'
+                pos_hint: {'center_x': .4, 'center_y': .2}
+                text_color: "white"
+                user_font_size: "10sp"
+            MDFillRoundFlatButton:
+                md_bg_color: "1F4935"
+                opacity: 1
+                text: "Cadastrar"
+                text_color: "black"
+                font_size:14
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .8, 'center_y': .1}
 
-        MDBoxLayout:
-            
-            size_hint_y:.4
-            cols:2
-            padding:[dp(15),dp(15),dp(15),dp(35)]
-            spacing:dp(15)
-            MDCard:
-                    
-                padding:dp(10)
-                spacing:dp(10)
-                radius:dp(25)
-                ripple_behavior: True
-                
-                Image:
-                    source: 'guia_post4.jpg'
-                    pos_hint: {'center_x': .13, 'center_y': .5}    
 
 ''')
+
+
 
 class JanelaGerenciadora(ScreenManager):
     pass
 
-class JanelaPrincipal(Screen):
+class Load(Screen):
     pass
 
-class Janela1(Screen):
+class Login(Screen):
     pass
 
-class GuiaPostural(Screen):
+class WhoAreyouHome(Screen):
     pass
 
-class ExerLab(Screen):
+class Register(Screen):
+    pass
+
+
+class WelcomeScreen(Screen):
     pass
 
 class MyApp(MDApp):
 
+
+    def current_slide(self, index):
+        pass
     
     def change_color(self):
         theme = self.theme_cls.theme_style
@@ -279,21 +338,29 @@ class MyApp(MDApp):
         else:
             self.theme_cls.theme_style = 'Dark'
 
-    def guia_postural_press(self):
-        self.janela_gerenciadora.current = 'guia_postural'
+    def whoAreyouHome_press(self):
+        self.janela_gerenciadora.current = 'whoAreyou'
+
+    def register_press(self):
+        self.janela_gerenciadora.current = 'register'
+    
+    def welcome_screen(self):
+        self.janela_gerenciadora.current = 'welcomeScreen'
 
     def build(self):
         self.theme_cls.primary_palette = 'Blue'
         self.janela_gerenciadora = JanelaGerenciadora()
-        self.janela_principal = JanelaPrincipal()
-        self.janela1 = Janela1()
-        self.guia_postural = GuiaPostural()
-        self.laboral_postural = ExerLab()
-        self.janela_gerenciadora.add_widget(self.janela_principal)
-        self.janela_gerenciadora.add_widget(self.janela1)
-        self.janela_gerenciadora.add_widget(self.guia_postural)
-        self.janela_gerenciadora.add_widget(self.laboral_postural)
-        
+        self.load = Load()
+        self.login = Login()
+        self.whoAreyouHome = WhoAreyouHome()
+        self.register = Register()
+        self.welcome_screenn = WelcomeScreen()
+        self.janela_gerenciadora.add_widget(self.load)
+        self.janela_gerenciadora.add_widget(self.login)
+        self.janela_gerenciadora.add_widget(self.whoAreyouHome)
+        self.janela_gerenciadora.add_widget(self.register)
+        self.janela_gerenciadora.add_widget(self.welcome_screenn)
+
         return self.janela_gerenciadora
     
 MyApp().run()
