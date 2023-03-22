@@ -1,74 +1,84 @@
+from kivymd.uix.card import MDCard
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 
-KV = '''
-JanelaGerenciadora:
 
-    JanelaPrincipal:
+Builder.load_string('''
 
-    Janela1:
-
-    GuiaPostural:
 
 <JanelaPrincipal>:
     name: 'janelaprincipal'
     MDBoxLayout:
-        orientation: 'vertical'
-        md_bg_color: "#49C388"     
+        orientation: 'vertical'            
         MDFloatLayout:
-            MDIconButton:
-                icon: "chevron-left"
-                user_font_size: "35sp"
-                pos_hint: {"center_y": .95}
             Image:  
-                source: 'MatchMilhoes.png'
-                pos_hint: {'center_x': .5, 'center_y': .7}
-                size_hint_max: 250, 250
-            MDBoxLayout:  
-            
+                source: 'LogoPrincipal.png'
+                pos_hint: {'center_x': .5, 'center_y': .9}
+                size_hint: .4, .4
+            MDTextField:
+                size_hint_x: .4
+                hint_text: "Nome"
+                fill_color: 0, 0, 0, .4
+                multiline: True
+                pos_hint: {"center_x": .7, "center_y": .75}
+            Image:  
+                source: 'Ellipse2.png'
+                pos_hint: {'center_x': .2, 'center_y': .75} 
+            MDIconButton:
+                icon: "download"
+                pos_hint: {'center_x': .2, 'center_y': .7} 
+                user_font_size: "35sp"    
+            MDTextField:
+                size_hint_x: .8
+                size_hint_y: .1
+                hint_text: "Bio"
+                mode: "fill"
+                fill_color: 0, 0, 0, .4
+                multiline: True
+                pos_hint: {"center_x": .5, "center_y": .58}
+            MDTextField:
+                size_hint_x: .8
+                hint_text: "Vídeo de apresentação"
+                text:"URL"
+                mode: "fill"
+                fill_color: 0, 0, 0, .4
+                multiline: True
+                pos_hint: {"center_x": .5, "center_y": .48}
+            MDTextField:
+                size_hint_x: .8
+                hint_text: "Tags"
+                mode: "fill"
+                fill_color: 0, 0, 0, .4
+                multiline: True
+                pos_hint: {"center_x": .5, "center_y": .38}
             MDLabel:
-                text: "Quem é você?"
+                text: "Dados Bancarios"
                 halign:'center'
-                pos_hint: {'center_x': .5, 'center_y': .5}
-                theme_text_color: "Custom"
-                text_color: "white"
+                pos_hint: {'center_x': .27, 'center_y': .30}
+            MDTextField:
+                size_hint_x: .4
+                hint_text: "Agência"
+                mode: "round"
+                pos_hint: {"center_x": .3, "center_y": .25}
+            MDTextField:
+                size_hint_x: .4
+                hint_text: "Conta"
+                mode: "round"
+                pos_hint: {"center_x": .3, "center_y": .18}
+            MDTextField:
+                size_hint_x: .4
+                hint_text: "Banco"
+                mode: "round"
+                pos_hint: {"center_x": .3, "center_y": .11}        
             MDFillRoundFlatButton:
-                md_bg_color: "000000"
-                opacity: 0.73
-                text: "Startup"
-                font_size:18
-                text_color:1,1,1,1
-                pos_hint: {'center_x': .5, 'center_y': .4}
-                size_hint_x: .7
-            MDFillRoundFlatButton:
-                md_bg_color: "000000"
-                opacity: 0.73
-                text: "Investidor"
-                font_size:18
-                text_color:1,1,1,1
-                pos_hint: {'center_x': .5, 'center_y': .3}
-                size_hint_x: .7    
-            MDFillRoundFlatButton:
-                md_bg_color: "000000"
-                opacity: 0.73
-                text: "Mentor"
-                font_size:18
-                text_color:1,1,1,1
-                pos_hint: {'center_x': .5, 'center_y': .2}
-                size_hint_x: .7 
-            MDFillRoundFlatButton:
-                md_bg_color: "000000"
-                opacity: 0.73
-                text: "Cientista"
+                md_bg_color: "1F4935"
+                opacity: 1
+                text: "Concluir"
                 text_color: "black"
-                font_size:18
+                font_size:14
                 text_color:1,1,1,1
-                pos_hint: {'center_x': .5, 'center_y': .1}
-                size_hint_x: .7        
-  
-
-           
+                pos_hint: {'center_x': .8, 'center_y': .1}
 
 <Janela1>:
     name: 'janela1'
@@ -83,6 +93,7 @@ JanelaGerenciadora:
             padding:[dp(15),dp(15),dp(15),dp(35)]
             spacing:dp(15)
             MDCard:
+                on_release: app.guia_postural_press()
                 padding:dp(10)
                 spacing:dp(10)
                 radius:dp(25)
@@ -97,8 +108,9 @@ JanelaGerenciadora:
                         text: 'GUIA POSTURAL'
                         
                         pos_hint: {'center_x': .01, 'center_y': .6}
-                    
+
                 
+                                    
                 
             MDCard:
                
@@ -203,10 +215,79 @@ JanelaGerenciadora:
 
 <GuiaPostural>:
     name: 'guia_postural'
-    MDRaisedButton: 
-        text: 'olá'
+    MDBoxLayout:
+        md_bg_color: 'blue'
+        orientation: 'vertical'
+            
+        MDBoxLayout:
+            
+            size_hint_y:.4
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
+            MDCard:
+                    
+                padding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                
+                Image:
+                    source: 'guia_post1.png'
+                    pos_hint: {'center_x': .13, 'center_y': .5}
 
-'''
+        MDBoxLayout:
+            
+            size_hint_y:.4
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
+            MDCard:
+                    
+                padding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                
+                Image:
+                    source: 'guia_post2.jpg'
+                    pos_hint: {'center_x': .13, 'center_y': .5}
+
+        MDBoxLayout:
+            
+            size_hint_y:.4
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
+            MDCard:
+                    
+                padding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                
+                Image:
+                    source: 'guia_post3.jpg'
+                    pos_hint: {'center_x': .13, 'center_y': .5}
+
+        MDBoxLayout:
+            
+            size_hint_y:.4
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
+            MDCard:
+                    
+                padding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                
+                Image:
+                    source: 'guia_post4.jpg'
+                    pos_hint: {'center_x': .13, 'center_y': .5}    
+
+''')
 
 class JanelaGerenciadora(ScreenManager):
     pass
@@ -220,7 +301,11 @@ class Janela1(Screen):
 class GuiaPostural(Screen):
     pass
 
+class ExerLab(Screen):
+    pass
+
 class MyApp(MDApp):
+
     
     def change_color(self):
         theme = self.theme_cls.theme_style
@@ -229,8 +314,21 @@ class MyApp(MDApp):
         else:
             self.theme_cls.theme_style = 'Dark'
 
+    def guia_postural_press(self):
+        self.janela_gerenciadora.current = 'guia_postural'
+
     def build(self):
         self.theme_cls.primary_palette = 'Blue'
-        return Builder.load_string(KV)
+        self.janela_gerenciadora = JanelaGerenciadora()
+        self.janela_principal = JanelaPrincipal()
+        self.janela1 = Janela1()
+        self.guia_postural = GuiaPostural()
+        self.laboral_postural = ExerLab()
+        self.janela_gerenciadora.add_widget(self.janela_principal)
+        self.janela_gerenciadora.add_widget(self.janela1)
+        self.janela_gerenciadora.add_widget(self.guia_postural)
+        self.janela_gerenciadora.add_widget(self.laboral_postural)
+        
+        return self.janela_gerenciadora
     
 MyApp().run()
