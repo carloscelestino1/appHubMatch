@@ -3,10 +3,11 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.clock import Clock
+from kivy.core.window import Window
 
+Window.size = (350, 580)
 
 Builder.load_string('''
-
 
 <Load>:
     name: 'load'
@@ -300,6 +301,90 @@ Builder.load_string('''
                 font_size:14
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .1}
+                
+                on_release: app.root.current = 'editprofile'
+
+
+
+<EditProfile>:
+    name: 'editprofile'
+    MDBoxLayout:
+        orientation: 'vertical'            
+        MDFloatLayout: 
+            MDIconButton:
+                icon: "chevron-left"
+                user_font_size: "35sp"
+                pos_hint: {"center_y": .95}
+                on_release: app.root.current = 'register'
+            Image:  
+                source: 'LogoPrincipal.png'
+                pos_hint: {'center_x': .5, 'center_y': .9}
+                size_hint: .4, .4
+            MDTextField:
+                size_hint_x: .4
+                hint_text: "Nome"
+                fill_color: 0, 0, 0, .4
+                multiline: True
+                pos_hint: {"center_x": .7, "center_y": .75}
+            Image:  
+                source: 'Ellipse2.png'
+                pos_hint: {'center_x': .2, 'center_y': .75} 
+            MDIconButton:
+                icon: "download"
+                pos_hint: {'center_x': .2, 'center_y': .7} 
+                user_font_size: "35sp"    
+            MDTextField:
+                size_hint_x: .8
+                size_hint_y: .1
+                hint_text: "Bio"
+                mode: "fill"
+                fill_color: 0, 0, 0, .4
+                multiline: True
+                pos_hint: {"center_x": .5, "center_y": .58}
+            MDTextField:
+                size_hint_x: .8
+                hint_text: "Vídeo de apresentação"
+                text:"URL"
+                mode: "fill"
+                fill_color: 0, 0, 0, .4
+                multiline: True
+                pos_hint: {"center_x": .5, "center_y": .48}
+            MDTextField:
+                size_hint_x: .8
+                hint_text: "Tags"
+                mode: "fill"
+                fill_color: 0, 0, 0, .4
+                multiline: True
+                pos_hint: {"center_x": .5, "center_y": .38}
+            MDLabel:
+                text: "Dados Bancarios"
+                halign:'center'
+                pos_hint: {'center_x': .27, 'center_y': .30}
+            MDTextField:
+                size_hint_x: .4
+                hint_text: "Agência"
+                mode: "round"
+                pos_hint: {"center_x": .3, "center_y": .25}
+            MDTextField:
+                size_hint_x: .4
+                hint_text: "Conta"
+                mode: "round"
+                pos_hint: {"center_x": .3, "center_y": .18}
+            MDTextField:
+                size_hint_x: .4
+                hint_text: "Banco"
+                mode: "round"
+                pos_hint: {"center_x": .3, "center_y": .11}        
+            MDFillRoundFlatButton:
+                md_bg_color: "1F4935"
+                opacity: 1
+                text: "Concluir"
+                text_color: "black"
+                font_size:14
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .8, 'center_y': .1}
+
+
 
 
 ''')
@@ -321,8 +406,12 @@ class WhoAreyouHome(Screen):
 class Register(Screen):
     pass
 
+class EditProfile(Screen):
+    pass
+
 
 class WelcomeScreen(Screen):
+
     pass
 
 class MyApp(MDApp):
@@ -347,6 +436,9 @@ class MyApp(MDApp):
     def welcome_screen(self):
         self.janela_gerenciadora.current = 'welcomeScreen'
 
+    def editprofile(self):
+        self.janela_gerenciadora.current = 'editprofile'
+
     def build(self):
         self.theme_cls.primary_palette = 'Blue'
         self.janela_gerenciadora = JanelaGerenciadora()
@@ -354,12 +446,14 @@ class MyApp(MDApp):
         self.login = Login()
         self.whoAreyouHome = WhoAreyouHome()
         self.register = Register()
+        self.editprofile= EditProfile()
         self.welcome_screenn = WelcomeScreen()
         self.janela_gerenciadora.add_widget(self.load)
         self.janela_gerenciadora.add_widget(self.login)
         self.janela_gerenciadora.add_widget(self.whoAreyouHome)
         self.janela_gerenciadora.add_widget(self.register)
         self.janela_gerenciadora.add_widget(self.welcome_screenn)
+        self.janela_gerenciadora.add_widget(self.editprofile)
 
         return self.janela_gerenciadora
     
