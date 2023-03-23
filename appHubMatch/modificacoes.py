@@ -34,15 +34,11 @@ Builder.load_string('''
         id: caraousel
         on_current_slide: app.current_slide(self.index)
         MDFloatLayout:
-            MDIconButton:
-                icon: "chevron-left"
-                user_font_size: "35sp"
-                pos_hint: {"center_y": .95}
-                on_release: app.root.current = 'load'
             Image:
                 source: "img/Hub1.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7}  
-                size_hint_max: 330, 330
+                size_hint_x: 1
+                size_hint_y: 0.7
             MDLabel:
                 pos_hint: {"center_y": .087}
                 halign: "center"
@@ -53,7 +49,8 @@ Builder.load_string('''
             Image:
                 source: "img/Hub2.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7}  
-                size_hint_max: 330, 330
+                size_hint_x: 1
+                size_hint_y: 0.7
             MDLabel:
                 pos_hint: {"center_y": .087}
                 halign: "center"
@@ -64,7 +61,8 @@ Builder.load_string('''
             Image:
                 source: "img/Hub3.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7} 
-                size_hint_max: 330, 330
+                size_hint_x: 1
+                size_hint_y: 0.7
             MDLabel:
                 pos_hint: {"center_y": .087}
                 halign: "center"
@@ -75,43 +73,45 @@ Builder.load_string('''
             Image:
                 source: "img/Hub5.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7}  
-                size_hint_max: 330, 330
+                size_hint_x: 1
+                size_hint_y: 0.7
             MDLabel:
                 pos_hint: {"center_y": .47}
                 halign: "center"
                 font_name: "Poppins-Regular"
                 font_size: "25px"
                 color: rgba(1, 3, 23, 225)
+
     
     MDBoxLayout:  
         MDFloatLayout:
             Image:
                 source: "img/Vector.jpg"
-                pos_hint: {"center_x": .5, "center_y": .4}  
+                pos_hint: {"center_x": .5, "center_y": .33}  
             MDFillRoundFlatButton:
                 md_bg_color: "#49C388"
-                text: "Login"
+                text: "Entrar"
                 font_size:18
                 text_color:1,1,1,1
-                pos_hint: {'center_x': .5, 'center_y': .3}
+                pos_hint: {'center_x': .5, 'center_y': .26}
                 size_hint_x: .7
 
                 on_release: app.root.current = 'login'
             
             MDFillRoundFlatButton:
                 md_bg_color: "#49C388"
-                text: "Cadastra-se"
+                text: "Faça já o seu cadastro aqui"
                 font_size:18
                 text_color:1,1,1,1
-                pos_hint: {'center_x': .5, 'center_y': .2}
+                pos_hint: {'center_x': .5, 'center_y': .17}
                 size_hint_x: .7
 
                 on_release: app.root.current = 'whoAreyou'
 
             Image:  
                 source: 'img/logosemnome.png'
-                pos_hint: {'center_x': .5, 'center_y': .1}
-                size_hint: .2, .2          
+                pos_hint: {'center_x': .5, 'center_y': .07}
+                size_hint: .2, .2            
 
 <Login>:
     name: 'login'
@@ -166,7 +166,6 @@ Builder.load_string('''
                 size_hint_x: .1 
 
                 on_release: app.root.current
-                    
 
 <WhoAreyouHome>:
     name: 'whoAreyou'
@@ -188,7 +187,7 @@ Builder.load_string('''
             MDLabel:
                 text: "Quem é você?"
                 halign:'center'
-                pos_hint: {'center_x': .5, 'center_y': .5}
+                pos_hint: {'center_x': .5, 'center_y': .48}
                 theme_text_color: "Custom"
                 text_color: "white"
             MDFillRoundFlatButton:
@@ -245,34 +244,24 @@ Builder.load_string('''
                 pos_hint: {"center_y": .95}
                 on_release: app.root.current = 'whoAreyou'
             Image:  
-                source: 'LogoPrincipal.png'
-                pos_hint: {'center_x': .5, 'center_y': .9}
+                source: 'img/LogoPrincipal.png'
+                pos_hint: {'center_x': .5, 'center_y': .83}
                 size_hint: .4, .4
             MDLabel:
-                text: "STARTUP"
+                text: "Startup"
                 halign:'center'
-                pos_hint: {'center_x': .5, 'center_y': .77}
+                pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
                 mode: "fill"
                 size_hint_x: .9
-                hint_text: 'CNPJ'
-                pos_hint: {'center_x': .5, 'center_y': .7}
-            MDTextField:
-                mode: "fill"
-                size_hint_x: .9
-                hint_text: 'Razão Social'
-                pos_hint: {'center_x': .5, 'center_y': .6}
-            MDTextField:
-                mode: "fill"
-                size_hint_x: .9
                 hint_text: 'E-mail'
-                pos_hint: {'center_x': .5, 'center_y': .5}    
+                pos_hint: {'center_x': .5, 'center_y': .6}    
             MDTextField:
                 mode: "fill"
                 size_hint_x: .9
                 hint_text: 'Senha'
-                pos_hint: {'center_x': .5, 'center_y': .4}
+                pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
                 mode: "fill"
                 size_hint_x: .9
@@ -312,33 +301,23 @@ Builder.load_string('''
                 on_release: app.root.current = 'whoAreyou'
             Image:  
                 source: 'img/LogoPrincipal.png'
-                pos_hint: {'center_x': .5, 'center_y': .9}
+                pos_hint: {'center_x': .5, 'center_y': .83}
                 size_hint: .4, .4
             MDLabel:
                 text: "Investidor"
                 halign:'center'
-                pos_hint: {'center_x': .5, 'center_y': .77}
+                pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
                 mode: "fill"
                 size_hint_x: .9
-                hint_text: 'CNPJ'
-                pos_hint: {'center_x': .5, 'center_y': .7}
-            MDTextField:
-                mode: "fill"
-                size_hint_x: .9
-                hint_text: 'Razão Social'
-                pos_hint: {'center_x': .5, 'center_y': .6}
-            MDTextField:
-                mode: "fill"
-                size_hint_x: .9
                 hint_text: 'E-mail'
-                pos_hint: {'center_x': .5, 'center_y': .5}    
+                pos_hint: {'center_x': .5, 'center_y': .6}    
             MDTextField:
                 mode: "fill"
                 size_hint_x: .9
                 hint_text: 'Senha'
-                pos_hint: {'center_x': .5, 'center_y': .4}
+                pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
                 mode: "fill"
                 size_hint_x: .9
@@ -378,33 +357,23 @@ Builder.load_string('''
                 on_release: app.root.current = 'whoAreyou'
             Image:  
                 source: 'img/LogoPrincipal.png'
-                pos_hint: {'center_x': .5, 'center_y': .9}
+                pos_hint: {'center_x': .5, 'center_y': .83}
                 size_hint: .4, .4
             MDLabel:
-                text: "MENTOR"
+                text: "Mentor"
                 halign:'center'
-                pos_hint: {'center_x': .5, 'center_y': .77}
+                pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
                 mode: "fill"
                 size_hint_x: .9
-                hint_text: 'CNPJ'
-                pos_hint: {'center_x': .5, 'center_y': .7}
-            MDTextField:
-                mode: "fill"
-                size_hint_x: .9
-                hint_text: 'Razão Social'
-                pos_hint: {'center_x': .5, 'center_y': .6}
-            MDTextField:
-                mode: "fill"
-                size_hint_x: .9
                 hint_text: 'E-mail'
-                pos_hint: {'center_x': .5, 'center_y': .5}    
+                pos_hint: {'center_x': .5, 'center_y': .6}    
             MDTextField:
                 mode: "fill"
                 size_hint_x: .9
                 hint_text: 'Senha'
-                pos_hint: {'center_x': .5, 'center_y': .4}
+                pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
                 mode: "fill"
                 size_hint_x: .9
@@ -444,33 +413,23 @@ Builder.load_string('''
                 on_release: app.root.current = 'whoAreyou'
             Image:  
                 source: 'img/LogoPrincipal.png'
-                pos_hint: {'center_x': .5, 'center_y': .9}
+                pos_hint: {'center_x': .5, 'center_y': .83}
                 size_hint: .4, .4
             MDLabel:
-                text: "CIENTISTA"
+                text: "Cientista"
                 halign:'center'
-                pos_hint: {'center_x': .5, 'center_y': .77}
+                pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
                 mode: "fill"
                 size_hint_x: .9
-                hint_text: 'CNPJ'
-                pos_hint: {'center_x': .5, 'center_y': .7}
-            MDTextField:
-                mode: "fill"
-                size_hint_x: .9
-                hint_text: 'Razão Social'
-                pos_hint: {'center_x': .5, 'center_y': .6}
-            MDTextField:
-                mode: "fill"
-                size_hint_x: .9
                 hint_text: 'E-mail'
-                pos_hint: {'center_x': .5, 'center_y': .5}    
+                pos_hint: {'center_x': .5, 'center_y': .6}    
             MDTextField:
                 mode: "fill"
                 size_hint_x: .9
                 hint_text: 'Senha'
-                pos_hint: {'center_x': .5, 'center_y': .4}
+                pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
                 mode: "fill"
                 size_hint_x: .9
@@ -519,7 +478,7 @@ Builder.load_string('''
                 multiline: True
                 pos_hint: {"center_x": .7, "center_y": .75}
             Image:  
-                source: 'Ellipse2.png'
+                source: 'img/Ellipse2.png'
                 pos_hint: {'center_x': .2, 'center_y': .75} 
             MDIconButton:
                 icon: "download"
@@ -547,26 +506,7 @@ Builder.load_string('''
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .5, "center_y": .38}
-            MDLabel:
-                text: "Dados Bancarios"
-                halign:'center'
-                pos_hint: {'center_x': .27, 'center_y': .30}
-            MDTextField:
-                size_hint_x: .4
-                hint_text: "Agência"
-                mode: "round"
-                pos_hint: {"center_x": .3, "center_y": .25}
-            MDTextField:
-                size_hint_x: .4
-                hint_text: "Conta"
-                mode: "round"
-                pos_hint: {"center_x": .3, "center_y": .18}
-            MDTextField:
-                size_hint_x: .4
-                hint_text: "Banco"
-                mode: "round"
-                pos_hint: {"center_x": .3, "center_y": .11}        
+                pos_hint: {"center_x": .5, "center_y": .38}      
             MDFillRoundFlatButton:
                 md_bg_color: "1F4935"
                 opacity: 1
