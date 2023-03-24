@@ -6,7 +6,7 @@ from kivy.clock import Clock
 from kivy.core.window import Window
 
 Window.size = (350, 580)
-
+ 
 Builder.load_string('''
 
 <Load>:
