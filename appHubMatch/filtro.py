@@ -11,6 +11,7 @@ Window.size = (350, 580)
 
 Builder.load_string('''
 
+ 
 
 <JanelaPrincipal>:
     name: 'janelaprincipal'
