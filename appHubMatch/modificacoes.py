@@ -29,7 +29,7 @@ Builder.load_string('''
 <WelcomeScreen>:
     name: 'welcomeScreen'
     MDFloatLayout:
-        md_bg_color : 1, 1, 1, 1
+        md_bg_color: 1,1,1,1
     Carousel:
         id: caraousel
         on_current_slide: app.current_slide(self.index)
@@ -85,13 +85,14 @@ Builder.load_string('''
     
     MDBoxLayout:  
         MDFloatLayout:
-            Image:
-                source: "img/Vector.jpg"
-                pos_hint: {"center_x": .5, "center_y": .33}  
+            MDIcon:
+                icon: 'ray-start-vertex-end'
+                font_size: '40dp'
+                pos_hint: {'center_x': .5, 'center_y': .32}
             MDFillRoundFlatButton:
                 md_bg_color: "#49C388"
                 text: "Entrar"
-                font_size:18
+                font_size:17
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .5, 'center_y': .26}
                 size_hint_x: .7
@@ -100,8 +101,8 @@ Builder.load_string('''
             
             MDFillRoundFlatButton:
                 md_bg_color: "#49C388"
-                text: "Faça já o seu cadastro aqui"
-                font_size:18
+                text: "Faça já o seu cadastro aqui !!"
+                font_size:17
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .5, 'center_y': .17}
                 size_hint_x: .7
@@ -111,7 +112,7 @@ Builder.load_string('''
             Image:  
                 source: 'img/logosemnome.png'
                 pos_hint: {'center_x': .5, 'center_y': .07}
-                size_hint: .1, .1            
+                size_hint: .2, .2            
 
 <Login>:
     name: 'login'
@@ -131,18 +132,18 @@ Builder.load_string('''
             MDTextField:
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
-                mode: "round"
+                mode: "fill"
                 line_color_focus: "black"
                 icon_right: 'email'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 size_hint_x: .8
                 hint_text: 'Email'
+                hint_text_color_focus: "49C388"
                 pos_hint: {'center_x': .5, 'center_y': .4}
             MDTextField:
                 md_bg_color: "000000"
-                hint_text: "line_color_normal"
-                mode: "round"
+                mode: "fill"
                 line_color_focus: "black"
                 icon_right_color_focus: "49C388"
                 icon_right: 'lock'
@@ -150,19 +151,19 @@ Builder.load_string('''
                 password: True
                 size_hint_x: .8
                 hint_text: 'Senha'
+                hint_text_color_focus: "49C388"
                 pos_hint: {'center_x': .5, 'center_y': .3}
             MDTextButton:
-                pos_hint: {'center_x': .5, 'center_y': .25}
+                pos_hint: {'center_x': .5, 'center_y': .22}
                 text: 'Esqueceu sua senha?'  
                 text_color: "white"
                 theme_text_color: "Custom"
             MDFillRoundFlatButton:
-                md_bg_color: "000000"
-                opacity: 0.73
+                md_bg_color: "145C3A"
                 text: "Entrar"
                 text_color: "white"
                 font_size:14
-                pos_hint: {'center_x': .7, 'center_y': .19}
+                pos_hint: {'center_x': .8, 'center_y': .17}
                 size_hint_x: .1 
 
                 on_release: app.root.current
@@ -468,9 +469,9 @@ Builder.load_string('''
                 pos_hint: {"center_y": .95}
                 on_release: app.root.current = 'register_startup'
             Image:  
-                source: 'img/LogoPrincipal.png'
+                source: 'img/LogoSemNome.png'
                 pos_hint: {'center_x': .5, 'center_y': .9}
-                size_hint: .4, .4
+                size_hint: .2, .2
             MDTextField:
                 size_hint_x: .4
                 hint_text: "Nome"
@@ -481,20 +482,26 @@ Builder.load_string('''
                 source: 'img/Ellipse2.png'
                 pos_hint: {'center_x': .2, 'center_y': .75} 
             MDIconButton:
-                icon: "download"
+                icon: "upload"
                 pos_hint: {'center_x': .2, 'center_y': .7} 
                 user_font_size: "35sp"    
             MDTextField:
+                size_hint_x: .4
+                hint_text: "Seguimento"
+                mode: "round"
+                fill_color: 0, 0, 0, .4
+                multiline: True
+                pos_hint: {"center_x": .7, "center_y": .68}
+            MDTextField:
                 size_hint_x: .8
-                size_hint_y: .1
-                hint_text: "Proposito"
+                hint_text: "Propósito"
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
                 pos_hint: {"center_x": .5, "center_y": .58}
             MDTextField:
                 size_hint_x: .8
-                hint_text: "Vídeo de apresentação"
+                hint_text: "Vídeo pitch"
                 text:"URL"
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
@@ -502,11 +509,20 @@ Builder.load_string('''
                 pos_hint: {"center_x": .5, "center_y": .48}
             MDTextField:
                 size_hint_x: .8
+                hint_text: "Pdf pitch"
+                text:"URL"
+                mode: "fill"
+                fill_color: 0, 0, 0, .4
+                multiline: True
+                pos_hint: {"center_x": .5, "center_y": .38}    
+            
+            MDTextField:
+                size_hint_x: .8
                 hint_text: "Tags"
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .5, "center_y": .38}      
+                pos_hint: {"center_x": .5, "center_y": .28}      
             MDFillRoundFlatButton:
                 md_bg_color: "1F4935"
                 opacity: 1
@@ -514,7 +530,7 @@ Builder.load_string('''
                 text_color: "black"
                 font_size:14
                 text_color:1,1,1,1
-                pos_hint: {'center_x': .8, 'center_y': .1}
+                pos_hint: {'center_x': .8, 'center_y': .18}
                 
                 on_release: app.root.current = 'login'
 
