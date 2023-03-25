@@ -111,7 +111,7 @@ Builder.load_string('''
             Image:  
                 source: 'img/logosemnome.png'
                 pos_hint: {'center_x': .5, 'center_y': .07}
-                size_hint: .2, .2            
+                size_hint: .1, .1            
 
 <Login>:
     name: 'login'
@@ -487,7 +487,7 @@ Builder.load_string('''
             MDTextField:
                 size_hint_x: .8
                 size_hint_y: .1
-                hint_text: "Bio"
+                hint_text: "Proposito"
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
