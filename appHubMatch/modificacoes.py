@@ -469,9 +469,9 @@ Builder.load_string('''
                 pos_hint: {"center_y": .95}
                 on_release: app.root.current = 'register_startup'
             Image:  
-                source: 'img/LogoPrincipal.png'
+                source: 'img/LogoSemNome.png'
                 pos_hint: {'center_x': .5, 'center_y': .9}
-                size_hint: .4, .4
+                size_hint: .2, .2
             MDTextField:
                 size_hint_x: .4
                 hint_text: "Nome"
@@ -486,8 +486,14 @@ Builder.load_string('''
                 pos_hint: {'center_x': .2, 'center_y': .7} 
                 user_font_size: "35sp"    
             MDTextField:
+                size_hint_x: .4
+                hint_text: "Seguimento"
+                mode: "round"
+                fill_color: 0, 0, 0, .4
+                multiline: True
+                pos_hint: {"center_x": .7, "center_y": .68}
+            MDTextField:
                 size_hint_x: .8
-                size_hint_y: .1
                 hint_text: "Propósito"
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
@@ -509,6 +515,7 @@ Builder.load_string('''
                 fill_color: 0, 0, 0, .4
                 multiline: True
                 pos_hint: {"center_x": .5, "center_y": .38}    
+            
             MDTextField:
                 size_hint_x: .8
                 hint_text: "Tags"
@@ -523,7 +530,7 @@ Builder.load_string('''
                 text_color: "black"
                 font_size:14
                 text_color:1,1,1,1
-                pos_hint: {'center_x': .8, 'center_y': .1}
+                pos_hint: {'center_x': .8, 'center_y': .18}
                 
                 on_release: app.root.current = 'login'
 
