@@ -515,7 +515,7 @@ Builder.load_string('''
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .5, "center_y": .28}      
+                pos_hint: {"center_x": .5, "center_y": .28}             
             MDFillRoundFlatButton:
                 md_bg_color: "1F4935"
                 opacity: 1
