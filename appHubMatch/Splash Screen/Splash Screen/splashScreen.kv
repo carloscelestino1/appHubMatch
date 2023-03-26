@@ -1,0 +1,61 @@
+MDScreen:
+    # Set sc screen name
+    name: "SplashScreen"
+    # Start the progress bar animation when the screen is active
+    on_enter: self.ids.progress.start()
+    MDBoxLayout:
+        MDBoxLayout:
+            orientation: 'vertical'
+            md_bg_color: "white" 
+            Image:
+                source:'img/LogoComNome.png'
+                pos_hint:{'center_y':.5, 'center_x':.5}
+                size_hint: 0.50, 0.50
+            MDFloatLayout:
+                pos_hint:{'center_y':.5, 'center_x':.4}
+                padding: "10dp"
+                size_hint: 1, 0.03
+                MDProgressBar:
+                    id: progress
+                    orientation: "horizontal"
+                    type: "indeterminate"
+                    running_duration: 1
+                    catching_duration: 1
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

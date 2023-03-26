@@ -9,7 +9,7 @@ import json
 #data = {
 #    'id': '2222', 'nome': 'João', 'sobrenome': 'Silva'
 #  }
-
+ 
 
 # Convertendo o dicionário em um objeto JSON
 #json_data = json.dumps(data)

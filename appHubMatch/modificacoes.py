@@ -132,19 +132,23 @@ Builder.load_string('''
             MDTextField:
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                fill_color_normal: 'white'
                 line_color_focus: "black"
                 icon_right: 'email'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 size_hint_x: .8
-                hint_text: 'Email'
+                hint_text: 'E-mail'
                 hint_text_color_focus: "49C388"
                 pos_hint: {'center_x': .5, 'center_y': .4}
             MDTextField:
                 md_bg_color: "000000"
                 mode: "fill"
+                fill_color_normal: 'white'
                 line_color_focus: "black"
+                text_color_focus: "black"
                 icon_right_color_focus: "49C388"
                 icon_right: 'lock'
                 icon_right_color_normal: "black"
@@ -253,18 +257,42 @@ Builder.load_string('''
                 halign:'center'
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
-            MDTextField:
+            MDTextField:  
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                line_color_focus: "black"
+                icon_right: 'email'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                hint_text_color_focus: "49C388"
                 size_hint_x: .9
                 hint_text: 'E-mail'
                 pos_hint: {'center_x': .5, 'center_y': .6}    
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                line_color_focus: "black"
+                icon_right: 'key-variant'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                hint_text_color_focus: "49C388"
                 size_hint_x: .9
                 hint_text: 'Senha'
                 pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                line_color_focus: "black"
+                icon_right: 'phone'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                hint_text_color_focus: "49C388" 
                 size_hint_x: .9
                 hint_text: 'Telefone'
                 pos_hint: {'center_x': .5, 'center_y': .3}
@@ -310,17 +338,41 @@ Builder.load_string('''
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                line_color_focus: "black"
+                icon_right: 'email'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                hint_text_color_focus: "49C388"
                 size_hint_x: .9
                 hint_text: 'E-mail'
-                pos_hint: {'center_x': .5, 'center_y': .6}    
+                pos_hint: {'center_x': .5, 'center_y': .6}   
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                line_color_focus: "black"
+                icon_right: 'key-variant'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                hint_text_color_focus: "49C388"
                 size_hint_x: .9
                 hint_text: 'Senha'
                 pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                line_color_focus: "black"
+                icon_right: 'phone'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                hint_text_color_focus: "49C388" 
                 size_hint_x: .9
                 hint_text: 'Telefone'
                 pos_hint: {'center_x': .5, 'center_y': .3}
@@ -366,17 +418,41 @@ Builder.load_string('''
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                line_color_focus: "black"
+                icon_right: 'email'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                hint_text_color_focus: "49C388"
                 size_hint_x: .9
                 hint_text: 'E-mail'
-                pos_hint: {'center_x': .5, 'center_y': .6}    
+                pos_hint: {'center_x': .5, 'center_y': .6}   
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                line_color_focus: "black"
+                icon_right: 'key-variant'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                hint_text_color_focus: "49C388"
                 size_hint_x: .9
                 hint_text: 'Senha'
                 pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                line_color_focus: "black"
+                icon_right: 'phone'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                hint_text_color_focus: "49C388" 
                 size_hint_x: .9
                 hint_text: 'Telefone'
                 pos_hint: {'center_x': .5, 'center_y': .3}
@@ -422,17 +498,41 @@ Builder.load_string('''
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                line_color_focus: "black"
+                icon_right: 'email'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                hint_text_color_focus: "49C388"
                 size_hint_x: .9
                 hint_text: 'E-mail'
-                pos_hint: {'center_x': .5, 'center_y': .6}    
+                pos_hint: {'center_x': .5, 'center_y': .6}   
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                line_color_focus: "black"
+                icon_right: 'key-variant'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                hint_text_color_focus: "49C388"
                 size_hint_x: .9
                 hint_text: 'Senha'
                 pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
                 mode: "fill"
+                line_color_focus: "black"
+                icon_right: 'phone'
+                icon_right_color_normal: "black"
+                icon_right_color_focus: "49C388"
+                hint_text_color_focus: "49C388" 
                 size_hint_x: .9
                 hint_text: 'Telefone'
                 pos_hint: {'center_x': .5, 'center_y': .3}
