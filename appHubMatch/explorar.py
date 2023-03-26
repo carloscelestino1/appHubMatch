@@ -20,6 +20,8 @@ Builder.load_string('''
             size_hint: 1, .1
             elevation: 0
             md_bg_color: "49C388"
+            anchor_title: "left"
+            right_action_items: [["bell-outline"]]
         
         MDFloatLayout:
 
@@ -73,21 +75,21 @@ Builder.load_string('''
                         source: "img/VectorHeart.png"
                         elevation: 0
             
-
         MDBottomNavigation:
             panel_color: "49C388"
             size_hint: 1, .06
             elevation: 0
             MDBottomNavigationItem:
-                icon:"cog"
-            MDBottomNavigationItem:
-                icon:"forum" 
-            MDBottomNavigationItem:
                 icon:"home"
             MDBottomNavigationItem:
-                icon:"magnify"                    
+                icon:"magnify" 
+            MDBottomNavigationItem:
+                icon:"heart-outline"
+            MDBottomNavigationItem:
+                icon:"forum"                    
             MDBottomNavigationItem:
                 icon:"account-outline"
+                
 <Janela1>:
     name: 'janela1'
     MDBoxLayout:

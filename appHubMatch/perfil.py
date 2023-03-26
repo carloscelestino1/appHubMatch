@@ -16,30 +16,33 @@ Builder.load_string('''
     name: 'janelaprincipal'
     MDBoxLayout:
         orientation: 'vertical'
+       
         MDTopAppBar:
-            size_hint: 1, .1
+            size_hint: 1, .11
             elevation: 0
             md_bg_color: "49C388"
- 
-        MDIconButton:
-            icon: "pencil"
-            pos_hint: {"center_x": .3, 'center_y': .192}    
+            anchor_title: "right"
+            left_action_items: [["cog"]]
         MDFloatLayout:
             Image:  
                 source: 'img/Ellipse2.png'
-                pos_hint: {'center_x': .5, 'center_y': .92}
+                pos_hint: {'center_x': .5, 'center_y': .86}
+            MDIconButton:
+                icon: "pencil-outline"
+                pos_hint: {"center_x": .67, 'center_y': .78}    
+                size_hint: .09, .05
         MDBottomNavigation:
             panel_color: "49C388"
             size_hint: 1, .06
             elevation: 0
             MDBottomNavigationItem:
-                icon:"cog"
-            MDBottomNavigationItem:
-                icon:"forum" 
-            MDBottomNavigationItem:
                 icon:"home"
             MDBottomNavigationItem:
-                icon:"magnify"                    
+                icon:"magnify" 
+            MDBottomNavigationItem:
+                icon:"heart-outline"
+            MDBottomNavigationItem:
+                icon:"forum"                    
             MDBottomNavigationItem:
                 icon:"account-outline"
 <Janela1>:

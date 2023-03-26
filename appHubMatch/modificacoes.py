@@ -573,6 +573,11 @@ Builder.load_string('''
                 pos_hint: {'center_x': .5, 'center_y': .9}
                 size_hint: .2, .2
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
+                line_color_focus: "black"
+                hint_text_color_focus: "49C388"
                 size_hint_x: .4
                 hint_text: "Nome"
                 fill_color: 0, 0, 0, .4
@@ -586,6 +591,12 @@ Builder.load_string('''
                 pos_hint: {'center_x': .2, 'center_y': .7} 
                 user_font_size: "35sp"    
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
+                line_color_focus: "black"
+                hint_text_color_focus: "49C388"
+                
                 size_hint_x: .4
                 hint_text: "Seguimento"
                 mode: "round"
@@ -593,6 +604,13 @@ Builder.load_string('''
                 multiline: True
                 pos_hint: {"center_x": .7, "center_y": .68}
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
+                line_color_focus: "black"
+                hint_text_color_focus: "49C388"
+
+
                 size_hint_x: .8
                 hint_text: "Propósito"
                 mode: "fill"
@@ -600,25 +618,42 @@ Builder.load_string('''
                 multiline: True
                 pos_hint: {"center_x": .5, "center_y": .58}
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
+                line_color_focus: "black"
+                hint_text_color_focus: "49C388"
+                
                 size_hint_x: .8
-                hint_text: "Vídeo pitch"
-                text:"URL"
+                hint_text: "Vídeo pitch url"
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
                 pos_hint: {"center_x": .5, "center_y": .48}
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
+                line_color_focus: "black"
+                hint_text_color_focus: "49C388"
+                
+
                 size_hint_x: .8
-                hint_text: "Pdf pitch"
-                text:"URL"
+                hint_text: "Pdf pitch url"
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
                 pos_hint: {"center_x": .5, "center_y": .38}    
-            
             MDTextField:
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
+                line_color_focus: "black"
+                hint_text_color_focus: "49C388"
+
+
                 size_hint_x: .8
-                hint_text: "Tags"
+                hint_text: "#Tags"
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
