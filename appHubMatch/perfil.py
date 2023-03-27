@@ -16,13 +16,13 @@ Builder.load_string('''
     name: 'janelaprincipal'
     MDBoxLayout:
         orientation: 'vertical'
-       
+
         MDTopAppBar:
             size_hint: 1, .11
             elevation: 0
             md_bg_color: "49C388"
             anchor_title: "right"
-            left_action_items: [["cog"]]
+            left_action_items: [["cog", lambda x: app.guia_postural_press()]]
         MDFloatLayout:
             Image:  
                 source: 'img/Ellipse2.png'

@@ -22,6 +22,7 @@ Builder.load_string('''
             elevation: 0
             md_bg_color: "1111111"
             anchor_title: "right"
+            left_action_items: [["chevron-left", lambda x: app.guia_postural_press()]]
             title: "Ajustes"
             specific_text_color: "black"
         MDFloatLayout:
@@ -113,22 +114,6 @@ Builder.load_string('''
                     size_hint: 0.65, 0.33  
                     source: "img/fada.png"
                     pos_hint: {'center_x': .5,'center_y': .3}
-
-            MDBottomNavigation:
-                panel_color: "49C388"
-                size_hint: 1, .06
-                elevation: 0
-                MDBottomNavigationItem:
-                    icon:"home"
-                MDBottomNavigationItem:
-                    icon:"magnify" 
-                MDBottomNavigationItem:
-                    icon:"heart-outline"
-                MDBottomNavigationItem:
-                    icon:"forum"                    
-                MDBottomNavigationItem:
-                    icon:"account-outline"
-
                     
 
 
