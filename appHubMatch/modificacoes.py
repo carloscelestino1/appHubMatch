@@ -1084,10 +1084,7 @@ Builder.load_string('''
                     on_tab_press: app.root.current = 'perfil'
 
                
-
-
 ''')
-
 
 
 class JanelaGerenciadora(ScreenManager):
@@ -1119,11 +1116,11 @@ class EditProfile(Screen):
 
 
 
-
 class Settingss(Screen):
     pass
 
-
+class Perfil(Screen):
+    pass
 
 class WelcomeScreen(Screen):
 
@@ -1139,7 +1136,6 @@ class WelcomeScreen(Screen):
 
     def stop_autorotation(self):
         Clock.unschedule(self.start_autorotation)
-
 
 
 class Explorer(Screen):
@@ -1211,6 +1207,8 @@ class MyApp(MDApp):
         self.settingss = Settingss()
         self.chat = Chat()
         self.filter = Filter()
+        self.perfill = Perfil()
+
 
         self.janela_gerenciadora.add_widget(self.load)
         self.janela_gerenciadora.add_widget(self.login)
@@ -1225,6 +1223,10 @@ class MyApp(MDApp):
         self.janela_gerenciadora.add_widget(self.settingss)
         self.janela_gerenciadora.add_widget(self.chat)
         self.janela_gerenciadora.add_widget(self.filter)
+        self.janela_gerenciadora.add_widget(self.perfill)
+
+
+
 
 
         return self.janela_gerenciadora
