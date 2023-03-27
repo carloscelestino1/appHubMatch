@@ -170,7 +170,7 @@ Builder.load_string('''
                 pos_hint: {'center_x': .8, 'center_y': .17}
                 size_hint_x: .1 
 
-                on_release: app.root.current
+                on_release: app.root.current = "filter"
 
 <WhoAreyouHome>:
     name: 'whoAreyou'
@@ -669,6 +669,423 @@ Builder.load_string('''
                 
                 on_release: app.root.current = 'login'
 
+
+<Perfil>:
+    name: 'perfil'
+    MDBoxLayout:
+        orientation: 'vertical'
+       
+        MDTopAppBar:
+            size_hint: 1, .11
+            elevation: 0
+            md_bg_color: "49C388"
+            anchor_title: "right"
+
+            left_action_items: [["cog", lambda x: app.settingss_press()]]
+
+        MDFloatLayout:
+            Image:  
+                source: 'img/Ellipse2.png'
+                pos_hint: {'center_x': .5, 'center_y': .86}
+
+            MDIconButton:
+                icon: "pencil-outline"
+                pos_hint: {"center_x": .67, 'center_y': .78}    
+                size_hint: .09, .05
+
+
+            MDBottomNavigation:
+                panel_color: "49C388"
+                size_hint: 1, .06
+                elevation: 0
+
+                MDBottomNavigationItem:
+                    icon:"home"
+                    on_tab_press: app.root.current = 'filter'
+
+                MDBottomNavigationItem:
+                    icon:"magnify" 
+                    on_tab_press: app.root.current = 'explorer'
+                
+                MDBottomNavigationItem:
+                    icon:"heart-outline"
+                    on_tab_press: app.root.current
+                
+                MDBottomNavigationItem:
+                    icon:"forum"       
+                    on_tab_press: app.root.current = 'chat'
+                
+                MDBottomNavigationItem:
+                    icon:"account-outline"
+                    on_tab_press: app.root.current = 'perfil'
+
+
+<Explorer>:
+    name: 'explorer'
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            size_hint: 1, .1
+            elevation: 0
+            md_bg_color: "49C388"
+            anchor_title: "left"
+            right_action_items: [["bell-outline"]]
+        
+        MDFloatLayout:
+
+            MDCard:
+                id: 'Azul'
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 15
+                padding: 15
+                size_hint: 0.50, 0.25
+                pos_hint: {'center_x': .2,'center_y': 0.50}
+                MDCard:
+                    id: ''
+                    elevation: 0
+                    md_bg_color: 
+                    Image:
+                        source: "img/Ellipse2.png"
+                        elevation: 0
+
+
+            MDCard:
+                id: 'Azul'
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 15
+                padding: 15
+                size_hint: 0.17, 0.15
+                pos_hint: {'center_x': .2,'center_y': 0.23}
+                MDCard:
+                    id: ''
+                    elevation: 0
+                    md_bg_color: 
+                    ripple_behavior: True
+                    Image:
+                        source: "img/VectorX.png"
+                        elevation: 0
+            MDCard:
+                id: 'Azul'
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 10
+                padding: 10
+                size_hint: 0.25, 0.15
+                pos_hint: {'center_x': .8,'center_y': 0.23}
+                MDCard:
+                    id: ''
+                    elevation: 0
+                    md_bg_color: 
+                    ripple_behavior: True
+                    Image:
+                        source: "img/VectorHeart.png"
+                        elevation: 0
+            
+            MDBottomNavigation:
+                panel_color: "49C388"
+                size_hint: 1, .06
+                elevation: 0
+
+                MDBottomNavigationItem:
+                    icon:"home"
+                    on_tab_press: app.root.current = 'filter'
+
+                MDBottomNavigationItem:
+                    icon:"magnify" 
+                    on_tab_press: app.root.current = 'explorer'
+                
+                MDBottomNavigationItem:
+                    icon:"heart-outline"
+                    on_tab_press: app.root.current
+                
+                MDBottomNavigationItem:
+                    icon:"forum"       
+                    on_tab_press: app.root.current = 'chat'
+                
+                MDBottomNavigationItem:
+                    icon:"account-outline"
+                    on_tab_press: app.root.current = 'perfil'
+                
+
+<Settingss>:
+    name: 'settings'
+    MDBoxLayout:
+        orientation: 'vertical'
+       
+        MDTopAppBar:
+            size_hint: 1, .11
+            elevation: 0
+            md_bg_color: "1111111"
+            anchor_title: "right"
+            title: "Ajustes"
+            specific_text_color: "black"
+        MDFloatLayout:
+            MDTextField:              
+                hint_text: "Pesquisar"
+                mode: "round"
+                icon_left: "magnify"
+                pos_hint: {'center_x': .5,'center_y': .96}
+                size_hint: 0.70, 0.07
+            MDCard:
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 15
+                padding: 17
+                size_hint: 1, 0.12
+                pos_hint: {'center_x': .5,'center_y': .89 }
+                
+                MDCard:
+                    elevation: 0
+                    ripple_behavior: True
+                    MDLabel:
+                        adaptive_size: True
+                        text: 'Notificações'
+            MDCard:
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 15
+                padding: 17
+                size_hint: 1, 0.12
+                pos_hint: {'center_x': .5,'center_y': .81}
+                
+                MDCard:
+                    elevation: 0
+                    ripple_behavior: True
+                    MDLabel:
+                        adaptive_size: True
+                        text: 'Privacidade'
+            MDCard:
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 15
+                padding: 17
+                size_hint: 1, 0.12
+                pos_hint: {'center_x': .5,'center_y': .73}
+                
+                MDCard:
+                    elevation: 0
+                    ripple_behavior: True
+                    MDLabel:
+                        adaptive_size: True
+                        text: 'Segurança'                                     
+            MDCard:
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 15
+                padding: 17
+                size_hint: 1, 0.12
+                pos_hint: {'center_x': .5,'center_y': .65}
+                
+                MDCard:
+                    elevation: 0
+                    ripple_behavior: True
+                    MDLabel:
+                        adaptive_size: True
+                        text: 'Anúncios'     
+            MDCard:
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 15
+                padding: 17
+                size_hint: 1, 0.12
+                pos_hint: {'center_x': .5,'center_y': .57}
+                
+                MDCard:
+                    elevation: 0
+                    ripple_behavior: True
+                    MDLabel:
+                        adaptive_size: True
+                        text: 'Conta'                           
+            MDFloatLayout:
+                Image:
+                    size_hint: 1, 0.01
+                    source: "img/line.png"
+                    pos_hint: {'center_x': .5,'center_y': .5}
+                Image:
+                    size_hint: 0.65, 0.33  
+                    source: "img/fada.png"
+                    pos_hint: {'center_x': .5,'center_y': .3}
+
+
+            MDBottomNavigation:
+                panel_color: "49C388"
+                size_hint: 1, .06
+                elevation: 0
+
+                MDBottomNavigationItem:
+                    icon:"home"
+                    on_tab_press: app.root.current = 'filter'
+
+                MDBottomNavigationItem:
+                    icon:"magnify" 
+                    on_tab_press: app.root.current = 'explorer'
+                
+                MDBottomNavigationItem:
+                    icon:"heart-outline"
+                    on_tab_press: app.root.current
+                
+                MDBottomNavigationItem:
+                    icon:"forum"       
+                    on_tab_press: app.root.current = 'chat'
+                
+                MDBottomNavigationItem:
+                    icon:"account-outline"
+                    on_tab_press: app.root.current = 'perfil'
+           
+                    
+
+<Chat>:
+    name: 'chat'
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDFloatLayout:
+
+            MDTextField:              
+                hint_text: "Pesquisar"
+                mode: "round"
+                icon_left: "magnify"
+                pos_hint: {'center_x': .5,'center_y': .85}
+                size_hint: 0.80, 0.07
+
+            Image:
+                source: 'img/logosemnome.png'    
+                pos_hint: {'center_x': .9, 'center_y': .94}
+                size_hint: 0.1, 0.07
+            Image:  
+                source: 'img/Ellipse2.png'
+                pos_hint: {'center_x': .12, 'center_y': .70}
+                size_hint: 0.2, 0.1
+
+
+            MDBottomNavigation:
+                panel_color: "49C388"
+                size_hint: 1, .06
+                elevation: 0
+
+                MDBottomNavigationItem:
+                    icon:"home"
+                    on_tab_press: app.root.current = 'filter'
+
+                MDBottomNavigationItem:
+                    icon:"magnify" 
+                    on_tab_press: app.root.current = 'explorer'
+                
+                MDBottomNavigationItem:
+                    icon:"heart-outline"
+                    on_tab_press: app.root.current
+                
+                MDBottomNavigationItem:
+                    icon:"forum"       
+                    on_tab_press: app.root.current = 'chat'
+                
+                MDBottomNavigationItem:
+                    icon:"account-outline"
+                    on_tab_press: app.root.current = 'perfil'
+
+<Filter>:
+    name: 'filter'
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            size_hint: 1, .1
+            elevation: 0
+            md_bg_color: "49C388"
+            anchor_title: "left"
+            right_action_items: [["bell-outline"]]
+        MDFloatLayout:
+            Image:
+                source: "img/image4.png"
+                pos_hint: {'center_x': 0.5,'center_y': 0.80}
+                size_hint: 0.65, 0.33  
+            MDTextField:              
+                hint_text: "Pesquisar"
+                mode: "round"
+                icon_left: "magnify"
+                pos_hint: {'center_x': .5,'center_y': .58}
+                size_hint: 0.70, 0.07
+
+            MDCard:
+                id: 'Azul'
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 15
+                padding: 17
+                size_hint: 0.7, 0.25
+                pos_hint: {'center_x': .5,'center_y': 0.44}
+                
+                MDCard:
+                    id: ''
+                    elevation: 0
+                    md_bg_color: "49C388"
+                    ripple_behavior: True
+                    Image:
+                        source: "img/book.png"
+                        elevation: 0
+                MDCard:
+                    id: ''
+                    elevation: 0
+                    md_bg_color: "49C388"
+                    ripple_behavior: True
+                    Image:
+                        source: "img/money.png"
+                        elevation: 0
+                        
+                    
+            MDCard:
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 15
+                padding: 17
+                size_hint: 0.7, 0.25
+                pos_hint: {'center_x': .5,'center_y': 0.23}
+                
+                MDCard:
+                    id: ''
+                    elevation: 0
+                    md_bg_color: "49C388"
+                    ripple_behavior: True
+                    Image:
+                        source: "img/music.png"
+                        elevation: 0
+                MDCard:
+                    id: ''
+                    elevation: 0
+                    md_bg_color: "49C388"
+                    ripple_behavior: True
+                    Image:
+                        source:"img/gast.png"
+                        elevation: 0
+
+            MDBottomNavigation:
+                panel_color: "49C388"
+                size_hint: 1, .06
+                elevation: 0
+
+                MDBottomNavigationItem:
+                    icon:"home"
+                    on_tab_press: app.root.current = 'filter'
+
+                MDBottomNavigationItem:
+                    icon:"magnify" 
+                    on_tab_press: app.root.current = 'explorer'
+                
+                MDBottomNavigationItem:
+                    icon:"heart-outline"
+                    on_tab_press: app.root.current
+                
+                MDBottomNavigationItem:
+                    icon:"forum"       
+                    on_tab_press: app.root.current = 'chat'
+                
+                MDBottomNavigationItem:
+                    icon:"account-outline"
+                    on_tab_press: app.root.current = 'perfil'
+
+               
+
+
 ''')
 
 
@@ -701,6 +1118,13 @@ class EditProfile(Screen):
     pass
 
 
+
+
+class Settingss(Screen):
+    pass
+
+
+
 class WelcomeScreen(Screen):
 
     def on_enter(self):
@@ -716,6 +1140,16 @@ class WelcomeScreen(Screen):
     def stop_autorotation(self):
         Clock.unschedule(self.start_autorotation)
 
+
+
+class Explorer(Screen):
+    pass
+
+class Chat(Screen):
+    pass
+
+class Filter(Screen):
+    pass
 
 
 class MyApp(MDApp):
@@ -749,12 +1183,19 @@ class MyApp(MDApp):
     def welcome_screen(self):
         self.janela_gerenciadora.current = 'welcomeScreen'
         
-
     def editprofile(self):
         self.janela_gerenciadora.current = 'editprofile'
-        
 
+    def perfil(self):
+        self.janela_gerenciadora.current = 'perfil'
+    
+
+    def settingss_press(self):
+        self.janela_gerenciadora.current = 'settings'
+
+    
     def build(self):
+
         self.theme_cls.primary_palette = 'Blue'
         self.janela_gerenciadora = JanelaGerenciadora()
         self.load = Load()
@@ -766,6 +1207,11 @@ class MyApp(MDApp):
         self.registerc = Register_Cientista()
         self.editprofilee= EditProfile()
         self.welcome_screenn = WelcomeScreen()
+        self.explorer = Explorer()
+        self.settingss = Settingss()
+        self.chat = Chat()
+        self.filter = Filter()
+
         self.janela_gerenciadora.add_widget(self.load)
         self.janela_gerenciadora.add_widget(self.login)
         self.janela_gerenciadora.add_widget(self.whoAreyouHome)
@@ -775,6 +1221,10 @@ class MyApp(MDApp):
         self.janela_gerenciadora.add_widget(self.registerc)
         self.janela_gerenciadora.add_widget(self.welcome_screenn)
         self.janela_gerenciadora.add_widget(self.editprofilee)
+        self.janela_gerenciadora.add_widget(self.explorer)
+        self.janela_gerenciadora.add_widget(self.settingss)
+        self.janela_gerenciadora.add_widget(self.chat)
+        self.janela_gerenciadora.add_widget(self.filter)
 
 
         return self.janela_gerenciadora

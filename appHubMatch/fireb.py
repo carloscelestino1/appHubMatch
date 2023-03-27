@@ -37,7 +37,7 @@ import firebase_admin
 from firebase_admin import credentials, db
 
 # Inicializar o SDK do Firebase
-cred = credentials.Certificate('hubmatch-a524d-firebase-adminsdk-e9h3j-44d41d0025.json')
+cred = credentials.Certificate('appHubMatch/hubmatch-a524d-firebase-adminsdk-e9h3j-1071a6fec4.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://hubmatch-a524d-default-rtdb.firebaseio.com'
 })

@@ -22,16 +22,12 @@ class MainApp(MDApp):
         
         # Return screen manager
         return screen_manager
-    ########################################################################
-    ## This function runs on app start
-    ########################################################################
+
     def on_start(self):
         # Delay time for splash screen before transitioning to main screen
         Clock.schedule_once(self.change_screen, 4) # Delay for 10 seconds
         
-    ########################################################################
-    ## This function changes the current screen to main screen
-    ########################################################################
+
     def change_screen(self, dt):    
         screen_manager.current = "MainScreen"
 
