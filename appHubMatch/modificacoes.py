@@ -4,6 +4,13 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.clock import Clock
 from kivy.core.window import Window
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+import json
+import requests
+from kivy.uix.popup import Popup
+from kivymd.uix.dialog import MDDialog
 
 Window.size = (350, 580)
  
@@ -71,7 +78,7 @@ Builder.load_string('''
                 color: rgba(135, 143, 158, 200)
         MDFloatLayout:
             Image:
-                source: "img/Hub5.png"
+                source: "img/Hub5.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7}  
                 size_hint_x: 1
                 size_hint_y: 0.7
@@ -85,6 +92,10 @@ Builder.load_string('''
     
     MDBoxLayout:  
         MDFloatLayout:
+            MDIcon:
+                icon: 'ray-start-vertex-end'
+                font_size: '40dp'
+                pos_hint: {'center_x': .5, 'center_y': .32}
             MDFillRoundFlatButton:
                 md_bg_color: "#49C388"
                 text: "Entrar"
@@ -126,6 +137,7 @@ Builder.load_string('''
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 size_hint_max: 250, 250
             MDTextField:
+                id: email
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -140,6 +152,7 @@ Builder.load_string('''
                 hint_text_color_focus: "49C388"
                 pos_hint: {'center_x': .5, 'center_y': .4}
             MDTextField:
+                id: senha
                 md_bg_color: "000000"
                 mode: "fill"
                 fill_color_normal: 'white'
@@ -165,8 +178,8 @@ Builder.load_string('''
                 font_size:14
                 pos_hint: {'center_x': .8, 'center_y': .17}
                 size_hint_x: .1 
-
-                on_release: app.root.current = "filter"
+                
+                on_press: root.login()
 
 <WhoAreyouHome>:
     name: 'whoAreyou'
@@ -272,7 +285,7 @@ Builder.load_string('''
                 text_color_focus: "black"
                 mode: "fill"
                 line_color_focus: "black"
-                icon_right: 'lock'
+                icon_right: 'key-variant'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 hint_text_color_focus: "49C388"
@@ -352,7 +365,7 @@ Builder.load_string('''
                 text_color_focus: "black"
                 mode: "fill"
                 line_color_focus: "black"
-                icon_right: 'lock'
+                icon_right: 'key-variant'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 hint_text_color_focus: "49C388"
@@ -432,7 +445,7 @@ Builder.load_string('''
                 text_color_focus: "black"
                 mode: "fill"
                 line_color_focus: "black"
-                icon_right: 'lock'
+                icon_right: 'key-variant'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 hint_text_color_focus: "49C388"
@@ -512,7 +525,7 @@ Builder.load_string('''
                 text_color_focus: "black"
                 mode: "fill"
                 line_color_focus: "black"
-                icon_right: 'lock'
+                icon_right: 'key-variant'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 hint_text_color_focus: "49C388"
@@ -1082,6 +1095,20 @@ Builder.load_string('''
                
 ''')
 
+cred = credentials.Certificate('hubmatch-a524d-firebase-adminsdk-e9h3j-1071a6fec4.json')
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://hubmatch-a524d-default-rtdb.firebaseio.com'
+})
+def verificar_credenciais(email, senha):
+    ref = db.reference('usuarios')
+    usuarios = ref.get()
+
+    for usuario_id in usuarios:
+        usuario = usuarios[usuario_id]
+        if usuario['email'] == email and usuario['senha'] == senha:
+            return True
+
+    return False
 
 class JanelaGerenciadora(ScreenManager):
     pass
@@ -1090,7 +1117,21 @@ class Load(Screen):
     pass
 
 class Login(Screen):
-    pass
+    def login(self):
+        username = self.ids.email.text
+        password = self.ids.senha.text
+        if verificar_credenciais(username, password):
+            self.manager.current = "filter"
+        else:
+            self.ids.email.text = ""
+            self.ids.senha.text = ""
+            dialog = MDDialog(
+                title="Atenção",
+                text="login ou senha incorretos",
+                size_hint=(0.8, 0.4)
+                )
+            dialog.open()
+        
 
 class WhoAreyouHome(Screen):
     pass
@@ -1109,7 +1150,6 @@ class Register_Cientista(Screen):
 
 class EditProfile(Screen):
     pass
-
 
 
 class Settingss(Screen):
@@ -1145,8 +1185,7 @@ class Filter(Screen):
 
 
 class MyApp(MDApp):
-    
-        
+            
     def current_slide(self, index):
         pass
     
@@ -1181,6 +1220,9 @@ class MyApp(MDApp):
     def perfil(self):
         self.janela_gerenciadora.current = 'perfil'
     
+    def filter_press(self):
+        self.janela_gerenciadora.current = 'filter'
+
 
     def settingss_press(self):
         self.janela_gerenciadora.current = 'settings'
