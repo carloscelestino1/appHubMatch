@@ -71,7 +71,7 @@ Builder.load_string('''
                 color: rgba(135, 143, 158, 200)
         MDFloatLayout:
             Image:
-                source: "img/Hub5.jpg"
+                source: "img/Hub5.png"
                 pos_hint: {"center_x": .5, "center_y": .7}  
                 size_hint_x: 1
                 size_hint_y: 0.7
@@ -85,10 +85,6 @@ Builder.load_string('''
     
     MDBoxLayout:  
         MDFloatLayout:
-            MDIcon:
-                icon: 'ray-start-vertex-end'
-                font_size: '40dp'
-                pos_hint: {'center_x': .5, 'center_y': .32}
             MDFillRoundFlatButton:
                 md_bg_color: "#49C388"
                 text: "Entrar"
@@ -276,7 +272,7 @@ Builder.load_string('''
                 text_color_focus: "black"
                 mode: "fill"
                 line_color_focus: "black"
-                icon_right: 'key-variant'
+                icon_right: 'lock'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 hint_text_color_focus: "49C388"
@@ -356,7 +352,7 @@ Builder.load_string('''
                 text_color_focus: "black"
                 mode: "fill"
                 line_color_focus: "black"
-                icon_right: 'key-variant'
+                icon_right: 'lock'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 hint_text_color_focus: "49C388"
@@ -436,7 +432,7 @@ Builder.load_string('''
                 text_color_focus: "black"
                 mode: "fill"
                 line_color_focus: "black"
-                icon_right: 'key-variant'
+                icon_right: 'lock'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 hint_text_color_focus: "49C388"
@@ -516,7 +512,7 @@ Builder.load_string('''
                 text_color_focus: "black"
                 mode: "fill"
                 line_color_focus: "black"
-                icon_right: 'key-variant'
+                icon_right: 'lock'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 hint_text_color_focus: "49C388"
