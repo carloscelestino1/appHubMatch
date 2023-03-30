@@ -125,6 +125,7 @@
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 size_hint_max: 250, 250
             MDTextField:
+                id: email
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -139,6 +140,7 @@
                 hint_text_color_focus: "49C388"
                 pos_hint: {'center_x': .5, 'center_y': .4}
             MDTextField:
+                id: senha
                 md_bg_color: "000000"
                 mode: "fill"
                 fill_color_normal: 'white'
@@ -157,6 +159,14 @@
                 text: 'Esqueceu sua senha?'  
                 text_color: "white"
                 theme_text_color: "Custom"
+
+            MDTextButton:
+                pos_hint: {'center_x': .5, 'center_y': .25}
+                text: 'login com insta?'  
+                text_color: "white"
+                theme_text_color: "Custom"
+                on_press: root.login_go()
+            
             MDFillRoundFlatButton:
                 md_bg_color: "145C3A"
                 text: "Entrar"
@@ -164,8 +174,8 @@
                 font_size:14
                 pos_hint: {'center_x': .8, 'center_y': .17}
                 size_hint_x: .1 
-
-                on_release: app.root.current = "filter"
+                
+                on_press: root.login()
 
 <WhoAreyouHome>:
     name: 'whoAreyou'

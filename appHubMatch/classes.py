@@ -4,8 +4,40 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.clock import Clock
 from kivy.core.window import Window
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+import json
+import requests
+from kivy.uix.popup import Popup
 from kivymd.uix.dialog import MDDialog
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
 
+
+from kivyauth.google_auth import initialize_google, login_google, logout_google
+
+# credenciais de acesso ao banco
+cred = credentials.Certificate('arquivos/hubmatch-a524d-firebase-adminsdk-e9h3j-1071a6fec4.json')
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://hubmatch-a524d-default-rtdb.firebaseio.com'
+})
+
+# função de verificação de dados no banco
+def verificar_credenciais(email, senha):
+    ref = db.reference('usuarios')
+    usuarios = ref.get()
+
+    for usuario_id in usuarios:
+        usuario = usuarios[usuario_id]
+        if usuario['email'] == email and usuario['senha'] == senha:
+            return True
+
+    return False
+
+
+# abertura padrão da janela
 Window.size = (350, 580)
  
 
@@ -16,7 +48,22 @@ class Load(Screen):
     pass
 
 class Login(Screen):
-    pass
+
+    def login(self):
+        username = self.ids.email.text
+        password = self.ids.senha.text
+        if verificar_credenciais(username, password):
+            self.manager.current = "filter"
+        else:
+            self.ids.email.text = ""
+            self.ids.senha.text = ""
+            dialog = MDDialog(
+                title="Atenção",
+                text="login ou senha incorretos",
+                size_hint=(0.8, 0.4)
+                )
+            dialog.open()
+
 
 class WhoAreyouHome(Screen):
     pass
