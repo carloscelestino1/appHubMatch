@@ -1,30 +1,25 @@
-from kivymd.uix.card import MDCard
-from kivymd.app import MDApp
-from kivy.lang import Builder
-from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy.clock import Clock
-from kivy.core.window import Window
-
-Window.size = (350, 580)
- 
-Builder.load_string('''
 
 <Load>:
     name: 'load'
+    on_enter: self.ids.progress.start()
     MDBoxLayout:
-        orientation: 'vertical'
-        md_bg_color: "white"     
-        MDFloatLayout:
-            MDIconButton:
-                icon: "chevron-right"
-                user_font_size: "35sp"
-                pos_hint: {"center_x": .90, 'center_y': .9}
-                on_release: app.root.current = 'welcomeScreen'
-               
-            Image:  
-                source: 'img/LogoPrincipal.png'
-                pos_hint: {'center_x': .5, 'center_y': .5}
-                size_hint_max: 325, 325
+        MDBoxLayout:
+            orientation: 'vertical'
+            md_bg_color: "white" 
+            Image:
+                source:'img/LogoComNome.png'
+                pos_hint:{'center_y':.5, 'center_x':.5}
+                size_hint: 0.50, 0.50
+            MDFloatLayout:
+                pos_hint:{'center_y':.5, 'center_x':.4}
+                padding: "10dp"
+                size_hint: 1, 0.03
+                MDProgressBar:
+                    id: progress
+                    orientation: "horizontal"
+                    type: "indeterminate"
+                    running_duration: 1
+                    catching_duration: 1
 
 <WelcomeScreen>:
     name: 'welcomeScreen'
@@ -71,7 +66,7 @@ Builder.load_string('''
                 color: rgba(135, 143, 158, 200)
         MDFloatLayout:
             Image:
-                source: "img/Hub5.png"
+                source: "img/Hub5.jpg"
                 pos_hint: {"center_x": .5, "center_y": .7}  
                 size_hint_x: 1
                 size_hint_y: 0.7
@@ -85,6 +80,10 @@ Builder.load_string('''
     
     MDBoxLayout:  
         MDFloatLayout:
+            MDIcon:
+                icon: 'ray-start-vertex-end'
+                font_size: '40dp'
+                pos_hint: {'center_x': .5, 'center_y': .32}
             MDFillRoundFlatButton:
                 md_bg_color: "#49C388"
                 text: "Entrar"
@@ -126,6 +125,7 @@ Builder.load_string('''
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 size_hint_max: 250, 250
             MDTextField:
+                id: email
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -140,6 +140,7 @@ Builder.load_string('''
                 hint_text_color_focus: "49C388"
                 pos_hint: {'center_x': .5, 'center_y': .4}
             MDTextField:
+                id: senha
                 md_bg_color: "000000"
                 mode: "fill"
                 fill_color_normal: 'white'
@@ -158,6 +159,14 @@ Builder.load_string('''
                 text: 'Esqueceu sua senha?'  
                 text_color: "white"
                 theme_text_color: "Custom"
+
+            MDTextButton:
+                pos_hint: {'center_x': .5, 'center_y': .25}
+                text: 'login com insta?'  
+                text_color: "white"
+                theme_text_color: "Custom"
+                on_press: root.login_go()
+            
             MDFillRoundFlatButton:
                 md_bg_color: "145C3A"
                 text: "Entrar"
@@ -165,8 +174,8 @@ Builder.load_string('''
                 font_size:14
                 pos_hint: {'center_x': .8, 'center_y': .17}
                 size_hint_x: .1 
-
-                on_release: app.root.current = "filter"
+                
+                on_press: root.login()
 
 <WhoAreyouHome>:
     name: 'whoAreyou'
@@ -254,6 +263,7 @@ Builder.load_string('''
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:  
+                id: emails
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -267,12 +277,13 @@ Builder.load_string('''
                 hint_text: 'E-mail'
                 pos_hint: {'center_x': .5, 'center_y': .6}    
             MDTextField:
+                id: senhas
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
                 mode: "fill"
                 line_color_focus: "black"
-                icon_right: 'lock'
+                icon_right: 'key-variant'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 hint_text_color_focus: "49C388"
@@ -280,6 +291,7 @@ Builder.load_string('''
                 hint_text: 'Senha'
                 pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
+                id: phones
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -312,7 +324,7 @@ Builder.load_string('''
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .1}
                 
-                on_release: app.root.current = 'editprofile'
+                on_press: root.register_startup()
 
 <Register_Investidor>:
     name: 'register_investidor'
@@ -334,6 +346,7 @@ Builder.load_string('''
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
+                id: emaili
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -347,12 +360,13 @@ Builder.load_string('''
                 hint_text: 'E-mail'
                 pos_hint: {'center_x': .5, 'center_y': .6}   
             MDTextField:
+                id: senhai
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
                 mode: "fill"
                 line_color_focus: "black"
-                icon_right: 'lock'
+                icon_right: 'key-variant'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 hint_text_color_focus: "49C388"
@@ -360,6 +374,7 @@ Builder.load_string('''
                 hint_text: 'Senha'
                 pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
+                id: phonei
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -392,7 +407,7 @@ Builder.load_string('''
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .1}
                 
-                on_release: app.root.current = 'editprofile'
+                on_press: root.register_investidor()
 
 <Register_Mentor>:
     name: 'register_mentor'
@@ -414,6 +429,7 @@ Builder.load_string('''
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
+                id: emailm
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -427,12 +443,13 @@ Builder.load_string('''
                 hint_text: 'E-mail'
                 pos_hint: {'center_x': .5, 'center_y': .6}   
             MDTextField:
+                id:senham
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
                 mode: "fill"
                 line_color_focus: "black"
-                icon_right: 'lock'
+                icon_right: 'key-variant'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 hint_text_color_focus: "49C388"
@@ -440,6 +457,7 @@ Builder.load_string('''
                 hint_text: 'Senha'
                 pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
+                id:phonem
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -472,7 +490,7 @@ Builder.load_string('''
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .1}
                 
-                on_release: app.root.current = 'editprofile'
+                on_press: root.register_mentor()
 
 <Register_Cientista>:
     name: 'register_cientista'
@@ -494,6 +512,7 @@ Builder.load_string('''
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
+                id: emailc
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -507,12 +526,13 @@ Builder.load_string('''
                 hint_text: 'E-mail'
                 pos_hint: {'center_x': .5, 'center_y': .6}   
             MDTextField:
+                id:senhac
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
                 mode: "fill"
                 line_color_focus: "black"
-                icon_right: 'lock'
+                icon_right: 'key-variant'
                 icon_right_color_normal: "black"
                 icon_right_color_focus: "49C388"
                 hint_text_color_focus: "49C388"
@@ -520,6 +540,7 @@ Builder.load_string('''
                 hint_text: 'Senha'
                 pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
+                id:phonec
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -552,7 +573,7 @@ Builder.load_string('''
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .1}
                 
-                on_release: app.root.current = 'editprofile'
+                on_press: root.register_mentor()
 
 <EditProfile>:
     name: 'editprofile'
@@ -1079,152 +1100,3 @@ Builder.load_string('''
                     icon:"account-outline"
                     on_tab_press: app.root.current = 'perfil'
 
-               
-''')
-
-
-class JanelaGerenciadora(ScreenManager):
-    pass
-
-class Load(Screen):
-    pass
-
-class Login(Screen):
-    pass
-
-class WhoAreyouHome(Screen):
-    pass
-
-class Register_Startup(Screen):
-    pass
-
-class Register_Investidor(Screen):
-    pass
-
-class Register_Mentor(Screen):
-    pass
-
-class Register_Cientista(Screen):
-    pass
-
-class EditProfile(Screen):
-    pass
-
-
-
-class Settingss(Screen):
-    pass
-
-class Perfil(Screen):
-    pass
-
-class WelcomeScreen(Screen):
-
-    def on_enter(self):
-        Clock.schedule_interval(self.start_autorotation, 3)
-
-    def start_autorotation(self, dt):
-        carousel = self.ids.caraousel
-        if carousel.index == len(carousel.slides) - 1:
-            carousel.load_slide(carousel.slides[0])
-        else:
-            carousel.load_next()
-
-    def stop_autorotation(self):
-        Clock.unschedule(self.start_autorotation)
-
-
-class Explorer(Screen):
-    pass
-
-class Chat(Screen):
-    pass
-
-class Filter(Screen):
-    pass
-
-
-class MyApp(MDApp):
-    
-        
-    def current_slide(self, index):
-        pass
-    
-    def change_color(self):
-        theme = self.theme_cls.theme_style
-        if theme == 'Dark':
-            self.theme_cls.theme_style = 'Light'
-        else:
-            self.theme_cls.theme_style = 'Dark'
-
-    def whoAreyouHome_press(self):
-        self.janela_gerenciadora.current = 'whoAreyou'
-
-    def register_press(self):
-        self.janela_gerenciadora.current = 'register_startup'
-    
-    def register_press(self):
-        self.janela_gerenciadora.current = 'register_investidor'
-    
-    def register_press(self):
-        self.janela_gerenciadora.current = 'register_mentor'
-    
-    def register_press(self):
-        self.janela_gerenciadora.current = 'register_cientista'
-    
-    def welcome_screen(self):
-        self.janela_gerenciadora.current = 'welcomeScreen'
-        
-    def editprofile(self):
-        self.janela_gerenciadora.current = 'editprofile'
-
-    def perfil(self):
-        self.janela_gerenciadora.current = 'perfil'
-    
-
-    def settingss_press(self):
-        self.janela_gerenciadora.current = 'settings'
-
-    
-    def build(self):
-
-        self.theme_cls.primary_palette = 'Blue'
-        self.janela_gerenciadora = JanelaGerenciadora()
-        self.load = Load()
-        self.login = Login()
-        self.whoAreyouHome = WhoAreyouHome()
-        self.registers = Register_Startup()
-        self.registeri = Register_Investidor()
-        self.registerm = Register_Mentor()
-        self.registerc = Register_Cientista()
-        self.editprofilee= EditProfile()
-        self.welcome_screenn = WelcomeScreen()
-        self.explorer = Explorer()
-        self.settingss = Settingss()
-        self.chat = Chat()
-        self.filter = Filter()
-        self.perfill = Perfil()
-
-
-        self.janela_gerenciadora.add_widget(self.load)
-        self.janela_gerenciadora.add_widget(self.login)
-        self.janela_gerenciadora.add_widget(self.whoAreyouHome)
-        self.janela_gerenciadora.add_widget(self.registers)
-        self.janela_gerenciadora.add_widget(self.registeri)
-        self.janela_gerenciadora.add_widget(self.registerm)
-        self.janela_gerenciadora.add_widget(self.registerc)
-        self.janela_gerenciadora.add_widget(self.welcome_screenn)
-        self.janela_gerenciadora.add_widget(self.editprofilee)
-        self.janela_gerenciadora.add_widget(self.explorer)
-        self.janela_gerenciadora.add_widget(self.settingss)
-        self.janela_gerenciadora.add_widget(self.chat)
-        self.janela_gerenciadora.add_widget(self.filter)
-        self.janela_gerenciadora.add_widget(self.perfill)
-
-
-
-
-
-        return self.janela_gerenciadora
-    
-MyApp().run()
