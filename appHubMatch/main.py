@@ -3,6 +3,7 @@ from classes import *
 
 class MyApp(MDApp):
 
+
     def on_start(self):
     
         Clock.schedule_once(self.change_screen, 6) # Delay for 10 seconds

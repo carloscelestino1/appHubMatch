@@ -1,4 +1,3 @@
-
 <Load>:
     name: 'load'
     on_enter: self.ids.progress.start()
@@ -138,7 +137,7 @@
                 size_hint_x: .8
                 hint_text: 'E-mail'
                 hint_text_color_focus: "49C388"
-                pos_hint: {'center_x': .5, 'center_y': .4}
+                pos_hint: {'center_x': .5, 'center_y': .43}
             MDTextField:
                 id: senha
                 md_bg_color: "000000"
@@ -153,29 +152,30 @@
                 size_hint_x: .8
                 hint_text: 'Senha'
                 hint_text_color_focus: "49C388"
-                pos_hint: {'center_x': .5, 'center_y': .3}
-            MDTextButton:
-                pos_hint: {'center_x': .5, 'center_y': .22}
-                text: 'Esqueceu sua senha?'  
-                text_color: "white"
-                theme_text_color: "Custom"
-
-            MDTextButton:
-                pos_hint: {'center_x': .5, 'center_y': .25}
-                text: 'login com insta?'  
-                text_color: "white"
-                theme_text_color: "Custom"
-                on_press: root.login_go()
-            
+                pos_hint: {'center_x': .5, 'center_y': .33}
             MDFillRoundFlatButton:
                 md_bg_color: "145C3A"
                 text: "Entrar"
                 text_color: "white"
                 font_size:14
-                pos_hint: {'center_x': .8, 'center_y': .17}
-                size_hint_x: .1 
-                
+                pos_hint: {'center_x': .5, 'center_y': .24}
+                size_hint_x: .8
                 on_press: root.login()
+            MDFillRoundFlatButton:
+                text: 'Entrar com Google'
+                font_size: 20
+                elevation: 8
+                text_color: 1,1,1,1
+                md_bg_color: 0.89, 0.25, 0.20,1
+                pos_hint: {'center_x': .5, 'center_y': .17}
+                size_hint_x: .8
+                on_press: root.login_google()
+            
+            MDTextButton:
+                pos_hint: {'center_x': .5, 'center_y': .1}
+                text: 'Esqueceu sua senha?'  
+                text_color: "white"
+                theme_text_color: "Custom"    
 
 <WhoAreyouHome>:
     name: 'whoAreyou'
@@ -263,6 +263,7 @@
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:  
+                id: emails
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -276,6 +277,7 @@
                 hint_text: 'E-mail'
                 pos_hint: {'center_x': .5, 'center_y': .6}    
             MDTextField:
+                id: senhas
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -289,6 +291,7 @@
                 hint_text: 'Senha'
                 pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
+                id: phones
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -321,7 +324,7 @@
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .1}
                 
-                on_release: app.root.current = 'editprofile'
+                on_press: root.register_startup()
 
 <Register_Investidor>:
     name: 'register_investidor'
@@ -343,6 +346,7 @@
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
+                id: emaili
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -356,6 +360,7 @@
                 hint_text: 'E-mail'
                 pos_hint: {'center_x': .5, 'center_y': .6}   
             MDTextField:
+                id: senhai
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -369,6 +374,7 @@
                 hint_text: 'Senha'
                 pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
+                id: phonei
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -401,7 +407,7 @@
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .1}
                 
-                on_release: app.root.current = 'editprofile'
+                on_press: root.register_investidor()
 
 <Register_Mentor>:
     name: 'register_mentor'
@@ -423,6 +429,7 @@
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
+                id: emailm
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -436,6 +443,7 @@
                 hint_text: 'E-mail'
                 pos_hint: {'center_x': .5, 'center_y': .6}   
             MDTextField:
+                id:senham
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -449,6 +457,7 @@
                 hint_text: 'Senha'
                 pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
+                id:phonem
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -481,7 +490,7 @@
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .1}
                 
-                on_release: app.root.current = 'editprofile'
+                on_press: root.register_mentor()
 
 <Register_Cientista>:
     name: 'register_cientista'
@@ -503,6 +512,7 @@
                 pos_hint: {'center_x': .5, 'center_y': .7}
                 text_color: "white"
             MDTextField:
+                id: emailc
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -516,6 +526,7 @@
                 hint_text: 'E-mail'
                 pos_hint: {'center_x': .5, 'center_y': .6}   
             MDTextField:
+                id:senhac
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -529,6 +540,7 @@
                 hint_text: 'Senha'
                 pos_hint: {'center_x': .5, 'center_y': .45}
             MDTextField:
+                id:phonec
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -561,7 +573,7 @@
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .1}
                 
-                on_release: app.root.current = 'editprofile'
+                on_press: root.register_mentor()
 
 <EditProfile>:
     name: 'editprofile'
@@ -1087,4 +1099,3 @@
                 MDBottomNavigationItem:
                     icon:"account-outline"
                     on_tab_press: app.root.current = 'perfil'
-
