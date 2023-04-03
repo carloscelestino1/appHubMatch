@@ -134,7 +134,7 @@
                 size_hint_x: .8
                 hint_text: 'E-mail'
                 hint_text_color_focus: "49C388"
-                pos_hint: {'center_x': .5, 'center_y': .4}
+                pos_hint: {'center_x': .5, 'center_y': .43}
             MDTextField:
                 id: senha
                 md_bg_color: "000000"
@@ -149,24 +149,28 @@
                 size_hint_x: .8
                 hint_text: 'Senha'
                 hint_text_color_focus: "49C388"
-                pos_hint: {'center_x': .5, 'center_y': .3}
-            MDTextButton:
-                pos_hint: {'center_x': .5, 'center_y': .22}
-                text: 'Esqueceu sua senha?'  
-                text_color: "white"
-                theme_text_color: "Custom"
-
-           
-            
+                pos_hint: {'center_x': .5, 'center_y': .33}
             MDFillRoundFlatButton:
                 md_bg_color: "145C3A"
                 text: "Entrar"
                 text_color: "white"
                 font_size:14
-                pos_hint: {'center_x': .8, 'center_y': .17}
-                size_hint_x: .1 
-                
+                pos_hint: {'center_x': .5, 'center_y': .24}
+                size_hint_x: .8
                 on_press: root.login()
+            MDFillRoundFlatButton:
+                text: 'Entrar com Google'
+                font_size: 20
+                elevation: 8
+                text_color: 1,1,1,1
+                md_bg_color: 0.89, 0.25, 0.20,1
+                pos_hint: {'center_x': .5, 'center_y': .17}
+                size_hint_x: .8
+            MDTextButton:
+                pos_hint: {'center_x': .5, 'center_y': .1}
+                text: 'Esqueceu sua senha?'  
+                text_color: "white"
+                theme_text_color: "Custom"    
 
 <WhoAreyouHome>:
     name: 'whoAreyou'
