@@ -162,7 +162,7 @@
                 font_size: 20
                 elevation: 8
                 text_color: 1,1,1,1
-                md_bg_color: 0.89, 0.25, 0.20,1
+                md_bg_color: 0.10, 0.50, 0.90,1
                 pos_hint: {'center_x': .5, 'center_y': .17}
                 size_hint_x: .8
 
@@ -827,28 +827,18 @@
     name: 'settings'
     MDBoxLayout:
         orientation: 'vertical'
-       
-        MDTopAppBar:
-            size_hint: 1, .11
-            elevation: 0
-            md_bg_color: "1111111"
-            anchor_title: "right"
-            title: "Ajustes"
-            specific_text_color: "black"
+
+        MDIconButton:
+            icon: "chevron-left"
+            on_release: app.root.current = 'perfil' 
         MDFloatLayout:
-            MDTextField:              
-                hint_text: "Pesquisar"
-                mode: "round"
-                icon_left: "magnify"
-                pos_hint: {'center_x': .5,'center_y': .96}
-                size_hint: 0.70, 0.07
             MDCard:
                 elevation: 0
                 md_bg_color:  0,0,0,0
                 spacing: 15
                 padding: 17
                 size_hint: 1, 0.12
-                pos_hint: {'center_x': .5,'center_y': .89 }
+                pos_hint: {'center_x': .5,'center_y': .98 }
                 
                 MDCard:
                     elevation: 0
@@ -862,7 +852,7 @@
                 spacing: 15
                 padding: 17
                 size_hint: 1, 0.12
-                pos_hint: {'center_x': .5,'center_y': .81}
+                pos_hint: {'center_x': .5,'center_y': .9}
                 
                 MDCard:
                     elevation: 0
@@ -876,7 +866,7 @@
                 spacing: 15
                 padding: 17
                 size_hint: 1, 0.12
-                pos_hint: {'center_x': .5,'center_y': .73}
+                pos_hint: {'center_x': .5,'center_y': .82}
                 
                 MDCard:
                     elevation: 0
@@ -890,7 +880,7 @@
                 spacing: 15
                 padding: 17
                 size_hint: 1, 0.12
-                pos_hint: {'center_x': .5,'center_y': .65}
+                pos_hint: {'center_x': .5,'center_y': .76}
                 
                 MDCard:
                     elevation: 0
@@ -904,50 +894,38 @@
                 spacing: 15
                 padding: 17
                 size_hint: 1, 0.12
-                pos_hint: {'center_x': .5,'center_y': .57}
+                pos_hint: {'center_x': .5,'center_y': .68}
                 
                 MDCard:
                     elevation: 0
                     ripple_behavior: True
                     MDLabel:
                         adaptive_size: True
-                        text: 'Conta'                           
+                        text: 'Conta' 
+            MDCard:
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 15
+                padding: 17
+                size_hint: 1, 0.12
+                pos_hint: {'center_x': .5,'center_y': .6}
+                
+                MDCard:
+                    elevation: 0
+                    ripple_behavior: True
+                    MDLabel:
+                        adaptive_size: True
+                        text: 'Sair'                                     
             MDFloatLayout:
                 Image:
                     size_hint: 1, 0.01
                     source: "img/line.png"
-                    pos_hint: {'center_x': .5,'center_y': .5}
+                    pos_hint: {'center_x': .5,'center_y': .55}
                 Image:
                     size_hint: 0.65, 0.33  
                     source: "img/fada.png"
                     pos_hint: {'center_x': .5,'center_y': .3}
 
-
-            MDBottomNavigation:
-                panel_color: "49C388"
-                size_hint: 1, .06
-                elevation: 0
-
-                MDBottomNavigationItem:
-                    icon:"home"
-                    on_tab_press: app.root.current = 'filter'
-
-                MDBottomNavigationItem:
-                    icon:"magnify" 
-                    on_tab_press: app.root.current = 'explorer'
-                
-                MDBottomNavigationItem:
-                    icon:"heart-outline"
-                    on_tab_press: app.root.current
-                
-                MDBottomNavigationItem:
-                    icon:"forum"       
-                    on_tab_press: app.root.current = 'chat'
-                
-                MDBottomNavigationItem:
-                    icon:"account-outline"
-                    on_tab_press: app.root.current = 'perfil'
-           
                     
 
 <Chat>:
