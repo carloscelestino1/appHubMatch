@@ -68,8 +68,10 @@ def register(email,senha,telefone,tipoperfil):
                     'senha':senha,
                     'telefone':telefone,
                     'nome':'',
+                    'seguimento':'',
                     'proposito':'',
-                    'pdf':'',
+                    'video':'', 
+                    'pitch':'',
                     'tags':tipoperfil,
                     'perfil': tipoperfil
                 }
@@ -136,10 +138,12 @@ class Login(Screen):
             print("Failed to retrieve user profile.")
 
     def login(self):
-        username = self.ids.email.text
+        email = self.ids.email.text
         password = self.ids.senha.text
-        if verificar_credenciais(username, password):
+        if verificar_credenciais(email, password):
             self.manager.current = "filter"
+            self.manager.get_screen('perfil').update_email(email)
+            return email
         else:
             self.ids.email.text = ""
             self.ids.senha.text = ""
@@ -154,6 +158,7 @@ class Login(Screen):
 class WhoAreyouHome(Screen):
     pass
 
+
 class Register_Startup(Screen):
     def register_startup(self):
         email = self.ids.emails.text
@@ -162,8 +167,10 @@ class Register_Startup(Screen):
         tipoperfil = 'Startup'
         if register(email,senha,telefone,tipoperfil):
             self.manager.current = "editprofile"
-        
-            
+            self.manager.get_screen('editprofile').update_email(email)
+        return email
+
+
 class Register_Investidor(Screen):
     def register_investidor(self):
         email = self.ids.emaili.text
@@ -172,7 +179,9 @@ class Register_Investidor(Screen):
         tipoperfil = 'investidor'
         if register(email,senha,telefone,tipoperfil):
             self.manager.current = "editprofile"
-
+            self.manager.get_screen('editprofile').update_email(email)
+        return email
+    
 class Register_Mentor(Screen):
     def register_mentor(self):
         email = self.ids.emailm.text
@@ -181,7 +190,9 @@ class Register_Mentor(Screen):
         tipoperfil = 'mentor'
         if register(email,senha,telefone,tipoperfil):
             self.manager.current = "editprofile"
-
+            self.manager.get_screen('editprofile').update_email(email)
+        return email
+    
 class Register_Cientista(Screen):
     def register_cientista(self):
         email = self.ids.emailc.text
@@ -190,17 +201,73 @@ class Register_Cientista(Screen):
         tipoperfil = 'cientista'
         if register(email,senha,telefone,tipoperfil):
             self.manager.current = "editprofile"
+            self.manager.get_screen('editprofile').update_email(email)
+        return email
 
 class EditProfile(Screen):
-    pass
+    def update_email(self, email):
+        self.email = email
+    def edit_profile(self):
+        email = self.email
+        nome = self.ids.nome.text
+        seguimento = self.ids.seguimento.text
+        proposito = self.ids.proposito.text
+        video = self.ids.video.text
+        pitch = self.ids.pitch.text
+        tags = self.ids.tags.text
+        dados = {
+
+                    'nome':nome,
+                    'seguimento':seguimento,
+                    'proposito':proposito,
+                    'video':video,
+                    'pitch':pitch,
+                    'tags': tags
+                }
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        for usuario_id in usuarios:
+            usuario = usuarios[usuario_id]['email']
+            if usuario == email:
+                id = usuario_id     
+                ref = db.reference(f'/usuarios/{id}')
+                ref.update(dados)
+                self.manager.current = "login"
+
 
 
 class Settingss(Screen):
     pass
 
 class Perfil(Screen):
-    pass
-
+    def update_email(self, email):
+        self.email = email
+    def on_enter(self):
+        email = self.email
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        for usuario_id in usuarios:
+            usuario = usuarios[usuario_id]['email']
+            if usuario == email:
+                id = usuario_id     
+                ref = db.reference(f'/usuarios/{id}')
+                p = ref.get()
+                nome = p['nome']
+                pitch = p['pitch']
+                proposito = p['proposito']
+                seguimento = p['seguimento']
+                video = p['video']
+                tags = p['tags']
+                perfil = p['perfil']
+                self.ids.nomep.text = nome
+                self.ids.pitchp.text = pitch
+                '''self.ids.pospositop.text = proposito
+                self.ids.seguimentop.text = seguimento
+                self.ids.videop.text = video
+                self.ids.tagsp.text = tags
+                self.ids.perfilp.text = perfil'''
+                print(p)
+                
 
 class Explorer(Screen):
     pass

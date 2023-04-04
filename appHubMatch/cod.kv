@@ -587,6 +587,7 @@
                 pos_hint: {'center_x': .5, 'center_y': .9}
                 size_hint: .2, .2
             MDTextField:
+                id: nome
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -605,6 +606,7 @@
                 pos_hint: {'center_x': .2, 'center_y': .7} 
                 user_font_size: "35sp"    
             MDTextField:
+                id:seguimento
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -618,6 +620,7 @@
                 multiline: True
                 pos_hint: {"center_x": .7, "center_y": .68}
             MDTextField:
+                id: proposito
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -632,6 +635,7 @@
                 multiline: True
                 pos_hint: {"center_x": .5, "center_y": .58}
             MDTextField:
+                id: video
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -645,6 +649,7 @@
                 multiline: True
                 pos_hint: {"center_x": .5, "center_y": .48}
             MDTextField:
+                id: pitch
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -659,6 +664,7 @@
                 multiline: True
                 pos_hint: {"center_x": .5, "center_y": .38}    
             MDTextField:
+                id: tags
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -681,7 +687,7 @@
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .18}
                 
-                on_release: app.root.current = 'login'
+                on_press : root.edit_profile()
 
 
 <Perfil>:
@@ -706,8 +712,14 @@
                 icon: "pencil-outline"
                 pos_hint: {"center_x": .67, 'center_y': .78}    
                 size_hint: .09, .05
+                on_release: app.root.current = 'editprofile' 
 
 
+            MDLabel:
+                id:nomep
+            MDLabel:
+                id:pitchp
+                pos_hint: {"center_x": .5, "center_y": .28}     
             MDBottomNavigation:
                 panel_color: "49C388"
                 size_hint: 1, .06
