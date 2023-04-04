@@ -14,6 +14,8 @@ from kivymd.uix.dialog import MDDialog
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
+from kivy.uix.button import Button
+
 
 
 from kivyauth.google_auth import initialize_google, login_google, logout_google
@@ -36,6 +38,7 @@ def verificar_credenciais(email, senha):
 
     return False
 
+# verificação de email
 def verificar_email(email):
     ref = db.reference('usuarios')
     usuarios = ref.get()
@@ -46,6 +49,7 @@ def verificar_email(email):
             return False
     return True
 
+# registra informações no banco
 def register(email,senha,telefone,tipoperfil):
         
         if verificar_email(email):
@@ -64,8 +68,10 @@ def register(email,senha,telefone,tipoperfil):
                     'senha':senha,
                     'telefone':telefone,
                     'nome':'',
+                    'seguimento':'',
                     'proposito':'',
-                    'pdf':'',
+                    'video':'', 
+                    'pitch':'',
                     'tags':tipoperfil,
                     'perfil': tipoperfil
                 }
@@ -82,11 +88,32 @@ def register(email,senha,telefone,tipoperfil):
                 )
             dialog.open()
 
+ 
+
+# autenticação do google
+class GoogleAuthManager:
+    def __init__(self, client_id, client_secret):
+        self.client_id = client_id
+        self.client_secret = client_secret
+        self.credentials = None
+    
+    def authenticate(self):
+        flow = InstalledAppFlow.from_client_secrets_file(
+            'arquivos/client_secret.json',
+            scopes=['https://www.googleapis.com/auth/userinfo.profile', 'openid', 'https://www.googleapis.com/auth/userinfo.email'])
+        self.credentials = flow.run_local_server(port=0)
+    
+    def get_user_profile(self):
+        if not self.credentials:
+            return None
+        
+        service = build('oauth2', 'v2', credentials=self.credentials)
+        profile = service.userinfo().get().execute()
+        return profile
+
 
 # abertura padrão da janela
 Window.size = (350, 580)
- 
-
 
 class JanelaGerenciadora(ScreenManager):
     pass
@@ -96,11 +123,27 @@ class Load(Screen):
 
 class Login(Screen):
 
-    def login(self):
-        username = self.ids.email.text
-        password = self.ids.senha.text
-        if verificar_credenciais(username, password):
+    def login_google(self):
+        google_auth = GoogleAuthManager("67712586747-sej00u1bi25o394j29do33u1kg5ero3n.apps.googleusercontent.com", "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")
+        google_auth.authenticate()
+        profile = google_auth.get_user_profile()
+        
+        # Check if profile data was successfully retrieved
+        if profile:
+            # Print name and email
+            print(f"Name: {profile['name']}")
+            print(f"Email: {profile['email']}")
             self.manager.current = "filter"
+        else:
+            print("Failed to retrieve user profile.")
+
+    def login(self):
+        email = self.ids.email.text
+        password = self.ids.senha.text
+        if verificar_credenciais(email, password):
+            self.manager.current = "filter"
+            self.manager.get_screen('perfil').update_email(email)
+            return email
         else:
             self.ids.email.text = ""
             self.ids.senha.text = ""
@@ -115,6 +158,7 @@ class Login(Screen):
 class WhoAreyouHome(Screen):
     pass
 
+
 class Register_Startup(Screen):
     def register_startup(self):
         email = self.ids.emails.text
@@ -123,8 +167,10 @@ class Register_Startup(Screen):
         tipoperfil = 'Startup'
         if register(email,senha,telefone,tipoperfil):
             self.manager.current = "editprofile"
-        
-            
+            self.manager.get_screen('editprofile').update_email(email)
+        return email
+
+
 class Register_Investidor(Screen):
     def register_investidor(self):
         email = self.ids.emaili.text
@@ -133,7 +179,9 @@ class Register_Investidor(Screen):
         tipoperfil = 'investidor'
         if register(email,senha,telefone,tipoperfil):
             self.manager.current = "editprofile"
-
+            self.manager.get_screen('editprofile').update_email(email)
+        return email
+    
 class Register_Mentor(Screen):
     def register_mentor(self):
         email = self.ids.emailm.text
@@ -142,7 +190,9 @@ class Register_Mentor(Screen):
         tipoperfil = 'mentor'
         if register(email,senha,telefone,tipoperfil):
             self.manager.current = "editprofile"
-
+            self.manager.get_screen('editprofile').update_email(email)
+        return email
+    
 class Register_Cientista(Screen):
     def register_cientista(self):
         email = self.ids.emailc.text
@@ -151,17 +201,72 @@ class Register_Cientista(Screen):
         tipoperfil = 'cientista'
         if register(email,senha,telefone,tipoperfil):
             self.manager.current = "editprofile"
+            self.manager.get_screen('editprofile').update_email(email)
+        return email
 
 class EditProfile(Screen):
-    pass
+    def update_email(self, email):
+        self.email = email
+    def edit_profile(self):
+        email = self.email
+        nome = self.ids.nome.text
+        seguimento = self.ids.seguimento.text
+        proposito = self.ids.proposito.text
+        video = self.ids.video.text
+        pitch = self.ids.pitch.text
+        tags = self.ids.tags.text
+        dados = {
+
+                    'nome':nome,
+                    'seguimento':seguimento,
+                    'proposito':proposito,
+                    'video':video,
+                    'pitch':pitch,
+                    'tags': tags
+                }
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        for usuario_id in usuarios:
+            usuario = usuarios[usuario_id]['email']
+            if usuario == email:
+                id = usuario_id     
+                ref = db.reference(f'/usuarios/{id}')
+                ref.update(dados)
+                self.manager.current = "login"
+
 
 
 class Settingss(Screen):
     pass
 
 class Perfil(Screen):
-    pass
-
+    def update_email(self, email):
+        self.email = email
+    def on_enter(self):
+        email = self.email
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        for usuario_id in usuarios:
+            usuario = usuarios[usuario_id]['email']
+            if usuario == email:
+                id = usuario_id     
+                ref = db.reference(f'/usuarios/{id}')
+                p = ref.get()
+                nome = p['nome']
+                pitch = p['pitch']
+                proposito = p['proposito']
+                seguimento = p['seguimento']
+                video = p['video']
+                tags = p['tags']
+                perfil = p['perfil']
+                '''self.ids.nomep.text = nome
+                self.ids.pitchp.text = pitch
+                self.ids.pospositop.text = proposito
+                self.ids.seguimentop.text = seguimento
+                self.ids.videop.text = video
+                self.ids.tagsp.text = tags
+                self.ids.perfilp.text = perfil'''
+                
 
 class Explorer(Screen):
     pass
