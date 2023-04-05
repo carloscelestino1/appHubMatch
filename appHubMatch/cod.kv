@@ -157,12 +157,13 @@
                 pos_hint: {'center_x': .5, 'center_y': .24}
                 size_hint_x: .8
                 on_press: root.login()
-            MDFillRoundFlatButton:
+            MDFillRoundFlatIconButton:
+                icon: 'google'
                 text: 'Entrar com Google'
                 font_size: 20
                 elevation: 8
                 text_color: 1,1,1,1
-                md_bg_color: 0.89, 0.25, 0.20,1
+                md_bg_color: 0.10, 0.50, 0.90,1
                 pos_hint: {'center_x': .5, 'center_y': .17}
                 size_hint_x: .8
 
@@ -301,10 +302,14 @@
                 size_hint_x: .9
                 hint_text: 'Telefone'
                 pos_hint: {'center_x': .5, 'center_y': .3}
+
             MDCheckbox:
+                id: boxs
                 size_hint: None, None
                 size: "48dp", "48dp"
                 pos_hint: {'center_x': .1, 'center_y': .2}
+            
+            
             MDLabel:
                 font_style: "Caption"
                 text: "Li e concordo com os termos"
@@ -587,6 +592,7 @@
                 pos_hint: {'center_x': .5, 'center_y': .9}
                 size_hint: .2, .2
             MDTextField:
+                id: nome
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -605,6 +611,7 @@
                 pos_hint: {'center_x': .2, 'center_y': .7} 
                 user_font_size: "35sp"    
             MDTextField:
+                id:seguimento
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -618,6 +625,7 @@
                 multiline: True
                 pos_hint: {"center_x": .7, "center_y": .68}
             MDTextField:
+                id: proposito
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -632,6 +640,7 @@
                 multiline: True
                 pos_hint: {"center_x": .5, "center_y": .58}
             MDTextField:
+                id: video
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -645,6 +654,7 @@
                 multiline: True
                 pos_hint: {"center_x": .5, "center_y": .48}
             MDTextField:
+                id: pitch
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -659,6 +669,7 @@
                 multiline: True
                 pos_hint: {"center_x": .5, "center_y": .38}    
             MDTextField:
+                id: tags
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -681,7 +692,7 @@
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .18}
                 
-                on_release: app.root.current = 'login'
+                on_press : root.edit_profile()
 
 
 <Perfil>:
@@ -700,14 +711,44 @@
         MDFloatLayout:
             Image:  
                 source: 'img/Ellipse2.png'
-                pos_hint: {'center_x': .5, 'center_y': .86}
+                pos_hint: {'center_x': .5, 'center_y': .88}
 
             MDIconButton:
                 icon: "pencil-outline"
-                pos_hint: {"center_x": .67, 'center_y': .78}    
+                pos_hint: {"center_x": .67, 'center_y': .8}    
                 size_hint: .09, .05
+                on_release: app.root.current = 'editprofile' 
 
-
+            MDLabel:
+                id:nomep
+                font_size: 20
+                
+                halign:'center'
+                pos_hint: {"center_x": .5, "center_y": .75}
+            MDLabel:
+                id:perfilp
+                halign:'center'
+                pos_hint: {"center_x": .5, "center_y": .7}
+                theme_text_color: "Custom"
+                text_color: "49C388"
+            MDLabel:
+                halign:'center'
+                text: 'Proposito'
+                font_size: 18
+                pos_hint: {"center_x": .2, "center_y": .65}       
+            MDLabel:
+                id:propositop
+                halign:'center'
+                pos_hint: {"center_x": .5, "center_y": .6}
+            MDLabel:
+                id:pitchp
+                halign:'center'
+                pos_hint: {"center_x": .5, "center_y": .4}
+            MDLabel:
+                id:tagsp
+                halign:'center'
+                pos_hint: {"center_x": .5, "center_y": .3}            
+            
             MDBottomNavigation:
                 panel_color: "49C388"
                 size_hint: 1, .06
@@ -715,11 +756,10 @@
 
                 MDBottomNavigationItem:
                     icon:"home"
-                    on_tab_press: app.root.current = 'filter'
-
+                    on_tab_press: app.root.current = 'explorer'
                 MDBottomNavigationItem:
                     icon:"magnify" 
-                    on_tab_press: app.root.current = 'explorer'
+                    on_tab_press: app.root.current = 'filter'
                 
                 MDBottomNavigationItem:
                     icon:"heart-outline"
@@ -731,7 +771,6 @@
                 
                 MDBottomNavigationItem:
                     icon:"account-outline"
-                    on_tab_press: app.root.current = 'perfil'
 
 
 <Explorer>:
@@ -804,11 +843,11 @@
 
                 MDBottomNavigationItem:
                     icon:"home"
-                    on_tab_press: app.root.current = 'filter'
+                   
 
                 MDBottomNavigationItem:
                     icon:"magnify" 
-                    on_tab_press: app.root.current = 'explorer'
+                    on_tab_press: app.root.current = 'filter'
                 
                 MDBottomNavigationItem:
                     icon:"heart-outline"
@@ -827,91 +866,109 @@
     name: 'settings'
     MDBoxLayout:
         orientation: 'vertical'
-       
-        MDTopAppBar:
-            size_hint: 1, .11
-            elevation: 0
-            md_bg_color: "1111111"
-            anchor_title: "right"
-            title: "Ajustes"
-            specific_text_color: "black"
+
+        MDIconButton:
+            icon: "chevron-left"
+            on_release: app.root.current = 'perfil' 
         MDFloatLayout:
-            MDTextField:              
-                hint_text: "Pesquisar"
-                mode: "round"
-                icon_left: "magnify"
-                pos_hint: {'center_x': .5,'center_y': .96}
-                size_hint: 0.70, 0.07
             MDCard:
                 elevation: 0
                 md_bg_color:  0,0,0,0
                 spacing: 15
                 padding: 17
-                size_hint: 1, 0.12
-                pos_hint: {'center_x': .5,'center_y': .89 }
+                size_hint: .44, 0.12
+                pos_hint: {'center_x': .3,'center_y': .98 }
                 
                 MDCard:
                     elevation: 0
                     ripple_behavior: True
+                    Image: 
+                        source: 'img/Notificação.png'
+                        pos_hint: {'center_x': .1 }
                     MDLabel:
                         adaptive_size: True
                         text: 'Notificações'
+
             MDCard:
                 elevation: 0
                 md_bg_color:  0,0,0,0
                 spacing: 15
                 padding: 17
-                size_hint: 1, 0.12
-                pos_hint: {'center_x': .5,'center_y': .81}
+                size_hint: .43, 0.12
+                pos_hint: {'center_x': .3,'center_y': .9}
                 
                 MDCard:
                     elevation: 0
                     ripple_behavior: True
+                    Image:
+                        source: 'img/Privacidade.png'
                     MDLabel:
                         adaptive_size: True
-                        text: 'Privacidade'
+                        text: 'Privacidade '
             MDCard:
                 elevation: 0
                 md_bg_color:  0,0,0,0
                 spacing: 15
                 padding: 17
-                size_hint: 1, 0.12
-                pos_hint: {'center_x': .5,'center_y': .73}
+                size_hint: .43, 0.12
+                pos_hint: {'center_x': .3,'center_y': .82}
                 
                 MDCard:
                     elevation: 0
                     ripple_behavior: True
+                    Image:
+                        source: 'img/segurança.png'
                     MDLabel:
                         adaptive_size: True
-                        text: 'Segurança'                                     
+                        text: 'Segurança '                                     
             MDCard:
                 elevation: 0
                 md_bg_color:  0,0,0,0
                 spacing: 15
                 padding: 17
-                size_hint: 1, 0.12
-                pos_hint: {'center_x': .5,'center_y': .65}
+                size_hint: .44, 0.12
+                pos_hint: {'center_x': .3,'center_y': .74}
                 
                 MDCard:
                     elevation: 0
                     ripple_behavior: True
+                    Image:
+                        source: 'img/anuncios.png'
                     MDLabel:
                         adaptive_size: True
-                        text: 'Anúncios'     
+                        text: 'Anúncios   '     
             MDCard:
                 elevation: 0
                 md_bg_color:  0,0,0,0
                 spacing: 15
                 padding: 17
-                size_hint: 1, 0.12
-                pos_hint: {'center_x': .5,'center_y': .57}
+                size_hint: .44, 0.12
+                pos_hint: {'center_x': .3,'center_y': .66}
                 
                 MDCard:
                     elevation: 0
                     ripple_behavior: True
+                    Image:
+                        source: 'img/conta.png'
                     MDLabel:
                         adaptive_size: True
-                        text: 'Conta'                           
+                        text: 'Conta        ' 
+            MDCard:
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 15
+                padding: 17
+                size_hint: .44, 0.12
+                pos_hint: {'center_x': .3,'center_y': .58}
+                
+                MDCard:
+                    elevation: 0
+                    ripple_behavior: True
+                    Image:
+                        source: 'img/exit.png'
+                    MDLabel:
+                        adaptive_size: True
+                        text: 'Sair           '                                     
             MDFloatLayout:
                 Image:
                     size_hint: 1, 0.01
@@ -922,32 +979,6 @@
                     source: "img/fada.png"
                     pos_hint: {'center_x': .5,'center_y': .3}
 
-
-            MDBottomNavigation:
-                panel_color: "49C388"
-                size_hint: 1, .06
-                elevation: 0
-
-                MDBottomNavigationItem:
-                    icon:"home"
-                    on_tab_press: app.root.current = 'filter'
-
-                MDBottomNavigationItem:
-                    icon:"magnify" 
-                    on_tab_press: app.root.current = 'explorer'
-                
-                MDBottomNavigationItem:
-                    icon:"heart-outline"
-                    on_tab_press: app.root.current
-                
-                MDBottomNavigationItem:
-                    icon:"forum"       
-                    on_tab_press: app.root.current = 'chat'
-                
-                MDBottomNavigationItem:
-                    icon:"account-outline"
-                    on_tab_press: app.root.current = 'perfil'
-           
                     
 
 <Chat>:
@@ -980,11 +1011,11 @@
 
                 MDBottomNavigationItem:
                     icon:"home"
-                    on_tab_press: app.root.current = 'filter'
+                    on_tab_press: app.root.current = 'explorer'
 
                 MDBottomNavigationItem:
                     icon:"magnify" 
-                    on_tab_press: app.root.current = 'explorer'
+                    on_tab_press: app.root.current = 'filter'
                 
                 MDBottomNavigationItem:
                     icon:"heart-outline"
@@ -992,7 +1023,7 @@
                 
                 MDBottomNavigationItem:
                     icon:"forum"       
-                    on_tab_press: app.root.current = 'chat'
+                   
                 
                 MDBottomNavigationItem:
                     icon:"account-outline"
@@ -1079,11 +1110,10 @@
 
                 MDBottomNavigationItem:
                     icon:"home"
-                    on_tab_press: app.root.current = 'filter'
+                    on_tab_press: app.root.current = 'explorer'
 
                 MDBottomNavigationItem:
                     icon:"magnify" 
-                    on_tab_press: app.root.current = 'explorer'
                 
                 MDBottomNavigationItem:
                     icon:"heart-outline"

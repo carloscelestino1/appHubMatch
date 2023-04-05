@@ -17,7 +17,6 @@ from googleapiclient.discovery import build
 from kivy.uix.button import Button
 
 
-
 from kivyauth.google_auth import initialize_google, login_google, logout_google
 
 # credenciais de acesso ao banco
@@ -50,10 +49,10 @@ def verificar_email(email):
     return True
 
 # registra informações no banco
-def register(email,senha,telefone,tipoperfil):
+def register(email,senha,telefone,tipoperfil,box_result):
         
         if verificar_email(email):
-            if email =='' or senha =='' or telefone =='':
+            if email =='' or senha =='' or telefone =='' or box_result== False:
                 dialog = MDDialog(
                     title="Atenção",
                     text="preencha todos os campos",
@@ -68,8 +67,10 @@ def register(email,senha,telefone,tipoperfil):
                     'senha':senha,
                     'telefone':telefone,
                     'nome':'',
+                    'seguimento':'',
                     'proposito':'',
-                    'pdf':'',
+                    'video':'', 
+                    'pitch':'',
                     'tags':tipoperfil,
                     'perfil': tipoperfil
                 }
@@ -136,10 +137,13 @@ class Login(Screen):
             print("Failed to retrieve user profile.")
 
     def login(self):
-        username = self.ids.email.text
+        email = self.ids.email.text
         password = self.ids.senha.text
-        if verificar_credenciais(username, password):
+        if verificar_credenciais(email, password):
             self.manager.current = "filter"
+            self.manager.get_screen('perfil').update_email(email)
+            self.manager.get_screen('editprofile').update_email(email)
+            return email
         else:
             self.ids.email.text = ""
             self.ids.senha.text = ""
@@ -154,53 +158,131 @@ class Login(Screen):
 class WhoAreyouHome(Screen):
     pass
 
+
 class Register_Startup(Screen):
     def register_startup(self):
         email = self.ids.emails.text
         senha = self.ids.senhas.text
         telefone = self.ids.phones.text
-        tipoperfil = 'Startup'
-        if register(email,senha,telefone,tipoperfil):
+        tipoperfil = 'startup'
+        boxs = self.ids.boxs
+        box_result = boxs.active
+
+        if register(email,senha,telefone,tipoperfil,box_result):
             self.manager.current = "editprofile"
-        
-            
+            self.manager.get_screen('editprofile').update_email(email)
+        return email
+
+
 class Register_Investidor(Screen):
     def register_investidor(self):
         email = self.ids.emaili.text
         senha = self.ids.senhai.text
         telefone = self.ids.phonei.text
         tipoperfil = 'investidor'
-        if register(email,senha,telefone,tipoperfil):
-            self.manager.current = "editprofile"
+        boxs = self.ids.boxs
+        box_result = boxs.active
 
+        if register(email,senha,telefone,tipoperfil,box_result):
+            self.manager.current = "editprofile"
+            self.manager.get_screen('editprofile').update_email(email)
+        return email
+    
 class Register_Mentor(Screen):
     def register_mentor(self):
         email = self.ids.emailm.text
         senha = self.ids.senham.text
         telefone = self.ids.phonem.text
         tipoperfil = 'mentor'
-        if register(email,senha,telefone,tipoperfil):
-            self.manager.current = "editprofile"
+        boxs = self.ids.boxs
+        box_result = boxs.active
 
+        if register(email,senha,telefone,tipoperfil,box_result):
+            self.manager.current = "editprofile"
+            self.manager.get_screen('editprofile').update_email(email)
+        return email
+    
 class Register_Cientista(Screen):
     def register_cientista(self):
         email = self.ids.emailc.text
         senha = self.ids.senhac.text
         telefone = self.ids.phonec.text
         tipoperfil = 'cientista'
-        if register(email,senha,telefone,tipoperfil):
+        boxs = self.ids.boxs
+        box_result = boxs.active
+
+        if register(email,senha,telefone,tipoperfil,box_result):
             self.manager.current = "editprofile"
+            self.manager.get_screen('editprofile').update_email(email)
+        return email
 
 class EditProfile(Screen):
-    pass
+
+
+    def update_email(self, email):
+        self.email = email
+    def edit_profile(self):
+        email = self.email
+        nome = self.ids.nome.text
+        seguimento = self.ids.seguimento.text
+        proposito = self.ids.proposito.text
+        video = self.ids.video.text
+        pitch = self.ids.pitch.text
+        tags = self.ids.tags.text
+        dados = {
+
+                    'nome':nome,
+                    'seguimento':seguimento,
+                    'proposito':proposito,
+                    'video':video,
+                    'pitch':pitch,
+                    'tags': tags
+                }
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        for usuario_id in usuarios:
+            usuario = usuarios[usuario_id]['email']
+            if usuario == email:
+                id = usuario_id     
+                ref = db.reference(f'/usuarios/{id}')
+                ref.update(dados)
+                self.manager.current = "login"
+
 
 
 class Settingss(Screen):
     pass
 
 class Perfil(Screen):
-    pass
-
+    def update_email(self, email):
+        self.email = email
+    def on_enter(self):
+        email = self.email
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        for usuario_id in usuarios:
+            usuario = usuarios[usuario_id]['email']
+            if usuario == email:
+                id = usuario_id     
+                ref = db.reference(f'/usuarios/{id}')
+                p = ref.get()
+                nome = p['nome']
+                pitch = p['pitch']
+                proposito = p['proposito']
+                seguimento = p['seguimento']
+                video = p['video']
+                tags = p['tags']
+                perfil = p['perfil']
+                self.ids.nomep.text = nome
+                self.ids.perfilp.text = perfil
+                self.ids.propositop.text = proposito
+                self.ids.pitchp.text = pitch
+                self.ids.tagsp.text = tags
+                '''self.ids.seguimentop.text = seguimento
+                self.ids.videop.text = video                
+                '''
+                '''print(p)'''
+                
 
 class Explorer(Screen):
     pass
@@ -225,4 +307,3 @@ class WelcomeScreen(Screen):
 
     def stop_autorotation(self):
         Clock.unschedule(self.start_autorotation)
-
