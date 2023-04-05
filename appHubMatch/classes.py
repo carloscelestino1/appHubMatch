@@ -142,7 +142,10 @@ class Login(Screen):
         if verificar_credenciais(email, password):
             self.manager.current = "filter"
             self.manager.get_screen('perfil').update_email(email)
+<<<<<<< HEAD
             self.manager.get_screen('editprofile').update_email(email)
+=======
+>>>>>>> 3399b36385c6ed5a710f078607ccdc7a533d11c7
             return email
         else:
             self.ids.email.text = ""
@@ -180,10 +183,14 @@ class Register_Investidor(Screen):
         senha = self.ids.senhai.text
         telefone = self.ids.phonei.text
         tipoperfil = 'investidor'
+<<<<<<< HEAD
         boxs = self.ids.boxs
         box_result = boxs.active
 
         if register(email,senha,telefone,tipoperfil,box_result):
+=======
+        if register(email,senha,telefone,tipoperfil):
+>>>>>>> 3399b36385c6ed5a710f078607ccdc7a533d11c7
             self.manager.current = "editprofile"
             self.manager.get_screen('editprofile').update_email(email)
         return email
@@ -194,10 +201,14 @@ class Register_Mentor(Screen):
         senha = self.ids.senham.text
         telefone = self.ids.phonem.text
         tipoperfil = 'mentor'
+<<<<<<< HEAD
         boxs = self.ids.boxs
         box_result = boxs.active
 
         if register(email,senha,telefone,tipoperfil,box_result):
+=======
+        if register(email,senha,telefone,tipoperfil):
+>>>>>>> 3399b36385c6ed5a710f078607ccdc7a533d11c7
             self.manager.current = "editprofile"
             self.manager.get_screen('editprofile').update_email(email)
         return email
@@ -217,8 +228,11 @@ class Register_Cientista(Screen):
         return email
 
 class EditProfile(Screen):
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 3399b36385c6ed5a710f078607ccdc7a533d11c7
     def update_email(self, email):
         self.email = email
     def edit_profile(self):
@@ -281,7 +295,11 @@ class Perfil(Screen):
                 '''self.ids.seguimentop.text = seguimento
                 self.ids.videop.text = video                
                 '''
+<<<<<<< HEAD
                 '''print(p)'''
+=======
+                print(p)
+>>>>>>> 3399b36385c6ed5a710f078607ccdc7a533d11c7
                 
 
 class Explorer(Screen):
