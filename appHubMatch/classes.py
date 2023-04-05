@@ -260,12 +260,13 @@ class Perfil(Screen):
                 tags = p['tags']
                 perfil = p['perfil']
                 self.ids.nomep.text = nome
+                self.ids.perfilp.text = perfil
+                self.ids.propositop.text = proposito
                 self.ids.pitchp.text = pitch
-                '''self.ids.pospositop.text = proposito
-                self.ids.seguimentop.text = seguimento
-                self.ids.videop.text = video
                 self.ids.tagsp.text = tags
-                self.ids.perfilp.text = perfil'''
+                '''self.ids.seguimentop.text = seguimento
+                self.ids.videop.text = video                
+                '''
                 print(p)
                 
 
