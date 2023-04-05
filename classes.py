@@ -17,7 +17,6 @@ from googleapiclient.discovery import build
 from kivy.uix.button import Button
 
 
-
 from kivyauth.google_auth import initialize_google, login_google, logout_google
 
 # credenciais de acesso ao banco
@@ -143,6 +142,7 @@ class Login(Screen):
         if verificar_credenciais(email, password):
             self.manager.current = "filter"
             self.manager.get_screen('perfil').update_email(email)
+            self.manager.get_screen('editprofile').update_email(email)
             return email
         else:
             self.ids.email.text = ""
@@ -164,7 +164,7 @@ class Register_Startup(Screen):
         email = self.ids.emails.text
         senha = self.ids.senhas.text
         telefone = self.ids.phones.text
-        tipoperfil = 'Startup'
+        tipoperfil = 'startup'
         if register(email,senha,telefone,tipoperfil):
             self.manager.current = "editprofile"
             self.manager.get_screen('editprofile').update_email(email)
@@ -259,13 +259,15 @@ class Perfil(Screen):
                 video = p['video']
                 tags = p['tags']
                 perfil = p['perfil']
-                '''self.ids.nomep.text = nome
+                self.ids.nomep.text = nome
+                self.ids.perfilp.text = perfil
+                self.ids.propositop.text = proposito
                 self.ids.pitchp.text = pitch
-                self.ids.pospositop.text = proposito
-                self.ids.seguimentop.text = seguimento
-                self.ids.videop.text = video
                 self.ids.tagsp.text = tags
-                self.ids.perfilp.text = perfil'''
+                '''self.ids.seguimentop.text = seguimento
+                self.ids.videop.text = video                
+                '''
+                '''print(p)'''
                 
 
 class Explorer(Screen):
