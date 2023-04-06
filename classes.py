@@ -49,10 +49,10 @@ def verificar_email(email):
     return True
 
 # registra informações no banco
-def register(email,senha,telefone,tipoperfil):
+def register(email,senha,telefone,tipoperfil,box_result):
         
         if verificar_email(email):
-            if email =='' or senha =='' or telefone =='':
+            if email =='' or senha =='' or telefone =='' or box_result== False:
                 dialog = MDDialog(
                     title="Atenção",
                     text="preencha todos os campos",
@@ -129,10 +129,22 @@ class Login(Screen):
         
         # Check if profile data was successfully retrieved
         if profile:
+            email = profile['email']
+            senha = profile['email']
+            telefone = 'null'
+            tipoperfil = ''
+            boxs = True
+            box_result = boxs
             # Print name and email
-            print(f"Name: {profile['name']}")
-            print(f"Email: {profile['email']}")
-            self.manager.current = "filter"
+            #print(f"Name: {profile['name']}")
+            #print(f"Email: {profile['email']}")
+            if register(email,senha,telefone,tipoperfil,box_result):
+                self.manager.current = "filter"
+                self.manager.get_screen('perfil').update_email(email)
+                self.manager.get_screen('editprofile').update_email(email)
+                return email
+             
+
         else:
             print("Failed to retrieve user profile.")
 
@@ -165,7 +177,10 @@ class Register_Startup(Screen):
         senha = self.ids.senhas.text
         telefone = self.ids.phones.text
         tipoperfil = 'startup'
-        if register(email,senha,telefone,tipoperfil):
+        boxs = self.ids.boxs
+        box_result = boxs.active
+
+        if register(email,senha,telefone,tipoperfil,box_result):
             self.manager.current = "editprofile"
             self.manager.get_screen('editprofile').update_email(email)
         return email
@@ -177,7 +192,10 @@ class Register_Investidor(Screen):
         senha = self.ids.senhai.text
         telefone = self.ids.phonei.text
         tipoperfil = 'investidor'
-        if register(email,senha,telefone,tipoperfil):
+        boxs = self.ids.boxs
+        box_result = boxs.active
+
+        if register(email,senha,telefone,tipoperfil,box_result):
             self.manager.current = "editprofile"
             self.manager.get_screen('editprofile').update_email(email)
         return email
@@ -188,7 +206,10 @@ class Register_Mentor(Screen):
         senha = self.ids.senham.text
         telefone = self.ids.phonem.text
         tipoperfil = 'mentor'
-        if register(email,senha,telefone,tipoperfil):
+        boxs = self.ids.boxs
+        box_result = boxs.active
+
+        if register(email,senha,telefone,tipoperfil,box_result):
             self.manager.current = "editprofile"
             self.manager.get_screen('editprofile').update_email(email)
         return email
@@ -199,12 +220,17 @@ class Register_Cientista(Screen):
         senha = self.ids.senhac.text
         telefone = self.ids.phonec.text
         tipoperfil = 'cientista'
-        if register(email,senha,telefone,tipoperfil):
+        boxs = self.ids.boxs
+        box_result = boxs.active
+
+        if register(email,senha,telefone,tipoperfil,box_result):
             self.manager.current = "editprofile"
             self.manager.get_screen('editprofile').update_email(email)
         return email
 
 class EditProfile(Screen):
+
+
     def update_email(self, email):
         self.email = email
     def edit_profile(self):
@@ -293,4 +319,3 @@ class WelcomeScreen(Screen):
 
     def stop_autorotation(self):
         Clock.unschedule(self.start_autorotation)
-
