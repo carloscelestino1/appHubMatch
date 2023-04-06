@@ -129,10 +129,21 @@ class Login(Screen):
         
         # Check if profile data was successfully retrieved
         if profile:
+            email = profile['email']
+            senha = profile['email']
+            telefone = 'null'
+            tipoperfil = ''
+            boxs = True
+            box_result = boxs
             # Print name and email
-            print(f"Name: {profile['name']}")
-            print(f"Email: {profile['email']}")
-            self.manager.current = "filter"
+            #print(f"Name: {profile['name']}")
+            #print(f"Email: {profile['email']}")
+            if register(email,senha,telefone,tipoperfil,box_result):
+                self.manager.current = "editprofile"
+                self.manager.get_screen('editprofile').update_email(email)
+                return email
+             
+
         else:
             print("Failed to retrieve user profile.")
 
