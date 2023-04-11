@@ -176,7 +176,7 @@ class Register_Startup(Screen):
         senha = self.ids.senhas.text
         telefone = self.ids.phones.text
         tipoperfil = 'startup'
-        boxs = self.ids.boxs
+        boxs = self.ids.box
         box_result = boxs.active
 
         if register(email,senha,telefone,tipoperfil,box_result):
@@ -191,7 +191,7 @@ class Register_Investidor(Screen):
         senha = self.ids.senhai.text
         telefone = self.ids.phonei.text
         tipoperfil = 'investidor'
-        boxs = self.ids.boxs
+        boxs = self.ids.box
         box_result = boxs.active
 
         if register(email,senha,telefone,tipoperfil,box_result):
@@ -205,7 +205,7 @@ class Register_Mentor(Screen):
         senha = self.ids.senham.text
         telefone = self.ids.phonem.text
         tipoperfil = 'mentor'
-        boxs = self.ids.boxs
+        boxs = self.ids.box
         box_result = boxs.active
 
         if register(email,senha,telefone,tipoperfil,box_result):
@@ -219,7 +219,7 @@ class Register_Cientista(Screen):
         senha = self.ids.senhac.text
         telefone = self.ids.phonec.text
         tipoperfil = 'cientista'
-        boxs = self.ids.boxs
+        boxs = self.ids.box
         box_result = boxs.active
 
         if register(email,senha,telefone,tipoperfil,box_result):
@@ -318,3 +318,6 @@ class WelcomeScreen(Screen):
 
     def stop_autorotation(self):
         Clock.unschedule(self.start_autorotation)
+
+class MatchScreem(Screen):
+    pass

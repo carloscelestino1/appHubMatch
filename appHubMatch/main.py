@@ -49,6 +49,9 @@ class MyApp(MDApp):
     def settingss_press(self):
         self.janela_gerenciadora.current = 'settings'
 
+    def match(self):
+        self.janela_gerenciadora.current = 'match'
+
     
     def build(self):
         Builder.load_file('cod.kv')
@@ -69,6 +72,7 @@ class MyApp(MDApp):
         self.chat = Chat()
         self.filter = Filter()
         self.perfill = Perfil()
+        self.matchh = MatchScreem()
 
 
         self.janela_gerenciadora.add_widget(self.load)
@@ -85,6 +89,7 @@ class MyApp(MDApp):
         self.janela_gerenciadora.add_widget(self.chat)
         self.janela_gerenciadora.add_widget(self.filter)
         self.janela_gerenciadora.add_widget(self.perfill)
+        self.janela_gerenciadora.add_widget(self.matchh)
 
 
 
