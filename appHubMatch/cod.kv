@@ -1052,9 +1052,15 @@
                 hint_text: "Pesquisar"
                 mode: "round"
                 icon_left: "magnify"
-                pos_hint: {'center_x': .5,'center_y': .58}
+                pos_hint: {'center_x': .44,'center_y': .58}
                 size_hint: 0.70, 0.07
-
+            MDFillRoundFlatButton:
+                md_bg_color: "#49C388"
+                text: "Entrar"
+                font_size:14
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .9, 'center_y': .58}
+                size_hint_x: .1
             MDCard:
                 id: 'Azul'
                 elevation: 0
@@ -1146,29 +1152,23 @@
                 md_bg_color:  0,0,0,0
                 spacing: 5
                 padding: 5
-                size_hint: 1, 0.30
-                ripple_behavior: True
+                size_hint: 1, .15
                 pos_hint: {'center_x': .5,'center_y': .8}
                 MDCard:
                     id: ''
                     elevation: 0
                     md_bg_color: 
                     padding: 10
-                    size_hint: 1, 1
+                    size_hint: 1, .15
                     pos_hint: {'center_x': .5,'center_y': .5}
                     Image:
                         source: "img/FyTecLogo.png"
                         elevation: 0
                 MDLabel:
-                    ripple_behavior: True
                     pos_hint: {'center_x': 0.60,'center_y': 0.50}
-                    text: "Fy.Tec"
-                    
-                    
-
-                
+                    text: "Fy.Tec"       
                 MDCard:
-                    id: ''
+                    size_hint: .5, .5
                     elevation: 0
                     md_bg_color: 
                     ripple_behavior: True
@@ -1176,36 +1176,30 @@
                     Image:
                         source: "img/VectorHeart.png"
                         elevation: 0
-            
+
             MDCard:
                 id: 'Azul'
                 elevation: 0
                 md_bg_color:  0,0,0,0
                 spacing: 5
                 padding: 5
-                size_hint: 1, 0.30
-                ripple_behavior: True
-                pos_hint: {'center_x': .5,'center_y': .58}
+                size_hint: 1, 0.15
+                pos_hint: {'center_x': .5,'center_y': .5}
                 MDCard:
                     id: ''
                     elevation: 0
                     md_bg_color: 
                     padding: 10
-                    size_hint: 1, 1
+                    size_hint: 1, .15
                     pos_hint: {'center_x': .5,'center_y': .5}
                     Image:
                         source: "img/ILoveNetWork.png"
                         elevation: 0
                 MDLabel:
-                    ripple_behavior: True
                     pos_hint: {'center_x': 0.60,'center_y': 0.50}
-                    text: "I Love Network"
-                    
-                    
-
-                
+                    text: "I Love Network"  
                 MDCard:
-                    id: ''
+                    size_hint: .5, .5
                     elevation: 0
                     md_bg_color: 
                     ripple_behavior: True
@@ -1213,6 +1207,7 @@
                     Image:
                         source: "img/VectorHeart.png"
                         elevation: 0            
+            
 
 
             MDBottomNavigation:
