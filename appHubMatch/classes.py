@@ -227,11 +227,32 @@ class Register_Cientista(Screen):
             self.manager.get_screen('editprofile').update_email(email)
         return email
 
-class EditProfile(Screen):
-
-
+class EditProfile(Screen):    
     def update_email(self, email):
         self.email = email
+    def on_enter(self):
+        email = self.email
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        for usuario_id in usuarios:
+            usuario = usuarios[usuario_id]['email']
+            if usuario == email:
+                id = usuario_id     
+                ref = db.reference(f'/usuarios/{id}')
+                p = ref.get()
+                nome = p['nome']
+                pitch = p['pitch']
+                proposito = p['proposito']
+                seguimento = p['seguimento']
+                video = p['video']
+                tags = p['tags']
+                self.ids.nome.text = nome
+                self.ids.proposito.text = proposito
+                self.ids.pitch.text = pitch
+                self.ids.tags.text = tags
+                self.ids.seguimento.text = seguimento
+                self.ids.video.text = video                
+                
     def edit_profile(self):
         email = self.email
         nome = self.ids.nome.text
@@ -289,20 +310,34 @@ class Perfil(Screen):
                 self.ids.propositop.text = proposito
                 self.ids.pitchp.text = pitch
                 self.ids.tagsp.text = tags
-                '''self.ids.seguimentop.text = seguimento
-                self.ids.videop.text = video                
-                '''
-                '''print(p)'''
                 
 
 class Explorer(Screen):
-    pass
+    def update_listar_usuarios(self, listar_usuarios):
+        self.listar_usuarios = listar_usuarios    
 
 class Chat(Screen):
     pass
 
 class Filter(Screen):
-    pass
+    def filter(self):
+        pesquisa = self.ids.pesquisa.text
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        listar_usuarios = []
+        if pesquisa == '':
+            for usuario_id in usuarios:
+                listar_usuarios.append(usuario_id)
+        else:
+            for usuario_id in usuarios:
+                usuario = usuarios[usuario_id]['tags']
+                usuariose = usuarios[usuario_id]['seguimento']
+                if usuario == pesquisa or usuariose == pesquisa:
+                    listar_usuarios.append(usuario_id)
+        print(listar_usuarios)
+        self.manager.current = "explorer"
+        self.manager.get_screen('explorer').update_listar_usuarios(listar_usuarios)
+        return listar_usuarios
 
 class WelcomeScreen(Screen):
 
