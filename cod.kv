@@ -302,10 +302,13 @@
                 size_hint_x: .9
                 hint_text: 'Telefone'
                 pos_hint: {'center_x': .5, 'center_y': .3}
+
             MDCheckbox:
+                id: box
                 size_hint: None, None
                 size: "48dp", "48dp"
                 pos_hint: {'center_x': .1, 'center_y': .2}
+
             MDLabel:
                 font_style: "Caption"
                 text: "Li e concordo com os termos"
@@ -385,10 +388,13 @@
                 size_hint_x: .9
                 hint_text: 'Telefone'
                 pos_hint: {'center_x': .5, 'center_y': .3}
+
             MDCheckbox:
+                id: box
                 size_hint: None, None
                 size: "48dp", "48dp"
                 pos_hint: {'center_x': .1, 'center_y': .2}
+
             MDLabel:
                 font_style: "Caption"
                 text: "Li e concordo com os termos"
@@ -468,10 +474,13 @@
                 size_hint_x: .9
                 hint_text: 'Telefone'
                 pos_hint: {'center_x': .5, 'center_y': .3}
+
             MDCheckbox:
+                id: box
                 size_hint: None, None
                 size: "48dp", "48dp"
                 pos_hint: {'center_x': .1, 'center_y': .2}
+
             MDLabel:
                 font_style: "Caption"
                 text: "Li e concordo com os termos"
@@ -551,10 +560,13 @@
                 size_hint_x: .9
                 hint_text: 'Telefone'
                 pos_hint: {'center_x': .5, 'center_y': .3}
+
             MDCheckbox:
+                id: box
                 size_hint: None, None
                 size: "48dp", "48dp"
                 pos_hint: {'center_x': .1, 'center_y': .2}
+                
             MDLabel:
                 font_style: "Caption"
                 text: "Li e concordo com os termos"
@@ -578,11 +590,6 @@
     MDBoxLayout:
         orientation: 'vertical'            
         MDFloatLayout: 
-            MDIconButton:
-                icon: "chevron-left"
-                user_font_size: "35sp"
-                pos_hint: {"center_y": .95}
-                on_release: app.root.current = 'register_startup'
             Image:  
                 source: 'img/LogoSemNome.png'
                 pos_hint: {'center_x': .5, 'center_y': .9}
@@ -598,7 +605,7 @@
                 hint_text: "Nome"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .7, "center_y": .75}
+                pos_hint: {"center_x": .7, "center_y": .8}
             Image:  
                 source: 'img/Ellipse2.png'
                 pos_hint: {'center_x': .2, 'center_y': .75} 
@@ -619,7 +626,7 @@
                 mode: "round"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .7, "center_y": .68}
+                pos_hint: {"center_x": .7, "center_y": .7}
             MDTextField:
                 id: proposito
                 md_bg_color: "000000"
@@ -634,7 +641,7 @@
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .5, "center_y": .58}
+                pos_hint: {"center_x": .5, "center_y": .55}
             MDTextField:
                 id: video
                 md_bg_color: "000000"
@@ -648,7 +655,7 @@
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .5, "center_y": .48}
+                pos_hint: {"center_x": .5, "center_y": .38}
             MDTextField:
                 id: pitch
                 md_bg_color: "000000"
@@ -663,7 +670,7 @@
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .5, "center_y": .38}    
+                pos_hint: {"center_x": .5, "center_y": .25}    
             MDTextField:
                 id: tags
                 md_bg_color: "000000"
@@ -678,7 +685,7 @@
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .5, "center_y": .28}             
+                pos_hint: {"center_x": .5, "center_y": .15}             
             MDFillRoundFlatButton:
                 md_bg_color: "1F4935"
                 opacity: 1
@@ -686,7 +693,7 @@
                 text_color: "black"
                 font_size:14
                 text_color:1,1,1,1
-                pos_hint: {'center_x': .8, 'center_y': .18}
+                pos_hint: {'center_x': .8, 'center_y': .05}
                 
                 on_press : root.edit_profile()
 
@@ -708,6 +715,10 @@
             Image:  
                 source: 'img/Ellipse2.png'
                 pos_hint: {'center_x': .5, 'center_y': .88}
+            Image:    
+                source: 'img/HubMatchLogo.png'
+                pos_hint: {'center_x': .5, 'center_y': .88}
+                size_hint: .4, .2
 
             MDIconButton:
                 icon: "pencil-outline"
@@ -746,36 +757,28 @@
                 pos_hint: {"center_x": .5, "center_y": .3}            
             
             
-            
-            
-            
-            
-            
-            
-            
-            
+
+
             MDBottomNavigation:
                 panel_color: "49C388"
                 size_hint: 1, .06
-                elevation: 0
-
+                elevation: 0                   
                 MDBottomNavigationItem:
                     icon:"home"
+                    on_tab_press: app.root.current = 'filter'
+                MDBottomNavigationItem:
+                    icon:"magnify"
                     on_tab_press: app.root.current = 'explorer'
                 MDBottomNavigationItem:
-                    icon:"magnify" 
-                    on_tab_press: app.root.current = 'filter'
-                
-                MDBottomNavigationItem:
                     icon:"heart-outline"
-                    on_tab_press: app.root.current
-                
+                    on_tab_press: app.root.current = 'match'
                 MDBottomNavigationItem:
-                    icon:"forum"       
-                    on_tab_press: app.root.current = 'chat'
-                
+                    icon:"forum"
+                    on_tab_press: app.root.current = 'chat'       
                 MDBottomNavigationItem:
                     icon:"account-outline"
+                    on_tab_press: app.root.current = 'perfil'
+
 
 
 <Explorer>:
@@ -790,7 +793,11 @@
             right_action_items: [["bell-outline"]]
         
         MDFloatLayout:
-
+            MDLabel:
+                id: nomee
+                halign:'center'
+                text: ''
+                pos_hint: {'center_x': .5,'center_y': 0.8}
             MDCard:
                 id: 'Azul'
                 elevation: 0
@@ -821,9 +828,9 @@
                     elevation: 0
                     md_bg_color: 
                     ripple_behavior: True
-                    Image:
-                        source: "img/VectorX.png"
-                        elevation: 0
+                    MDIconButton:
+                        icon: "img/VectorX.png"
+                        on_release : root.fuction_dislike()
             MDCard:
                 id: 'Azul'
                 elevation: 0
@@ -837,34 +844,32 @@
                     elevation: 0
                     md_bg_color: 
                     ripple_behavior: True
-                    Image:
-                        source: "img/VectorHeart.png"
-                        elevation: 0
+                    MDIconButton:
+                        icon:"img/VectorHeart.png"
+                        on_release : root.fuction_match()
             
+
+
             MDBottomNavigation:
                 panel_color: "49C388"
                 size_hint: 1, .06
-                elevation: 0
-
+                elevation: 0                   
                 MDBottomNavigationItem:
                     icon:"home"
-                   
-
-                MDBottomNavigationItem:
-                    icon:"magnify" 
                     on_tab_press: app.root.current = 'filter'
-                
+                MDBottomNavigationItem:
+                    icon:"magnify"
+                    on_tab_press: app.root.current = 'explorer'
                 MDBottomNavigationItem:
                     icon:"heart-outline"
-                    on_tab_press: app.root.current
-                
+                    on_tab_press: app.root.current = 'match'
                 MDBottomNavigationItem:
-                    icon:"forum"       
-                    on_tab_press: app.root.current = 'chat'
-                
+                    icon:"forum"
+                    on_tab_press: app.root.current = 'chat'       
                 MDBottomNavigationItem:
                     icon:"account-outline"
                     on_tab_press: app.root.current = 'perfil'
+
                 
 
 <Settingss>:
@@ -1009,27 +1014,24 @@
                 size_hint: 0.2, 0.1
 
 
+
+
             MDBottomNavigation:
                 panel_color: "49C388"
                 size_hint: 1, .06
-                elevation: 0
-
+                elevation: 0                   
                 MDBottomNavigationItem:
                     icon:"home"
-                    on_tab_press: app.root.current = 'explorer'
-
-                MDBottomNavigationItem:
-                    icon:"magnify" 
                     on_tab_press: app.root.current = 'filter'
-                
+                MDBottomNavigationItem:
+                    icon:"magnify"
+                    on_tab_press: app.root.current = 'explorer'
                 MDBottomNavigationItem:
                     icon:"heart-outline"
-                    on_tab_press: app.root.current
-                
+                    on_tab_press: app.root.current = 'match'
                 MDBottomNavigationItem:
-                    icon:"forum"       
-                   
-                
+                    icon:"forum"
+                    on_tab_press: app.root.current = 'chat'       
                 MDBottomNavigationItem:
                     icon:"account-outline"
                     on_tab_press: app.root.current = 'perfil'
@@ -1049,13 +1051,22 @@
                 source: "img/image4.png"
                 pos_hint: {'center_x': 0.5,'center_y': 0.80}
                 size_hint: 0.65, 0.33  
-            MDTextField:              
+            MDTextField:
+                id: pesquisa              
                 hint_text: "Pesquisar"
                 mode: "round"
                 icon_left: "magnify"
-                pos_hint: {'center_x': .5,'center_y': .58}
+                pos_hint: {'center_x': .44,'center_y': .58}
                 size_hint: 0.70, 0.07
+            MDFillRoundFlatButton:
+                md_bg_color: "#49C388"
+                text: "Filtrar"
+                font_size:14
+                text_color:1,1,1,1
+                pos_hint: {'center_x': .9, 'center_y': .58}
+                size_hint_x: .1
 
+                on_press: root.filter()
             MDCard:
                 id: 'Azul'
                 elevation: 0
@@ -1070,8 +1081,8 @@
                     elevation: 0
                     md_bg_color: "49C388"
                     ripple_behavior: True
-                    Image:
-                        source: "img/book.png"
+                    MDLabel:
+                        text: 'Startup'
                         elevation: 0
                 MDCard:
                     id: ''
@@ -1108,26 +1119,88 @@
                         source:"img/gast.png"
                         elevation: 0
 
+
+
             MDBottomNavigation:
                 panel_color: "49C388"
                 size_hint: 1, .06
-                elevation: 0
-
+                elevation: 0                   
                 MDBottomNavigationItem:
                     icon:"home"
-                    on_tab_press: app.root.current = 'explorer'
-
+                    on_tab_press: app.root.current = 'filter'
                 MDBottomNavigationItem:
-                    icon:"magnify" 
-                
+                    icon:"magnify"
+                    on_tab_press: app.root.current = 'explorer'
                 MDBottomNavigationItem:
                     icon:"heart-outline"
-                    on_tab_press: app.root.current
-                
+                    on_tab_press: app.root.current = 'match'
                 MDBottomNavigationItem:
-                    icon:"forum"       
-                    on_tab_press: app.root.current = 'chat'
-                
+                    icon:"forum"
+                    on_tab_press: app.root.current = 'chat'       
                 MDBottomNavigationItem:
                     icon:"account-outline"
                     on_tab_press: app.root.current = 'perfil'
+
+<MatchScreem>:
+    name: 'match'
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: "white" 
+        MDFloatLayout:                
+            MDCard:
+                id: 'Azul'
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                spacing: 5
+                padding: 5
+                size_hint: 1, 0.30
+                pos_hint: {'center_x': .5,'center_y': .8}
+                MDCard:
+                    id: ''
+                    elevation: 0
+                    md_bg_color: 
+                    padding: 10
+                    size_hint: 1, 1
+                    pos_hint: {'center_x': .5,'center_y': .5}
+                    Image:
+                        source: "img/FyTecLogo.png"
+                        elevation: 0
+                MDLabel:
+                    pos_hint: {'center_x': 0.60,'center_y': 0.50}
+                    text: "Fy.Tec"
+                
+                MDCard:
+                    id: ''
+                    size_hint: .5, .5
+                    ripple_behavior: True
+                    elevation: 0
+                    md_bg_color: 
+                    pos_hint: {'center_x': .6,'center_y': 0.50}
+                    Image:
+                        source: "img/VectorHeart.png"
+                        elevation: 0
+            
+
+
+            MDBottomNavigation:
+                panel_color: "49C388"
+                size_hint: 1, .06
+                elevation: 0                   
+                MDBottomNavigationItem:
+                    icon:"home"
+                    on_tab_press: app.root.current = 'filter'
+                MDBottomNavigationItem:
+                    icon:"magnify"
+                    on_tab_press: app.root.current = 'explorer'
+                MDBottomNavigationItem:
+                    icon:"heart-outline"
+                    on_tab_press: app.root.current = 'match'
+                MDBottomNavigationItem:
+                    icon:"forum"
+                    on_tab_press: app.root.current = 'chat'       
+                MDBottomNavigationItem:
+                    icon:"account-outline"
+                    on_tab_press: app.root.current = 'perfil'
+
+
+

@@ -15,6 +15,7 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from kivy.uix.button import Button
+import random
 
 
 from kivyauth.google_auth import initialize_google, login_google, logout_google
@@ -139,8 +140,7 @@ class Login(Screen):
             #print(f"Name: {profile['name']}")
             #print(f"Email: {profile['email']}")
             if register(email,senha,telefone,tipoperfil,box_result):
-                self.manager.current = "filter"
-                self.manager.get_screen('perfil').update_email(email)
+                self.manager.current = "editprofile"
                 self.manager.get_screen('editprofile').update_email(email)
                 return email
              
@@ -177,7 +177,7 @@ class Register_Startup(Screen):
         senha = self.ids.senhas.text
         telefone = self.ids.phones.text
         tipoperfil = 'startup'
-        boxs = self.ids.boxs
+        boxs = self.ids.box
         box_result = boxs.active
 
         if register(email,senha,telefone,tipoperfil,box_result):
@@ -192,7 +192,7 @@ class Register_Investidor(Screen):
         senha = self.ids.senhai.text
         telefone = self.ids.phonei.text
         tipoperfil = 'investidor'
-        boxs = self.ids.boxs
+        boxs = self.ids.box
         box_result = boxs.active
 
         if register(email,senha,telefone,tipoperfil,box_result):
@@ -206,7 +206,7 @@ class Register_Mentor(Screen):
         senha = self.ids.senham.text
         telefone = self.ids.phonem.text
         tipoperfil = 'mentor'
-        boxs = self.ids.boxs
+        boxs = self.ids.box
         box_result = boxs.active
 
         if register(email,senha,telefone,tipoperfil,box_result):
@@ -220,7 +220,7 @@ class Register_Cientista(Screen):
         senha = self.ids.senhac.text
         telefone = self.ids.phonec.text
         tipoperfil = 'cientista'
-        boxs = self.ids.boxs
+        boxs = self.ids.box
         box_result = boxs.active
 
         if register(email,senha,telefone,tipoperfil,box_result):
@@ -228,11 +228,32 @@ class Register_Cientista(Screen):
             self.manager.get_screen('editprofile').update_email(email)
         return email
 
-class EditProfile(Screen):
-
-
+class EditProfile(Screen):    
     def update_email(self, email):
         self.email = email
+    def on_enter(self):
+        email = self.email
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        for usuario_id in usuarios:
+            usuario = usuarios[usuario_id]['email']
+            if usuario == email:
+                id = usuario_id     
+                ref = db.reference(f'/usuarios/{id}')
+                p = ref.get()
+                nome = p['nome']
+                pitch = p['pitch']
+                proposito = p['proposito']
+                seguimento = p['seguimento']
+                video = p['video']
+                tags = p['tags']
+                self.ids.nome.text = nome
+                self.ids.proposito.text = proposito
+                self.ids.pitch.text = pitch
+                self.ids.tags.text = tags
+                self.ids.seguimento.text = seguimento
+                self.ids.video.text = video                
+                
     def edit_profile(self):
         email = self.email
         nome = self.ids.nome.text
@@ -290,20 +311,138 @@ class Perfil(Screen):
                 self.ids.propositop.text = proposito
                 self.ids.pitchp.text = pitch
                 self.ids.tagsp.text = tags
-                '''self.ids.seguimentop.text = seguimento
-                self.ids.videop.text = video                
-                '''
-                '''print(p)'''
                 
 
 class Explorer(Screen):
-    pass
+    def update_listar_usuarios(self, listar_usuarios):
+        self.listar_usuarios = listar_usuarios
+    
+    def update_id(self,id):
+        self.id = id
+    
+    def update_idlike(self,idl):
+        self.idl = idl
+    
+    def on_enter(self):
+        listar_usuarios = self.listar_usuarios
+        idl = self.idl
+        if len(listar_usuarios) == 0:
+            listar_usuarios = []
+            ref = db.reference('usuarios')
+            usuarios = ref.get()
+            for usuario_id in usuarios:
+                listar_usuarios.append(usuario_id)
+            self.manager.get_screen('explorer').update_listar_usuarios(listar_usuarios)
+            id = random.choice(listar_usuarios)
+            ref = db.reference(f'/usuarios/{id}')
+            p = ref.get()
+            nome = p['nome']
+            pitch = p['pitch']
+            proposito = p['proposito']
+            seguimento = p['seguimento']
+            video = p['video']
+            tags = p['tags']
+            perfil = p['perfil']
+            self.ids.nomee.text = nome
+            '''self.ids.perfilp.text = perfil
+            self.ids.propositop.text = proposito
+            self.ids.pitchp.text = pitch
+            self.ids.tagsp.text = tags'''
+        else:
+            id = random.choice(listar_usuarios)
+            ref = db.reference(f'/usuarios/{id}')
+            p = ref.get()
+            nome = p['nome']
+            pitch = p['pitch']
+            proposito = p['proposito']
+            seguimento = p['seguimento']
+            video = p['video']
+            tags = p['tags']
+            perfil = p['perfil']
+            self.ids.nomee.text = nome
+            '''self.ids.perfilp.text = perfil
+            self.ids.propositop.text = proposito
+            self.ids.pitchp.text = pitch
+            self.ids.tagsp.text = tags'''
+        self.manager.get_screen('explorer').update_id(id)
+        self.manager.get_screen('explorer').update_idlike(idl)
+        return id
+
+    
+    def fuction_match(self):
+        id = self.id
+        idl = self.idl
+        idl.append(id)
+        listar_usuarios = self.listar_usuarios
+        id = random.choice(listar_usuarios)
+        ref = db.reference(f'/usuarios/{id}')
+        p = ref.get()
+        nome = p['nome']
+        pitch = p['pitch']
+        proposito = p['proposito']
+        seguimento = p['seguimento']
+        video = p['video']
+        tags = p['tags']
+        perfil = p['perfil']
+        self.ids.nomee.text = nome
+        '''self.ids.perfilp.text = perfil
+        self.ids.propositop.text = proposito
+        self.ids.pitchp.text = pitch
+        self.ids.tagsp.text = tags'''
+        self.manager.get_screen('explorer').update_id(id)
+        self.manager.get_screen('explorer').update_idlike(idl)
+        self.manager.get_screen('match').update_idlike(idl)
+        print(idl)
+        
+    def fuction_dislike(self):
+        listar_usuarios = self.listar_usuarios
+        id = random.choice(listar_usuarios)
+        ref = db.reference(f'/usuarios/{id}')
+        p = ref.get()
+        nome = p['nome']
+        pitch = p['pitch']
+        proposito = p['proposito']
+        seguimento = p['seguimento']
+        video = p['video']
+        tags = p['tags']
+        perfil = p['perfil']
+        self.ids.nomee.text = nome
+        '''self.ids.perfilp.text = perfil
+        self.ids.propositop.text = proposito
+        self.ids.pitchp.text = pitch
+        self.ids.tagsp.text = tags'''
+        self.manager.get_screen('explorer').update_id(id)
+        
+        
 
 class Chat(Screen):
     pass
 
 class Filter(Screen):
-    pass
+    def on_enter(self):
+        listar_usuarios = []
+        idl = []
+        self.manager.get_screen('explorer').update_idlike(idl)
+        self.manager.get_screen('match').update_idlike(idl)
+        self.manager.get_screen('explorer').update_listar_usuarios(listar_usuarios)
+    def filter(self):
+        pesquisa = self.ids.pesquisa.text
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        listar_usuarios = []
+        if pesquisa == '':
+            for usuario_id in usuarios:
+                listar_usuarios.append(usuario_id)
+        else:
+            for usuario_id in usuarios:
+                usuario = usuarios[usuario_id]['tags']
+                usuariose = usuarios[usuario_id]['seguimento']
+                if usuario == pesquisa or usuariose == pesquisa:
+                    listar_usuarios.append(usuario_id)
+        print(listar_usuarios)
+        self.manager.current = "explorer"
+        self.manager.get_screen('explorer').update_listar_usuarios(listar_usuarios)
+        return listar_usuarios
 
 class WelcomeScreen(Screen):
 
@@ -319,3 +458,15 @@ class WelcomeScreen(Screen):
 
     def stop_autorotation(self):
         Clock.unschedule(self.start_autorotation)
+
+class MatchScreem(Screen):
+    def update_idlike(self,idl):
+        self.idl = idl
+    def update_likes(self,likes):
+        self.likes = likes
+    def on_enter(self):
+        idl = self.idl
+        print(idl)
+
+        
+        
