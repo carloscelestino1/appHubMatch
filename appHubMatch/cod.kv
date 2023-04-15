@@ -729,7 +729,6 @@
             MDLabel:
                 id:nomep
                 font_size: 20
-                
                 halign:'center'
                 pos_hint: {"center_x": .5, "center_y": .75}
             MDLabel:
@@ -793,61 +792,106 @@
             right_action_items: [["bell-outline"]]
         
         MDFloatLayout:
-            MDLabel:
-                halign:'center'
-                text: 'AAA'
-                pos_hint: {'center_x': .5,'center_y': 0.8}
             MDCard:
-                id: 'Azul'
                 elevation: 0
                 md_bg_color:  0,0,0,0
-                spacing: 15
-                padding: 15
-                size_hint: 0.50, 0.25
-                pos_hint: {'center_x': .2,'center_y': 0.50}
-                MDCard:
-                    id: ''
+                size_hint: 0.45, 0.45
+                pos_hint: {'center_x': .2,'center_y': .55}
+                Image:
+                    source: "img/Ellipse2.png"
                     elevation: 0
-                    md_bg_color: 
-                    Image:
-                        source: "img/Ellipse2.png"
-                        elevation: 0
+            MDCard:
+                padding: 3
+                spacing: 3
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                size_hint: .6, .04
+                pos_hint: {'center_x': .55,'center_y': .63}
+                MDLabel:
+                    id: nomee
+                    halign:'center'
+                    text: ''
+                    theme_text_color: "Custom"
+                    text_color: "49C388"
+                    font_size: 18
+            MDCard:
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                size_hint: .6, .04
+                pos_hint: {'center_x': .7,'center_y': .55}
+                ripple_behavior: True
 
+                MDLabel:
+                    id: propositop
+                    halign:'center'
+                    text: ''
+                    theme_text_color: "Custom"
+                    text_color: "black"
+                    font_size: 12
+            MDCard:
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                size_hint: .6, .04
+                pos_hint: {'center_x': .7,'center_y': .46}
+                ripple_behavior: True
 
+                MDLabel:
+                    id: tagsp
+                    halign:'center'
+                    text: ''
+                    theme_text_color: "Custom"
+                    text_color: "black"
+                    font_size: 12        
+            
             MDCard:
-                id: 'Azul'
                 elevation: 0
                 md_bg_color:  0,0,0,0
-                spacing: 15
-                padding: 15
-                size_hint: 0.17, 0.15
-                pos_hint: {'center_x': .2,'center_y': 0.23}
-                MDCard:
-                    id: ''
-                    elevation: 0
-                    md_bg_color: 
-                    ripple_behavior: True
-                    Image:
-                        source: "img/VectorX.png"
-                        elevation: 0
+                size_hint: .6, .04
+                pos_hint: {'center_x': .3,'center_y': .42}
+                MDLabel:
+                    id: pitchp
+                    halign:'center'
+                    text: ''
+                    theme_text_color: "Custom"
+                    text_color: "black"
+                    font_size: 14
             MDCard:
-                id: 'Azul'
                 elevation: 0
                 md_bg_color:  0,0,0,0
-                spacing: 10
-                padding: 10
-                size_hint: 0.25, 0.15
-                pos_hint: {'center_x': .8,'center_y': 0.23}
-                MDCard:
-                    id: ''
-                    elevation: 0
-                    md_bg_color: 
-                    ripple_behavior: True
-                    Image:
-                        source: "img/VectorHeart.png"
-                        elevation: 0
+                size_hint: .6, .04
+                pos_hint: {'center_x': .5,'center_y': .8}
+                MDLabel:
+                    id: videop
+                    halign:'center'
+                    text: ''
+                    theme_text_color: "Custom"
+                    text_color: "black"
+                    font_size: 14
+            Image:
+                size_hint: 4, .06
+                source:"img/line1verde.png"
+                pos_hint: {'center_x': .5,'center_y': .39}        
             
 
+
+            MDIconButton:
+                elevation_normal: 12
+                pos_hint: {'center_x': .3,'center_y': 0.3}
+                icon: "close"
+                icon_size: "48sp"
+                theme_text_color: "Custom"
+                text_color: "49C388"
+                on_release : root.fuction_dislike()
+            MDIconButton:
+                pos_hint: {'center_x': .7,'center_y': 0.3}
+                icon:"heart-outline"
+                icon_size: "52sp"
+                theme_text_color: "Custom"
+                text_color: "49C388"
+                on_release : root.fuction_match()
+
+
+        
 
             MDBottomNavigation:
                 panel_color: "49C388"

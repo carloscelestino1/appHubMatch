@@ -15,6 +15,7 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from kivy.uix.button import Button
+import random
 
 
 from kivyauth.google_auth import initialize_google, login_google, logout_google
@@ -314,12 +315,120 @@ class Perfil(Screen):
 
 class Explorer(Screen):
     def update_listar_usuarios(self, listar_usuarios):
-        self.listar_usuarios = listar_usuarios    
+        self.listar_usuarios = listar_usuarios
+    
+    def update_id(self,id):
+        self.id = id
+    
+    def update_idlike(self,idl):
+        self.idl = idl
+    
+    def on_enter(self):
+        listar_usuarios = self.listar_usuarios
+        idl = self.idl
+        if len(listar_usuarios) == 0:
+            listar_usuarios = []
+            ref = db.reference('usuarios')
+            usuarios = ref.get()
+            for usuario_id in usuarios:
+                listar_usuarios.append(usuario_id)
+            self.manager.get_screen('explorer').update_listar_usuarios(listar_usuarios)
+            id = random.choice(listar_usuarios)
+            ref = db.reference(f'/usuarios/{id}')
+            p = ref.get()
+            nome = p['nome']
+            pitch = p['pitch']
+            proposito = p['proposito']
+            seguimento = p['seguimento']
+            video = p['video']
+            tags = p['tags']
+            perfil = p['perfil']
+            self.ids.nomee.text = nome
+            '''self.ids.perfilp.text = perfil
+            self.ids.propositop.text = proposito
+            self.ids.pitchp.text = pitch
+            self.ids.tagsp.text = tags'''
+        else:
+            id = random.choice(listar_usuarios)
+            ref = db.reference(f'/usuarios/{id}')
+            p = ref.get()
+            nome = p['nome']
+            pitch = p['pitch']
+            proposito = p['proposito']
+            seguimento = p['seguimento']
+            video = p['video']
+            tags = p['tags']
+            perfil = p['perfil']
+            self.ids.nomee.text = nome
+            '''self.ids.perfilp.text = perfil
+            self.ids.propositop.text = proposito
+            self.ids.pitchp.text = pitch
+            self.ids.tagsp.text = tags'''
+        self.manager.get_screen('explorer').update_id(id)
+        self.manager.get_screen('explorer').update_idlike(idl)
+        return id
+
+    
+    def fuction_match(self):
+        id = self.id
+        idl = self.idl
+        idl.append(id)
+        listar_usuarios = self.listar_usuarios
+        id = random.choice(listar_usuarios)
+        ref = db.reference(f'/usuarios/{id}')
+        p = ref.get()
+        nome = p['nome']
+        pitch = p['pitch']
+        proposito = p['proposito']
+        seguimento = p['seguimento']
+        video = p['video']
+        tags = p['tags']
+        perfil = p['perfil']
+        self.ids.nomee.text = nome
+        self.ids.pitchp.text = pitch
+        self.ids.propositop.text = proposito
+        self.ids.videop.text = video
+        self.ids.tagsp.text = tags
+        
+        self.manager.get_screen('explorer').update_id(id)
+        self.manager.get_screen('explorer').update_idlike(idl)
+        self.manager.get_screen('match').update_idlike(idl)
+        print(idl)
+        
+    def fuction_dislike(self):
+        listar_usuarios = self.listar_usuarios
+        id = random.choice(listar_usuarios)
+        ref = db.reference(f'/usuarios/{id}')
+        p = ref.get()
+        nome = p['nome']
+        pitch = p['pitch']
+        proposito = p['proposito']
+        seguimento = p['seguimento']
+        video = p['video']
+        tags = p['tags']
+        perfil = p['perfil']
+        self.ids.nomee.text = nome
+        self.ids.propositop.text = proposito
+        self.ids.pitchp.text = pitch
+        self.ids.videop.text = video
+        self.ids.tagsp.text = tags
+
+        '''self.ids.perfilp.text = perfil'''
+    
+        self.manager.get_screen('explorer').update_id(id)
+        
+        
 
 class Chat(Screen):
     pass
 
 class Filter(Screen):
+    def on_enter(self):
+        listar_usuarios = []
+        idl = []
+        self.manager.get_screen('explorer').update_idlike(idl)
+        self.manager.get_screen('match').update_idlike(idl)
+        self.manager.get_screen('explorer').update_listar_usuarios(listar_usuarios)
     def filter(self):
         pesquisa = self.ids.pesquisa.text
         ref = db.reference('usuarios')
@@ -355,4 +464,13 @@ class WelcomeScreen(Screen):
         Clock.unschedule(self.start_autorotation)
 
 class MatchScreem(Screen):
-    pass
+    def update_idlike(self,idl):
+        self.idl = idl
+    def update_likes(self,likes):
+        self.likes = likes
+    def on_enter(self):
+        idl = self.idl
+        print(idl)
+
+        
+        
