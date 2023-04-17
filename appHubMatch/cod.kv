@@ -592,7 +592,7 @@
         MDFloatLayout: 
             Image:  
                 source: 'img/LogoSemNome.png'
-                pos_hint: {'center_x': .5, 'center_y': .9}
+                pos_hint: {'center_x': .5, 'center_y': .92}
                 size_hint: .2, .2
             MDTextField:
                 id: nome
@@ -605,13 +605,13 @@
                 hint_text: "Nome"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .7, "center_y": .8}
+                pos_hint: {"center_x": .7, "center_y": .81}
             Image:  
                 source: 'img/Ellipse2.png'
-                pos_hint: {'center_x': .2, 'center_y': .75} 
+                pos_hint: {'center_x': .2, 'center_y': .78} 
             MDIconButton:
                 icon: "upload"
-                pos_hint: {'center_x': .2, 'center_y': .7} 
+                pos_hint: {'center_x': .2, 'center_y': .73} 
                 user_font_size: "35sp"    
             MDTextField:
                 id:seguimento
@@ -623,10 +623,10 @@
                 
                 size_hint_x: .4
                 hint_text: "Seguimento"
-                mode: "round"
+                mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .7, "center_y": .7}
+                pos_hint: {"center_x": .7, "center_y": .73}
             MDTextField:
                 id: proposito
                 md_bg_color: "000000"
@@ -634,14 +634,14 @@
                 text_color_focus: "black"
                 line_color_focus: "black"
                 hint_text_color_focus: "49C388"
-
+                max_text_length: 100    
 
                 size_hint_x: .8
                 hint_text: "Propósito"
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .5, "center_y": .55}
+                pos_hint: {"center_x": .5, "center_y": .58}
             MDTextField:
                 id: video
                 md_bg_color: "000000"
@@ -655,7 +655,7 @@
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .5, "center_y": .38}
+                pos_hint: {"center_x": .5, "center_y": .39}
             MDTextField:
                 id: pitch
                 md_bg_color: "000000"
@@ -670,7 +670,7 @@
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .5, "center_y": .25}    
+                pos_hint: {"center_x": .5, "center_y": .27}    
             MDTextField:
                 id: tags
                 md_bg_color: "000000"
@@ -685,7 +685,7 @@
                 mode: "fill"
                 fill_color: 0, 0, 0, .4
                 multiline: True
-                pos_hint: {"center_x": .5, "center_y": .15}             
+                pos_hint: {"center_x": .5, "center_y": .17}             
             MDFillRoundFlatButton:
                 md_bg_color: "1F4935"
                 opacity: 1
@@ -737,15 +737,28 @@
                 pos_hint: {"center_x": .5, "center_y": .7}
                 theme_text_color: "Custom"
                 text_color: "49C388"
-            MDLabel:
-                halign:'center'
-                text: 'Proposito'
-                font_size: 18
-                pos_hint: {"center_x": .2, "center_y": .65}       
-            MDLabel:
-                id:propositop
-                halign:'center'
-                pos_hint: {"center_x": .5, "center_y": .6}
+            
+            MDCard:
+                padding: 3
+                spacing: 3
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                size_hint: 1, .05
+                pos_hint: {"center_x": .2, "center_y": .65}
+                MDLabel:
+                    halign:'center'
+                    text: 'Proposito'
+                    font_size: 18
+            MDCard:
+                padding: 3
+                spacing: 3
+                elevation: 0
+                md_bg_color:  0,0,0,0
+                pos_hint: {"center_x": .5, "center_y": .54}
+                size_hint: 1, .15
+                MDLabel:
+                    halign:'center'
+                    id:propositop
             MDLabel:
                 id:pitchp
                 halign:'center'
@@ -754,8 +767,6 @@
                 id:tagsp
                 halign:'center'
                 pos_hint: {"center_x": .5, "center_y": .3}            
-            
-            
 
 
             MDBottomNavigation:
@@ -777,8 +788,6 @@
                 MDBottomNavigationItem:
                     icon:"account-outline"
                     on_tab_press: app.root.current = 'perfil'
-
-
 
 <Explorer>:
     name: 'explorer'
