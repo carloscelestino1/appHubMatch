@@ -73,7 +73,8 @@ def register(email,senha,telefone,tipoperfil,box_result):
                     'video':'', 
                     'pitch':'',
                     'tags':tipoperfil,
-                    'perfil': tipoperfil
+                    'perfil': tipoperfil,
+                    'ids': ''
                 }
 
                 ref = db.reference('/usuarios/')
@@ -153,6 +154,7 @@ class Login(Screen):
         password = self.ids.senha.text
         if verificar_credenciais(email, password):
             self.manager.current = "filter"
+            self.manager.get_screen('filter').update_email(email)
             self.manager.get_screen('perfil').update_email(email)
             self.manager.get_screen('editprofile').update_email(email)
             return email
@@ -323,15 +325,24 @@ class Explorer(Screen):
     def update_idlike(self,idl):
         self.idl = idl
     
+    def update_idp(self,idp):
+        self.idp = idp
+        
     def on_enter(self):
+        idp = self.idp
         listar_usuarios = self.listar_usuarios
         idl = self.idl
         if len(listar_usuarios) == 0:
             listar_usuarios = []
+            ref = db.reference(f'/usuarios/{idp}')
+            usuariop = ref.get()
+            perfilp = usuariop['perfil']
             ref = db.reference('usuarios')
             usuarios = ref.get()
             for usuario_id in usuarios:
-                listar_usuarios.append(usuario_id)
+                perfil = usuarios[usuario_id]['perfil']
+                if perfil != perfilp:
+                    listar_usuarios.append(usuario_id)
             self.manager.get_screen('explorer').update_listar_usuarios(listar_usuarios)
             id = random.choice(listar_usuarios)
             ref = db.reference(f'/usuarios/{id}')
@@ -344,10 +355,10 @@ class Explorer(Screen):
             tags = p['tags']
             perfil = p['perfil']
             self.ids.nomee.text = nome
-            '''self.ids.perfilp.text = perfil
             self.ids.propositop.text = proposito
             self.ids.pitchp.text = pitch
-            self.ids.tagsp.text = tags'''
+            self.ids.videop.text = video
+            self.ids.tagsp.text = tags
         else:
             id = random.choice(listar_usuarios)
             ref = db.reference(f'/usuarios/{id}')
@@ -360,19 +371,25 @@ class Explorer(Screen):
             tags = p['tags']
             perfil = p['perfil']
             self.ids.nomee.text = nome
-            '''self.ids.perfilp.text = perfil
             self.ids.propositop.text = proposito
             self.ids.pitchp.text = pitch
-            self.ids.tagsp.text = tags'''
+            self.ids.videop.text = video
+            self.ids.tagsp.text = tags
         self.manager.get_screen('explorer').update_id(id)
         self.manager.get_screen('explorer').update_idlike(idl)
         return id
 
     
     def fuction_match(self):
+        idp = self.idp
         id = self.id
         idl = self.idl
-        idl.append(id)
+        idl.append(idp)
+        dados = {
+            'ids': idl
+        }
+        ref = db.reference(f'/usuarios/{id}')
+        ref.update(dados)
         listar_usuarios = self.listar_usuarios
         id = random.choice(listar_usuarios)
         ref = db.reference(f'/usuarios/{id}')
@@ -423,25 +440,45 @@ class Chat(Screen):
     pass
 
 class Filter(Screen):
+    def update_email(self, email):
+        self.email = email
+    def update_idp(self, idp):
+        self.idp = idp
     def on_enter(self):
+        email = self.email
         listar_usuarios = []
         idl = []
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        for usuario_id in usuarios:
+            usuario = usuarios[usuario_id]['email']
+            if usuario == email:
+                idp = usuario_id
+                self.manager.get_screen('explorer').update_idp(idp)
+                self.manager.get_screen('filter').update_idp(idp)    
         self.manager.get_screen('explorer').update_idlike(idl)
         self.manager.get_screen('match').update_idlike(idl)
         self.manager.get_screen('explorer').update_listar_usuarios(listar_usuarios)
     def filter(self):
+        idp = self.idp
+        ref = db.reference(f'/usuarios/{idp}')
+        usuariop = ref.get()
+        perfilp = usuariop['perfil']
         pesquisa = self.ids.pesquisa.text
         ref = db.reference('usuarios')
         usuarios = ref.get()
         listar_usuarios = []
         if pesquisa == '':
             for usuario_id in usuarios:
-                listar_usuarios.append(usuario_id)
+                perfil = usuarios[usuario_id]['perfil']
+                if perfil != perfilp:
+                    listar_usuarios.append(usuario_id)
         else:
             for usuario_id in usuarios:
                 usuario = usuarios[usuario_id]['tags']
                 usuariose = usuarios[usuario_id]['seguimento']
-                if usuario == pesquisa or usuariose == pesquisa:
+                perfil = usuarios[usuario_id]['perfil']
+                if usuario == pesquisa or usuariose == pesquisa or perfil != perfilp:
                     listar_usuarios.append(usuario_id)
         print(listar_usuarios)
         self.manager.current = "explorer"
