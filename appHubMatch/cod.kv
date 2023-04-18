@@ -598,7 +598,7 @@
                 size_hint: .2, .2
             MDTextField:
                 id: nome
-                max_text_length: 10
+                max_text_length: 25
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -1262,14 +1262,12 @@
 
                 on_press: root.filter()
             MDCard:
-                id: 'Azul'
                 elevation: 0
                 md_bg_color:  0,0,0,0
                 spacing: 15
                 padding: 17
                 size_hint: 0.7, 0.25
                 pos_hint: {'center_x': .5,'center_y': 0.44}
-                
                 MDCard:
                     id: ''
                     elevation: 0
@@ -1285,9 +1283,7 @@
                     ripple_behavior: True
                     Image:
                         source: "img/money.png"
-                        elevation: 0
-                        
-                    
+                        elevation: 0    
             MDCard:
                 elevation: 0
                 md_bg_color:  0,0,0,0
@@ -1295,7 +1291,6 @@
                 padding: 17
                 size_hint: 0.7, 0.25
                 pos_hint: {'center_x': .5,'center_y': 0.23}
-                
                 MDCard:
                     id: ''
                     elevation: 0
@@ -1305,15 +1300,12 @@
                         source: "img/music.png"
                         elevation: 0
                 MDCard:
-                    id: ''
                     elevation: 0
                     md_bg_color: "49C388"
                     ripple_behavior: True
                     Image:
                         source:"img/gast.png"
                         elevation: 0
-
-
 
             MDBoxLayout:
                 size_hint_y:None
