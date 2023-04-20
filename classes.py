@@ -524,7 +524,6 @@ class Filter(Screen):
                 perfil = usuarios[usuario_id]['perfil']
                 if usuario == pesquisa or usuariose == pesquisa or perfil != perfilp:
                     listar_usuarios.append(usuario_id)
-        print(listar_usuarios)
         self.manager.current = "explorer"
         self.manager.get_screen('explorer').update_listar_usuarios(listar_usuarios)
         return listar_usuarios
