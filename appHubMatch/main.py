@@ -41,6 +41,9 @@ class MyApp(MDApp):
         
     def editprofile(self):
         self.janela_gerenciadora.current = 'editprofile'
+    
+    def editprofile2(self):
+        self.janela_gerenciadora.current = 'editprofile2'
 
     def perfil(self):
         self.janela_gerenciadora.current = 'perfil'
@@ -66,6 +69,7 @@ class MyApp(MDApp):
         self.registerm = Register_Mentor()
         self.registerc = Register_Cientista()
         self.editprofilee= EditProfile()
+        self.editprofilee2= EditProfile2()
         self.welcome_screenn = WelcomeScreen()
         self.explorer = Explorer()
         self.settingss = Settingss()
@@ -84,6 +88,7 @@ class MyApp(MDApp):
         self.janela_gerenciadora.add_widget(self.registerc)
         self.janela_gerenciadora.add_widget(self.welcome_screenn)
         self.janela_gerenciadora.add_widget(self.editprofilee)
+        self.janela_gerenciadora.add_widget(self.editprofilee2)
         self.janela_gerenciadora.add_widget(self.explorer)
         self.janela_gerenciadora.add_widget(self.settingss)
         self.janela_gerenciadora.add_widget(self.chat)

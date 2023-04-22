@@ -16,6 +16,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from kivy.uix.button import Button
 import random
+from kivymd.uix.list import OneLineIconListItem
+
 
 
 from kivyauth.google_auth import initialize_google, login_google, logout_google
@@ -74,7 +76,7 @@ def register(email,senha,telefone,tipoperfil,box_result):
                     'pitch':'',
                     'tags':tipoperfil,
                     'perfil': tipoperfil,
-                    'ids': ''
+                    'ids': ['']
                 }
 
                 ref = db.reference('/usuarios/')
@@ -143,6 +145,8 @@ class Login(Screen):
             if register(email,senha,telefone,tipoperfil,box_result):
                 self.manager.current = "editprofile"
                 self.manager.get_screen('editprofile').update_email(email)
+                self.manager.get_screen('filter').update_email(email)
+                self.manager.get_screen('perfil').update_email(email)
                 return email
              
 
@@ -156,7 +160,7 @@ class Login(Screen):
             self.manager.current = "filter"
             self.manager.get_screen('filter').update_email(email)
             self.manager.get_screen('perfil').update_email(email)
-            self.manager.get_screen('editprofile').update_email(email)
+            self.manager.get_screen('editprofile2').update_email(email)
             return email
         else:
             self.ids.email.text = ""
@@ -283,7 +287,58 @@ class EditProfile(Screen):
                 ref.update(dados)
                 self.manager.current = "login"
 
+class EditProfile2(Screen):
+    def update_email(self, email):
+        self.email = email
+    def on_enter(self):
+        email = self.email
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        for usuario_id in usuarios:
+            usuario = usuarios[usuario_id]['email']
+            if usuario == email:
+                id = usuario_id     
+                ref = db.reference(f'/usuarios/{id}')
+                p = ref.get()
+                nome = p['nome']
+                pitch = p['pitch']
+                proposito = p['proposito']
+                seguimento = p['seguimento']
+                video = p['video']
+                tags = p['tags']
+                self.ids.nome.text = nome
+                self.ids.proposito.text = proposito
+                self.ids.pitch.text = pitch
+                self.ids.tags.text = tags
+                self.ids.seguimento.text = seguimento
+                self.ids.video.text = video                
+                
+    def edit_profile2(self):
+        email = self.email
+        nome = self.ids.nome.text
+        seguimento = self.ids.seguimento.text
+        proposito = self.ids.proposito.text
+        video = self.ids.video.text
+        pitch = self.ids.pitch.text
+        tags = self.ids.tags.text
+        dados = {
 
+                    'nome':nome,
+                    'seguimento':seguimento,
+                    'proposito':proposito,
+                    'video':video,
+                    'pitch':pitch,
+                    'tags': tags
+                }
+        ref = db.reference('usuarios')
+        usuarios = ref.get()
+        for usuario_id in usuarios:
+            usuario = usuarios[usuario_id]['email']
+            if usuario == email:
+                id = usuario_id     
+                ref = db.reference(f'/usuarios/{id}')
+                ref.update(dados)
+                self.manager.current = "perfil"
 
 class Settingss(Screen):
     pass
@@ -321,17 +376,13 @@ class Explorer(Screen):
     
     def update_id(self,id):
         self.id = id
-    
-    def update_idlike(self,idl):
-        self.idl = idl
-    
+        
     def update_idp(self,idp):
         self.idp = idp
         
     def on_enter(self):
         idp = self.idp
         listar_usuarios = self.listar_usuarios
-        idl = self.idl
         if len(listar_usuarios) == 0:
             listar_usuarios = []
             ref = db.reference(f'/usuarios/{idp}')
@@ -376,14 +427,14 @@ class Explorer(Screen):
             self.ids.videop.text = video
             self.ids.tagsp.text = tags
         self.manager.get_screen('explorer').update_id(id)
-        self.manager.get_screen('explorer').update_idlike(idl)
         return id
 
     
     def fuction_match(self):
         idp = self.idp
         id = self.id
-        idl = self.idl
+        ref = db.reference(f'/usuarios/{id}/ids')
+        idl = ref.get()
         idl.append(idp)
         dados = {
             'ids': idl
@@ -408,9 +459,7 @@ class Explorer(Screen):
         self.ids.tagsp.text = tags
         
         self.manager.get_screen('explorer').update_id(id)
-        self.manager.get_screen('explorer').update_idlike(idl)
-        self.manager.get_screen('match').update_idlike(idl)
-        print(idl)
+
         
     def fuction_dislike(self):
         listar_usuarios = self.listar_usuarios
@@ -447,7 +496,6 @@ class Filter(Screen):
     def on_enter(self):
         email = self.email
         listar_usuarios = []
-        idl = []
         ref = db.reference('usuarios')
         usuarios = ref.get()
         for usuario_id in usuarios:
@@ -456,8 +504,6 @@ class Filter(Screen):
                 idp = usuario_id
                 self.manager.get_screen('explorer').update_idp(idp)
                 self.manager.get_screen('filter').update_idp(idp)    
-        self.manager.get_screen('explorer').update_idlike(idl)
-        self.manager.get_screen('match').update_idlike(idl)
         self.manager.get_screen('explorer').update_listar_usuarios(listar_usuarios)
     def filter(self):
         idp = self.idp
@@ -480,7 +526,6 @@ class Filter(Screen):
                 perfil = usuarios[usuario_id]['perfil']
                 if usuario == pesquisa or usuariose == pesquisa or perfil != perfilp:
                     listar_usuarios.append(usuario_id)
-        print(listar_usuarios)
         self.manager.current = "explorer"
         self.manager.get_screen('explorer').update_listar_usuarios(listar_usuarios)
         return listar_usuarios
@@ -501,13 +546,11 @@ class WelcomeScreen(Screen):
         Clock.unschedule(self.start_autorotation)
 
 class MatchScreem(Screen):
-    def update_idlike(self,idl):
-        self.idl = idl
     def update_likes(self,likes):
         self.likes = likes
-    def on_enter(self):
-        idl = self.idl
-        print(idl)
+        
+        
 
-        
-        
+
+
+

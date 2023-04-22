@@ -710,7 +710,7 @@
                 size_hint: .2, .2
             MDTextField:
                 id: nome
-                max_text_length: 10
+                max_text_length: 25
                 md_bg_color: "000000"
                 hint_text: "line_color_normal"
                 text_color_focus: "black"
@@ -728,20 +728,8 @@
                 icon: "upload"
                 pos_hint: {'center_x': .2, 'center_y': .73} 
                 user_font_size: "35sp"    
-            MDTextField:
-                id:seguimento
-                md_bg_color: "000000"
-                hint_text: "line_color_normal"
-                text_color_focus: "black"
-                line_color_focus: "black"
-                hint_text_color_focus: "49C388"
-                
-                size_hint_x: .4
-                hint_text: "Seguimento"
-                mode: "fill"
-                fill_color: 0, 0, 0, .4
-                multiline: True
-                pos_hint: {"center_x": .7, "center_y": .73}
+
+
             MDTextField:
                 id: proposito
                 md_bg_color: "000000"
@@ -757,6 +745,20 @@
                 fill_color: 0, 0, 0, .4
                 multiline: True
                 pos_hint: {"center_x": .5, "center_y": .58}
+            MDTextField:
+                id:seguimento
+                md_bg_color: "000000"
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
+                line_color_focus: "black"
+                hint_text_color_focus: "49C388"
+                
+                size_hint_x: .4
+                hint_text: "Seguimento"
+                mode: "fill"
+                fill_color: 0, 0, 0, .4
+                multiline: True
+                pos_hint: {"center_x": .7, "center_y": .73}
             MDTextField:
                 id: video
                 md_bg_color: "000000"
@@ -808,7 +810,8 @@
                 text_color:1,1,1,1
                 pos_hint: {'center_x': .8, 'center_y': .05}
                 
-                on_press : root.edit_profile()
+                on_press : root.edit_profile2()
+
 
 <Perfil>:
     name: 'perfil'
@@ -836,7 +839,7 @@
                 icon: "pencil-outline"
                 pos_hint: {"center_x": .67, 'center_y': .8}    
                 size_hint: .09, .05
-                on_release: app.root.current = 'editprofile' 
+                on_release: app.root.current = 'editprofile2' 
 
             MDLabel:
                 id:nomep
@@ -1001,7 +1004,6 @@
    
             
             MDIconButton:
-                elevation_normal: 12
                 pos_hint: {'center_x': .3,'center_y': 0.24}
                 icon: "close"
                 icon_size: "48sp"
@@ -1009,13 +1011,13 @@
                 text_color: "49C388"
                 on_release : root.fuction_dislike()
             MDIconButton:
-                elevation_normal: 12
                 pos_hint: {'center_x': .7,'center_y': 0.25}
                 icon:"heart-outline"
                 icon_size: "52sp"
                 theme_text_color: "Custom"
                 text_color: "49C388"
-                on_release : root.fuction_match()
+                on_release : 
+                    root.fuction_match()
 
                
             MDBoxLayout:
@@ -1126,6 +1128,7 @@
                     Image:
                         source: 'img/anuncios.png'
                     MDLabel:
+                        
                         adaptive_size: True
                         text: 'Anúncios   '     
             MDCard:
@@ -1243,102 +1246,166 @@
         MDFloatLayout:
             Image:
                 source: "img/image4.png"
-                pos_hint: {'center_x': 0.5,'center_y': 0.80}
-                size_hint: 0.65, 0.33  
+                pos_hint: {'center_x': 0.5,'center_y': 0.8}
+                size_hint: 0.65, 0.37
+   
             MDTextField:
-                id: pesquisa              
+                radius: [35,]
+                id: pesquisa 
+                hint_text: "line_color_normal"
+                text_color_focus: "black"
+                line_color_focus: "black"
+                icon_left: 'magnify'
+                icon_left_color_normal: "black"
+                icon_left_color_focus: "49C388"
+                hint_text_color_focus: "49C388" 
+                mode: "fill"
+                fill_color: 0, 0, 0, .4
                 hint_text: "Pesquisar"
-                mode: "round"
-                icon_left: "magnify"
-                pos_hint: {'center_x': .44,'center_y': .58}
-                size_hint: 0.70, 0.07
+                pos_hint: {'center_x': .44,'center_y': .5}
+                size_hint: 0.70, 0.1
             MDFillRoundFlatButton:
                 md_bg_color: "#49C388"
                 text: "Filtrar"
                 font_size:14
                 text_color:1,1,1,1
-                pos_hint: {'center_x': .9, 'center_y': .58}
+                pos_hint: {'center_x': .9, 'center_y': .5}
                 size_hint_x: .1
 
                 on_press: root.filter()
-            MDCard:
-                elevation: 0
-                md_bg_color:  0,0,0,0
-                spacing: 15
-                padding: 17
-                size_hint: 0.7, 0.25
-                pos_hint: {'center_x': .5,'center_y': 0.44}
-                MDCard:
-                    id: ''
-                    elevation: 0
-                    md_bg_color: "49C388"
-                    ripple_behavior: True
-                    MDLabel:
-                        text: 'Startup'
-                        elevation: 0
-                MDCard:
-                    id: ''
-                    elevation: 0
-                    md_bg_color: "49C388"
-                    ripple_behavior: True
-                    Image:
-                        source: "img/money.png"
-                        elevation: 0    
-            MDCard:
-                elevation: 0
-                md_bg_color:  0,0,0,0
-                spacing: 15
-                padding: 17
-                size_hint: 0.7, 0.25
-                pos_hint: {'center_x': .5,'center_y': 0.23}
-                MDCard:
-                    id: ''
-                    elevation: 0
-                    md_bg_color: "49C388"
-                    ripple_behavior: True
-                    Image:
-                        source: "img/music.png"
-                        elevation: 0
-                MDCard:
-                    elevation: 0
-                    md_bg_color: "49C388"
-                    ripple_behavior: True
-                    Image:
-                        source:"img/gast.png"
-                        elevation: 0
 
-            MDBoxLayout:
-                size_hint_y:None
-                height:dp(60)
-                adaptive_width:True
-                padding:dp(10)
-                pos_hint:{'center_x':.5}
-                md_bg_color:"49C388"
-                MDIconButton:
-                    icon:'home'
-                    size_hint_x:None
-                    width:root.width*.2
-                    on_release: app.root.current = 'filter'
-                MDIconButton:
-                    icon:'magnify'
-                    size_hint_x:None
-                    width:root.width*.2
-                    on_release: app.root.current = 'explorer'
-                MDIconButton:
-                    icon: "heart-outline"
-                    size_hint_x:None
-                    width:root.width*.2
-                    on_release: app.root.current = 'match'
-                MDIconButton:
-                    icon:'forum'
-                    size_hint_x:None
-                    width:root.width*.2
-                    on_release: app.root.current = 'chat'
-                MDIconButton:
-                    icon:'account-outline'
-                    size_hint_x:None
-                    width:root.width*.2
-                    on_release: app.root.current = 'perfil'
+
+            MDSwiper:
+                pos_hint: {'center_y': 0.3}
+                size_hint_y: None   
+                MySwiper:
+                    RelativeLayout:
+                    
+                        FitImage:
+                            source: "img/ret.png"
+                            radius: [20,]
+
+                        MDTextButton:
+                            text: "Padaria"
+                            font_style: "H5"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            pos_hint: {'center_x': .5,'center_y': .5}
+                            opposite_colors: True
+                MySwiper:
+                    RelativeLayout:
+                    
+                        FitImage:
+                            source: "img/ret.png"
+                            radius: [20,]
+                        MDBoxLayout:
+                            adaptive_height: True
+                            spacing: "12dp"
+
+                        MDTextButton:
+                            ripple_behavior: True
+                            text: "Tecnologia"
+                            font_style: "H5"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            pos_hint: {'center_x': .5,'center_y': .5}
+                            opposite_colors: True
+                MySwiper:
+                    RelativeLayout:
+                    
+                        FitImage:
+                            source: "img/ret.png"
+                            radius: [20,]
+                        MDBoxLayout:
+                            adaptive_height: True
+                            spacing: "12dp"
+
+                        MDTextButton:
+                            ripple_behavior: True
+                            text: "Tecnologia"
+                            font_style: "H5"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            pos_hint: {'center_x': .5,'center_y': .5}
+                            opposite_colors: True
+                MySwiper:
+                    RelativeLayout:
+                    
+                        FitImage:
+                            source: "img/ret.png"
+                            radius: [20,]
+                        MDBoxLayout:
+                            adaptive_height: True
+                            spacing: "12dp"
+
+                        MDTextButton:
+                            ripple_behavior: True
+                            text: "Tecnologia"
+                            font_style: "H5"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            pos_hint: {'center_x': .5,'center_y': .5}
+                            opposite_colors: True
+                MySwiper:
+                    RelativeLayout:
+                    
+                        FitImage:
+                            source: "img/ret.png"
+                            radius: [20,]
+                        MDBoxLayout:
+                            adaptive_height: True
+                            spacing: "12dp"
+
+                        MDTextButton:
+                            ripple_behavior: True
+                            text: "Tecnologia"
+                            font_style: "H5"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            pos_hint: {'center_x': .5,'center_y': .5}
+                            opposite_colors: True
+                                                                
+
+
+    MDBoxLayout:
+        size_hint_y:None
+        height:dp(60)
+        adaptive_width:True
+        padding:dp(10)
+        pos_hint:{'center_x':.5}
+        md_bg_color:"49C388"
+        MDIconButton:
+            icon:'home'
+            size_hint_x:None
+            width:root.width*.2
+            on_release: app.root.current = 'filter'
+        MDIconButton:
+            icon:'magnify'
+            size_hint_x:None
+            width:root.width*.2
+            on_release: app.root.current = 'explorer'
+        MDIconButton:
+            icon: "heart-outline"
+            size_hint_x:None
+            width:root.width*.2
+            on_release: app.root.current = 'match'
+        MDIconButton:
+            icon:'forum'
+            size_hint_x:None
+            width:root.width*.2
+            on_release: app.root.current = 'chat'
+        MDIconButton:
+            icon:'account-outline'
+            size_hint_x:None
+            width:root.width*.2
+            on_release: app.root.current = 'perfil'
+
+<MagicButton@MagicBehavior+MDIconButton>
+<MySwiper@MDSwiperItem>
+
+
+
+
 
 <MatchScreem>:
     name: 'match'
