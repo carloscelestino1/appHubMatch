@@ -1,65 +1,19 @@
-from kivy.lang import Builder
-from kivy.metrics import dp
-from kivy.properties import StringProperty
-from kivymd.uix.list import OneLineIconListItem
 from kivymd.app import MDApp
-from kivymd.uix.menu import MDDropdownMenu
-
-KV = '''
-<IconListItem>
-
-    IconLeftWidget:
-        icon: root.icon
+from kivymd.uix.label import MDLabel
+from kivy.uix.screenmanager import Screen
 
 
-MDScreen
+class MyScreen(Screen):
+    def init(self, kwargs):
+        super().init(kwargs)
 
-    MDDropDownItem:
-        id: drop_item
-        pos_hint: {'center_x': .5, 'center_y': .5}
-        text: 'Seguimento'
-        on_release: app.menu.open()
-'''
+        label = MDLabel(text="[ref=https://kivy.org]Visite o site do Kivy[/ref]", markup=True)
+        self.add_widget(label)
 
 
-class IconListItem(OneLineIconListItem):
-    icon = StringProperty()
-
-
-class Test(MDApp):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.screen = Builder.load_string(KV)
-        menu_items = [
-            {
-                "viewclass": "IconListItem",
-                "text": "A",
-                "height": dp(56),
-                "on_release": lambda x=f"A": self.set_item(x),
-                
-            },
-            {
-                "viewclass": "IconListItem",
-                "text": "B",
-                "height": dp(56),
-                "on_release": lambda x=f"B": self.set_item(x),
-                
-            } 
-        ]
-        self.menu = MDDropdownMenu(
-            caller=self.screen.ids.drop_item,
-            items=menu_items,
-            position="center",
-            width_mult=4,
-        )
-        self.menu.bind()
-
-    def set_item(self, text_item):
-        self.screen.ids.drop_item.set_item(text_item)
-        self.menu.dismiss()
-
+class MyApp(MDApp):
     def build(self):
-        return self.screen
+        return MyScreen()
 
 
-Test().run()
+MyApp().run()

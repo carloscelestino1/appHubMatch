@@ -76,7 +76,8 @@ def register(email,senha,telefone,tipoperfil,box_result):
                     'pitch':'',
                     'tags':tipoperfil,
                     'perfil': tipoperfil,
-                    'ids': ['']
+                    'ids': [''],
+                    'match': ['']
                 }
 
                 ref = db.reference('/usuarios/')
@@ -503,8 +504,11 @@ class Filter(Screen):
             if usuario == email:
                 idp = usuario_id
                 self.manager.get_screen('explorer').update_idp(idp)
-                self.manager.get_screen('filter').update_idp(idp)    
+                self.manager.get_screen('filter').update_idp(idp)
+                self.manager.get_screen('match').update_idp(idp)      
         self.manager.get_screen('explorer').update_listar_usuarios(listar_usuarios)
+    def tecnologia(self):
+        self.ids.pesquisa.text = 'tecnologia'
     def filter(self):
         idp = self.idp
         ref = db.reference(f'/usuarios/{idp}')
@@ -548,8 +552,149 @@ class WelcomeScreen(Screen):
 class MatchScreem(Screen):
     def update_likes(self,likes):
         self.likes = likes
+    def update_idp(self, idp):
+        self.idp = idp
+    def update_match(self,listamatch):
+        self.listamatch = listamatch
+    def update_idm(self, idm):
+        self.idm = idm
+    def on_enter(self):
+        idp = self.idp      
+        ref = db.reference(f'/usuarios/{idp}/ids')
+        listamatch = ref.get()
+        for lista in listamatch:
+            if lista =="":
+                listamatch.remove(lista)
+        nlista = len(listamatch)
+        if nlista == 0:
+            dialog = MDDialog(
+                title="Atenção",
+                text="Você não possui nenhum like",
+                size_hint=(0.8, 0.4)
+                )
+            dialog.open()
+        else:
+            idm = random.choice(listamatch)
+            ref = db.reference(f'/usuarios/{idm}')
+            p = ref.get()
+            nome = p['nome']
+            pitch = p['pitch']
+            proposito = p['proposito']
+            seguimento = p['seguimento']
+            video = p['video']
+            tags = p['tags']
+            perfil = p['perfil']
+            self.ids.nomee.text = nome
+            self.ids.propositop.text = proposito
+            '''self.ids.pitchp.text = pitch
+            self.ids.videop.text = video'''
+            self.ids.tagsp.text = tags
+            self.manager.get_screen('match').update_idm(idm)
+            self.manager.get_screen('match').update_match(listamatch)
         
         
+    def like(self):
+        idm = self.idm
+        idp = self.idp
+        listamatch = self.listamatch
+        ref = db.reference(f'/usuarios/{idp}/match')
+        idl = ref.get()
+        idl.append(idm)
+        dados = {
+            'match': idl
+        }
+        ref = db.reference(f'/usuarios/{idp}')
+        ref.update(dados)
+        ref = db.reference(f'/usuarios/{idm}/match')
+        idl = ref.get()
+        idl.append(idp)
+        dados = {
+            'match': idl
+        }
+        ref = db.reference(f'/usuarios/{idm}')
+        ref.update(dados)
+        listamatch.remove(idm)
+        vazio = ''
+        listamatch.append(vazio)
+        ref = db.reference(f'/usuarios/{idp}')
+        dados= {
+            'ids': listamatch
+        }
+        ref.update(dados)
+        for lista in listamatch:
+            if lista =="":
+                listamatch.remove(lista)
+        nlista = len(listamatch)
+        if nlista == 0:
+            dialog = MDDialog(
+                title="Atenção",
+                text="Você não possui mais nenhum like",
+                size_hint=(0.8, 0.4)
+                )
+            dialog.open()
+        else:        
+            idm = random.choice(listamatch)
+            ref = db.reference(f'/usuarios/{idm}')
+            p = ref.get()
+            nome = p['nome']
+            pitch = p['pitch']
+            proposito = p['proposito']
+            seguimento = p['seguimento']
+            video = p['video']
+            tags = p['tags']
+            perfil = p['perfil']
+            '''self.ids.nomee.text = nome
+            self.ids.propositop.text = proposito
+            self.ids.pitchp.text = pitch
+            self.ids.videop.text = video
+            self.ids.tagsp.text = tags'''
+            self.manager.get_screen('match').update_idm(idm)
+            self.manager.get_screen('match').update_match(listamatch)
+        
+        
+    def dislike(self):
+        listamatch = self.listamatch
+        idp = self.idp
+        idm = self.idm
+        listamatch.remove(idm)
+        vazio = ''
+        listamatch.append(vazio)
+        ref = db.reference(f'/usuarios/{idp}')
+        dados= {
+            'ids': listamatch
+        }
+        ref.update(dados)
+        ref = db.reference(f'/usuarios/{idp}/ids/{idm}')
+        ref.delete()
+        for lista in listamatch:
+            if lista =="":
+                listamatch.remove(lista)
+        nlista = len(listamatch)
+        if nlista == 0:
+            dialog = MDDialog(
+                title="Atenção",
+                text="Você não possui mais nenhum like",
+                size_hint=(0.8, 0.4)
+                )
+            dialog.open()
+        else:    
+            idm = random.choice(listamatch)
+            ref = db.reference(f'/usuarios/{idm}')
+            p = ref.get()
+            nome = p['nome']
+            pitch = p['pitch']
+            proposito = p['proposito']
+            seguimento = p['seguimento']
+            video = p['video']
+            tags = p['tags']
+            perfil = p['perfil']
+            '''self.ids.nomee.text = nome
+            self.ids.propositop.text = proposito
+            self.ids.pitchp.text = pitch
+            self.ids.videop.text = video
+            self.ids.tagsp.text = tags'''
+            self.manager.get_screen('match').update_idm(idm)
+            self.manager.get_screen('match').update_match(listamatch)
 
 
 

@@ -1286,12 +1286,13 @@
                             radius: [20,]
 
                         MDTextButton:
-                            text: "Padaria"
+                            text: "Tecnologia"
                             font_style: "H5"
                             size_hint_y: None
                             height: self.texture_size[1]
                             pos_hint: {'center_x': .5,'center_y': .5}
                             opposite_colors: True
+                            on_press : root.tecnologia()
                 MySwiper:
                     RelativeLayout:
                     
@@ -1413,39 +1414,39 @@
         orientation: 'vertical'
         md_bg_color: "white" 
         MDFloatLayout:                
-            MDCard:
-                id: 'Azul'
-                elevation: 0
-                md_bg_color:  0,0,0,0
-                spacing: 5
-                padding: 5
-                size_hint: 1, 0.30
+            Image:
                 pos_hint: {'center_x': .5,'center_y': .8}
-                MDCard:
-                    id: ''
-                    elevation: 0
-                    md_bg_color: 
-                    padding: 10
-                    size_hint: 1, 1
-                    pos_hint: {'center_x': .5,'center_y': .5}
-                    Image:
-                        source: "img/FyTecLogo.png"
-                        elevation: 0
-                MDLabel:
-                    pos_hint: {'center_x': 0.60,'center_y': 0.50}
-                    text: "Fy.Tec"
-                
-                MDCard:
-                    id: ''
-                    size_hint: .5, .5
-                    ripple_behavior: True
-                    elevation: 0
-                    md_bg_color: 
-                    pos_hint: {'center_x': .6,'center_y': 0.50}
-                    Image:
-                        source: "img/VectorHeart.png"
-                        elevation: 0
-            
+                size_hint: .3, .3
+                source: "img/Ellipse2.png"
+                elevation: 0
+            MDLabel:
+                font_size: 20
+                id: nomee
+                pos_hint: {'center_x': .5,'center_y': 0.67}
+                halign: 'center'              
+            MDLabel:
+                theme_text_color: "Custom"
+                text_color: "49C388"
+                id: tagsp
+                pos_hint: {'center_x': .5,'center_y': 0.62}
+                halign: 'center'
+            MDLabel:
+                id: propositop
+                pos_hint: {'center_x': .5,'center_y': 0.5}
+                halign: 'center'                 
+            MDIconButton:
+                icon_size: "52sp"
+                theme_text_color: "Custom"
+                text_color: "49C388"           
+                pos_hint: {'center_x': .7,'center_y': 0.25}   
+                icon: 'heart-outline'
+                on_press : root.like() 
+            MDIconButton:    
+                pos_hint: {'center_x': .3,'center_y': 0.24}
+                icon: "close"
+                icon_size: "48sp"
+                theme_text_color: "Custom"
+                text_color: "49C388"           
 
 
         MDBoxLayout:
