@@ -1158,9 +1158,11 @@
                 MDCard:
                     elevation: 0
                     ripple_behavior: True
+                    on_release: app.root.current = 'login'
                     Image:
                         source: 'img/exit.png'
                     MDLabel:
+                        
                         adaptive_size: True
                         text: 'Sair           '                                     
             MDFloatLayout:
@@ -1446,7 +1448,8 @@
                 icon: "close"
                 icon_size: "48sp"
                 theme_text_color: "Custom"
-                text_color: "49C388"           
+                text_color: "49C388"
+                on_press : root.dislike()           
 
 
         MDBoxLayout:

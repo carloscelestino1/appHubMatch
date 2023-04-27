@@ -643,11 +643,11 @@ class MatchScreem(Screen):
             video = p['video']
             tags = p['tags']
             perfil = p['perfil']
-            '''self.ids.nomee.text = nome
+            self.ids.nomee.text = nome
             self.ids.propositop.text = proposito
-            self.ids.pitchp.text = pitch
-            self.ids.videop.text = video
-            self.ids.tagsp.text = tags'''
+            '''self.ids.pitchp.text = pitch
+            self.ids.videop.text = video'''
+            self.ids.tagsp.text = tags
             self.manager.get_screen('match').update_idm(idm)
             self.manager.get_screen('match').update_match(listamatch)
         
@@ -688,11 +688,11 @@ class MatchScreem(Screen):
             video = p['video']
             tags = p['tags']
             perfil = p['perfil']
-            '''self.ids.nomee.text = nome
+            self.ids.nomee.text = nome
             self.ids.propositop.text = proposito
-            self.ids.pitchp.text = pitch
-            self.ids.videop.text = video
-            self.ids.tagsp.text = tags'''
+            '''self.ids.pitchp.text = pitch
+            self.ids.videop.text = video'''
+            self.ids.tagsp.text = tags
             self.manager.get_screen('match').update_idm(idm)
             self.manager.get_screen('match').update_match(listamatch)
 
